@@ -27,9 +27,10 @@ class ScraperController extends Controller
 
 		//find every link to single  movie page inside the movies top page 
 		$page = $html->find(".titleColumn a");
-		foreach ($page as $value) {
-
-			echo $value->href;
+		foreach ($page as $link) {
+			//affichage des lien pour develloper à virer en temps et en heure
+			echo $link->href;
+			echo '<br/>';
 		}
 
 		
