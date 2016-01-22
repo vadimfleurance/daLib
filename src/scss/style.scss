@@ -1,0 +1,16 @@
+$greyBorder: #333439;
+
+.navbar {
+	border: {
+		top: 0;
+		right: 0;
+		bottom: 3px;
+		left: 0;
+		style: solid;
+		color: $greyBorder;
+		radius: 0;
+	}
+}
+.navbar-title {
+	text-align: center;	
+}

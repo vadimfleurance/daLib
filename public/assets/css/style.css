@@ -1,0 +1,13 @@
+.navbar {
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 3px;
+  border-left: 0;
+  border-style: solid;
+  border-color: #333439;
+  border-radius: 0;
+}
+
+.navbar-title {
+  text-align: center;
+}

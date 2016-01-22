@@ -11,20 +11,29 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.min.css') ?>">
 </head>
 <body>
-	<div class="container">
-		<header>
-			<h1>W :: <?= $this->e($title) ?></h1>
-		</header>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 col-md-2 navbar-title bg-primary">
+					<h1><i class="fa fa-book"></i> <?= $this->e($nav_title) ?></h1>
+				</div>
+				<?php if(0) { ?>
+				<div class="col-sm-9 col-md-10"></div>
+				<?php } ?>
+			</div>
+		</div>
+	</nav>
 
-		<section>
-			<?= $this->section('main_content') ?>
-		</section>
+	<main>
+		<?= $this->section('main_content') ?>
+	</main>
 
-		<footer>
-		</footer>
-	</div>
-<!-- scripts -->
-<script src="<?= $this->assetUrl('js/jquery-2.2.0.min.js') ?>"></script>
-<script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+	<footer>
+		
+	</footer>
+
+	<!-- scripts -->
+	<script src="<?= $this->assetUrl('js/jquery-2.2.0.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 </body>
 </html>
