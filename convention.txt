@@ -1,4 +1,6 @@
 <?php
+//ATTENTION DE TRAVAILLER LE FICHER SCSS DANS SRC
+
 //les fichiers contenant une classe sont ecrits comme les classes en UpperCamelCase
 //les autres fichiers sont ecrit en minuscule snake_case
 

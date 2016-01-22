@@ -32,8 +32,8 @@ gulp.task('css', function(){
 
 //à exécuter avec "gulp js"
 gulp.task('js', function(){
-	return gulp.src(['src/js/main.js', 'src/js/chat.js', 'src/js/*.js']) //force cet ordre d'inclusion
-		.pipe(concat('all.js'))
+	return gulp.src(['src/js/*.js']) //force cet ordre d'inclusion
+		.pipe(concat('main.js'))
 		.pipe(gulp.dest('./public/assets/js'))
 		.pipe(uglify())
 		.pipe(rename({suffix: '.min'}))
