@@ -94,7 +94,7 @@ class ScraperController extends Controller
 			"year" => "",
 			"imdbRef" => "",
 			"imdbRating" => "",
-			"cover" => ""?,
+			"cover" => "",
 			"dateCreated" => date("Y-m-d H:i:s"),
 			"dateModified" => date("Y-m-d H:i:s")
 			];
@@ -119,70 +119,87 @@ class ScraperController extends Controller
 			$movie["synopsis"] = trim($synopsisTmp->plaintext);
 		}
 
-		//durée
+		//duration
 		$durationTmp = $html->find("time[itemprop=duration]",0);
 		if (!empty($durationTmp)){
 			$movie["duration"] = trim(str_replace(" min", "", $durationTmp->plaintext));
 		}
-		// $duration = trim(str_replace(" min", "", $html->find("time[itemprop=duration]",0)->plaintext));
 
-		//année
+		//year
 		$yearTmp = $html->find(".header", 0)->find('.nobr', 0);
 		if (!empty($yearTmp)){
 			$movie["year"] = trim($yearTmp->find("a", 0)->plaintext);
 		}
 
-		//référence IMDb
+		//imdbRef
 		$imdbRef = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
 
-		//évaluation
+		//imdbRating
 		$ratingTmp = $html->find("div[class=titlePageSprite star-box-giga-star]",0);
 		if (!empty($ratingTmp)){
 			$movie["rating"] = trim($ratingTmp->plaintext);
 		}
 
-		//url de la cover sans le suffixe ni l'extension
+		//url cover without suffix and extension
 		$coverTmp = $html->find("#title-overview-widget",0)->find("img",0);
 		if (!empty($coverTmp)){
 			$movie["cover"] = trim(preg_replace("/@.*/", "", $coverTmp->src));
 		}
 
-		//réalisateurs
+		//directors
 		$directorsTmp = $html->find("div[itemprop=director]",0);
 		if(!empty($directorsTmp)){
-			foreach ($directorsTmp as $director){
-			$humans["directors"][] = $directorsTmp->find("span[itemprop=name]");
-				
+			$directors = $directorsTmp->find("a[itemprop=url]");
+			foreach ($directors as $director){
+				preg_match("!nm\d{7}!", $director->href, $matches);
+				$humans[] = [
+					"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
+					"role" => "directors",
+					"imdbRef" => $matches[0]
+				];
 			}
 		}
 
-		//scénaristes
+		//writers
 		$writersTmp = $html->find("div[itemprop=creator]",0);
 		if(!empty($writersTmp)){
-			$movie["writers"] = $writersTmp->find("span[itemprop=name]");
+			$writers = $writersTmp->find("a[itemprop=url]");
+			foreach ($writers as $writer){
+				preg_match("!nm\d{7}!", $writer->href, $matches);
+				$humans[] = [
+					"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
+					"role" => "writers",
+					"imdbRef" => $matches[0]
+				];
+			}
 		}
 
-		//acteurs
+		//stars
 		$starsTmp = $html->find("div[itemprop=actors]",0);
 		if (!empty($starsTmp)){
-			$movie["stars"] = $starsTmp->find("span[itemprop=name]");
+			$stars = $starsTmp->find("> a[itemprop=url]");
+			foreach ($stars as $star){
+				preg_match("!nm\d{7}!", $star->href, $matches);
+				//permet d'arrêter le foreach quand il arrive à la balise <a> du "See full cast and crew"
+				if(empty($matches[0])){
+					break;
+				}
+
+				$humans[] = [
+					"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
+					"role" => "stars",
+					"imdbRef" => $matches[0]
+				];
+			}
 		}
 
 		//genres
 		$genresTmp = $html->find("span[itemprop=genre]");
 		if (!empty($genresTmp)){
-			foreach ($$genresTmp as $genre){
+			foreach ($genresTmp as $genre){
 				$genres[] = $genre->plaintext;
 			}
 		}
-		
-		//sinon (erreur)
-		else{
-			//affichage de l'erreur d'import (template pas encore créé)
-			// $this->show("movie/addMovie", [$error => "L'URL n'est pas correcte");
-		}
-
-
 	}
 
 		public function MovieInsert($movie)
@@ -190,6 +207,5 @@ class ScraperController extends Controller
 			
 			$movieManager= new \Manager\MovieManager;
 			$movieManager->insert($movie);
-			die();//die a virer
 		}
 }
