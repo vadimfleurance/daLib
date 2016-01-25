@@ -86,8 +86,20 @@ class ScraperController extends Controller
 	public function pageScraper($link)
 	{
 		//extraire toutes les donnees necessaires d'une page d'un film
-		//initialisation du tableau qui contiendra toutes les données du film
-		$movie = ["title" => "", "synopsis" => "", "duration" => "", "year" => "", "imdbRef" => "", "imdbRating" => "", "cover" => "", "directors" => "", "writers" =>"", "stars" => "", "genres" => ""];
+		//initialisation du tableau qui contiendra la plupart des données du film
+		$movie = [
+			"title" => "",
+			"synopsis" => "",
+			"duration" => "",
+			"year" => "",
+			"imdbRef" => "",
+			"imdbRating" => "",
+			"cover" => ""?,
+			"dateCreated" => date("Y-m-d H:i:s"),
+			"dateModified" => date("Y-m-d H:i:s")
+			];
+		$genres = [];
+		$humans = [];
 		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 		$link = trim($link);
 
@@ -138,7 +150,10 @@ class ScraperController extends Controller
 		//réalisateurs
 		$directorsTmp = $html->find("div[itemprop=director]",0);
 		if(!empty($directorsTmp)){
-			$movie["directors"] = $directorsTmp->find("span[itemprop=name]");
+			foreach ($directorsTmp as $director){
+			$humans["directors"][] = $directorsTmp->find("span[itemprop=name]");
+				
+			}
 		}
 
 		//scénaristes
@@ -156,12 +171,14 @@ class ScraperController extends Controller
 		//genres
 		$genresTmp = $html->find("span[itemprop=genre]");
 		if (!empty($genresTmp)){
-			$movie["genres"] = $genresTmp;
+			foreach ($$genresTmp as $genre){
+				$genres[] = $genre->plaintext;
+			}
 		}
 		
 		//sinon (erreur)
 		else{
-			//affichage de l'erreur d'import (pas encore créé)
+			//affichage de l'erreur d'import (template pas encore créé)
 			// $this->show("movie/addMovie", [$error => "L'URL n'est pas correcte");
 		}
 	}
