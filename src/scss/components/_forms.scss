@@ -1,7 +1,7 @@
 #informations {
 	.nav-tabs {
-		background-color: $medium-grey;
-		border-bottom: 1px solid $medium-grey;
+		background-color: $grey;
+		border-bottom: 1px solid $grey;
 		
 		li > a {
 			height: 50px;
@@ -12,13 +12,13 @@
 			color: #fff;
 		}
 		li > a:focus, li > a:hover {
-			background-color: $grey;
+			background-color: #333439;
 		}
 		li[class*="col"] {
 			padding: 0;
 		}
 		li.active > a, li.active > a:focus, li.active > a:hover {
-			background-color: $main-color;
+			background-color: $primary;
 			border: none; 
 			border-bottom-color: inherit; 
 		}
@@ -33,7 +33,7 @@
 
 		#login-form, #register-form {
 			padding: 20px 0;
-			color: $grey;
+			color: #333439;
 		
 			.form-group {
 				margin: 0 0 20px;
@@ -70,7 +70,7 @@
 				}
 			}
 			.btn-login, .btn-register {
-				background-color: $main-color;
+				background-color: $primary;
 				height: 50px;
 				border-radius: 0;
 				border: none;
@@ -79,7 +79,7 @@
 				text-transform: uppercase;
 			}
 			.btn-login:hover, .btn-login:focus, .btn-register:hover, .btn-register:focus {
-				background-color: $light-main-color;
+				background-color: $primary-light;
 			}
 		}
 

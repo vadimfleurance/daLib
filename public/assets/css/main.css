@@ -1,5 +1,10 @@
-/* Flat Colors - http://www.flatcolorsui.com/ */
-/* Variables - Colors */
+/*@import
+	'vendor/';*/
+/*@import
+	'base/base',
+	'base/fonts',
+	'base/typography',
+	'base/helpers';*/
 body {
   background-color: #131313;
   color: #eaeaea;
@@ -36,6 +41,15 @@ body {
 .full-section {
   width: 100%;
   padding: 75px 0;
+}
+
+footer.main-footer {
+  background-color: #0067B0;
+  color: red;
+}
+
+#informations {
+  min-height: 600px;
 }
 
 #informations .nav-tabs {
@@ -139,10 +153,7 @@ body {
   margin-top: 20px;
 }
 
-footer.main-footer {
-  background-color: #1d1e22;
-}
-
-#informations {
-  min-height: 600px;
-}
+/*@import
+	'pages/';*/
+/*@import
+	'themes/';*/

@@ -1,27 +1,24 @@
-@import "colors.scss";
-
-
 body {
-	background-color: $dark-grey;
+	background-color: $secondary;
 	color: $light-grey;
 }
 
 .navbar {
-	background-color: $medium-grey;
+	background-color: $grey;
 	border: {
 		top: 0;
 		right: 0;
 		bottom: 3px;
 		left: 0;
 		style: solid;
-		color: $grey;
+		color: #333439;
 		radius: 0;
 	}
 	.navbar-title {
 		text-align: center;	
 	}
 	.bg-dalib {
-		background-color: $main-color;
+		background-color: $primary;
 	}
 }
 
@@ -41,13 +38,9 @@ body {
 }
 
 
-
-@import "forms";
-
-
-
 footer.main-footer {
-	background-color: $medium-grey;
+	background-color: $primary;
+	color: red;
 }
 
 
