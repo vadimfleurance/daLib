@@ -1,16 +1,50 @@
-$greyBorder: #333439;
+$main-color: #1297E0;
+$dark-main-color: #004790;
+$dark-grey: #131313;
+$grey: #1d1e22;
+$light-grey: #eaeaea;
+$border-grey: #333439;
+
+
+body {
+	background-color: $dark-grey;
+	color: $light-grey;
+}
 
 .navbar {
+	background-color: $grey;
 	border: {
 		top: 0;
 		right: 0;
 		bottom: 3px;
 		left: 0;
 		style: solid;
-		color: $greyBorder;
+		color: $border-grey;
 		radius: 0;
 	}
+	.navbar-title {
+		text-align: center;	
+	}
+	.bg-dalib {
+		background-color: $main-color;
+	}
 }
-.navbar-title {
-	text-align: center;	
+
+/*.btn-default {
+	background-color: $main-color;
+	border-color: $main-color;
+	color: #fff;
+}
+.btn-default:hover {
+	background-color: $dark-main-color;
+	border-color: $dark-main-color;
+}*/
+
+.full-section {
+	width: 100%;
+	padding: 75px 0;
+}
+
+footer.main-footer {
+	background-color: $grey;
 }

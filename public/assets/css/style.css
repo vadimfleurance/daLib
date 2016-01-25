@@ -1,4 +1,10 @@
+body {
+  background-color: #131313;
+  color: #eaeaea;
+}
+
 .navbar {
+  background-color: #1d1e22;
   border-top: 0;
   border-right: 0;
   border-bottom: 3px;
@@ -8,6 +14,28 @@
   border-radius: 0;
 }
 
-.navbar-title {
+.navbar .navbar-title {
   text-align: center;
+}
+
+.navbar .bg-dalib {
+  background-color: #1297E0;
+}
+
+/*.btn-default {
+	background-color: $main-color;
+	border-color: $main-color;
+	color: #fff;
+}
+.btn-default:hover {
+	background-color: $dark-main-color;
+	border-color: $dark-main-color;
+}*/
+.full-section {
+  width: 100%;
+  padding: 75px 0;
+}
+
+footer.main-footer {
+  background-color: #1d1e22;
 }

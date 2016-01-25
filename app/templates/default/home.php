@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'daLib | Your collection of movies in your pocket', 'nav_title' => 'daLib']) ?>
 
 <?php $this->start('main_content') ?>
-	<section>
+	<section id="informations" class="full-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
@@ -16,6 +16,7 @@
 					</header>
 				</div>
 				<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1">
+					
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
@@ -53,7 +54,7 @@
 										</div>
 									</div>
 									<div class="col-xs-12">
-										<button type="submit" class="btn btn-primary">Login</button>
+										<button type="submit" class="btn btn-default">Login</button>
 									</div>
 								</form>
 							</div>
@@ -98,7 +99,7 @@
 										</div>
 									</div>
 									<div class="col-xs-12">
-										<button type="submit" class="btn btn-primary">Login</button>
+										<button type="submit" class="btn btn-default">Login</button>
 									</div>
 								</form>
 							</div>
@@ -109,15 +110,65 @@
 		</div>
 	</section>
 
-	<section>
+	<section id="top-10" class="full-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-10 col-xs-offset-1">
+				<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
 					<header>
 						<h1>Top 10</h1>
 					</header>
 
-					<p></p>	
+					<div id="owl-demo" class="owl-carousel owl-theme">
+						<!-- PHP - AJOUTER UNE BOUCLE QUI RECUPERE LE TOP 10 DES FILMS DE LA DB -->
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+						<div class="item">
+							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
+						</div>
+					</div>
 
 				</div>
 			</div>

@@ -8,18 +8,32 @@
 
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/font-awesome.min.css') ?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-carousel.css') ?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-theme.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.min.css') ?>">
 </head>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12 col-sm-3 col-md-2 navbar-title bg-primary">
+				<div class="col-xs-12 col-sm-3 col-md-2 navbar-title bg-dalib">
 					<h1><i class="fa fa-book"></i> <?= $this->e($nav_title) ?></h1>
 				</div>
-				<?php if(0) { ?>
-				<div class="col-sm-9 col-md-10"></div>
-				<?php } ?>
+				
+				<div class="col-xs-12 col-sm-9 col-md-10">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<form>
+								<label class="sr-only" for="searchInput">Search</label>
+								<input type="search" class="form-control" id="searchInput" name="Search in daLib ...">
+							</form>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<a href="#"><i class="fa fa-plus"></i> Add a movie</a>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</nav>
@@ -28,12 +42,12 @@
 		<?= $this->section('main_content') ?>
 	</main>
 
-	<footer>
-		
-	</footer>
+	<footer class="main-footer">&copy; 2015 - All rights reserved</footer>
 
 	<!-- scripts -->
 	<script src="<?= $this->assetUrl('js/jquery-2.2.0.min.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/main.min.js') ?>"></script>
 </body>
 </html>
