@@ -15,93 +15,24 @@
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</header>
 				</div>
+
 				<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1">
-					
 					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
-						<li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
-					</ul>
+					<div class="row">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active col-sm-6"><a href="#login-form" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+							<li role="presentation" class="col-sm-6"><a href="#register-form" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
+						</ul>
+					</div>
 
 					<!-- Tab panes -->
-					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="login">
-							<div class="row">
-								<form class="form-inline">
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label class="sr-only" for="userLoginInput">Username Login</label>
-											<div class="input-group">
-												<div class="input-group-addon"><i class="fa fa-user"></i></div>
-												<input type="text" class="form-control" id="userLoginInput" placeholder="Username / Email">
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label class="sr-only" for="passwordLoginInput">Password Login</label>
-											<div class="input-group">
-												<div class="input-group-addon"><i class="fa fa-lock"></i></div>
-												<input type="password" class="form-control" id="passwordLoginInput" placeholder="Password">
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<div class="checkbox">
-											<label>
-												<input type="checkbox"> Remember me
-											</label>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<button type="submit" class="btn btn-default">Login</button>
-									</div>
-								</form>
+					<div class="row">
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="login-form">
+								<?= $this->insert('user/form-login') ?>
 							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane" id="register">
-							<div class="row">
-								<form class="form-inline">
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label class="sr-only" for="userRegisterInput">Username Register</label>
-											<div class="input-group">
-												<div class="input-group-addon"><i class="fa fa-user"></i></div>
-												<input type="text" class="form-control" id="userRegisterInput" placeholder="Username">
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label class="sr-only" for="emailRegisterInput">Email Register</label>
-											<div class="input-group">
-												<div class="input-group-addon"><i class="fa fa-user"></i></div>
-												<input type="email" class="form-control" id="emailRegisterInput" placeholder="Email">
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label class="sr-only" for="passwordRegisterInput">Password Register</label>
-											<div class="input-group">
-												<div class="input-group-addon"><i class="fa fa-lock"></i></div>
-												<input type="password" class="form-control" id="passwordRegisterInput" placeholder="Password">
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label class="sr-only" for="passwordConfirmRegisterInput">Password Confirm Register</label>
-											<div class="input-group">
-												<div class="input-group-addon"><i class="fa fa-lock"></i></div>
-												<input type="password" class="form-control" id="passwordConfirmRegisterInput" placeholder="Password Confirm">
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<button type="submit" class="btn btn-default">Login</button>
-									</div>
-								</form>
+							<div role="tabpanel" class="tab-pane" id="register-form">
+								<?= $this->insert('user/form-register') ?>
 							</div>
 						</div>
 					</div>

@@ -1,9 +1,4 @@
-$main-color: #1297E0;
-$dark-main-color: #004790;
-$dark-grey: #131313;
-$grey: #1d1e22;
-$light-grey: #eaeaea;
-$border-grey: #333439;
+@import "colors.scss";
 
 
 body {
@@ -44,6 +39,11 @@ body {
 	width: 100%;
 	padding: 75px 0;
 }
+
+
+ @import "forms";
+
+
 
 footer.main-footer {
 	background-color: $grey;
