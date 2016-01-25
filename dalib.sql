@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 22 Janvier 2016 à 12:48
+-- Généré le :  Lun 25 Janvier 2016 à 10:00
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -42,29 +42,30 @@ INSERT INTO `genres` (`id`, `name`) VALUES
 (14, 'Adult'),
 (2, 'Adventure'),
 (16, 'Animation'),
-(25, 'Biographies'),
-(3, 'Comedies'),
+(25, 'Biography'),
+(3, 'Comedy'),
 (4, 'Crime'),
-(10, 'Documentaries'),
+(10, 'Documentary'),
 (15, 'Drama'),
 (6, 'Family'),
 (5, 'Fantasy'),
 (27, 'Film-Noir'),
-(24, 'Game Shows'),
+(24, 'Game Show'),
 (23, 'History'),
 (21, 'Horror'),
 (11, 'Music'),
-(12, 'Musicals'),
+(12, 'Musical'),
 (19, 'Mystery'),
 (26, 'News'),
 (9, 'Reality-TV'),
 (20, 'Romance'),
 (17, 'Sci-Fi'),
+(28, 'Short'),
 (7, 'Sport'),
-(13, 'Talk Shows'),
-(18, 'Thrillers'),
+(13, 'Talk Show'),
+(18, 'Thriller'),
 (8, 'War'),
-(22, 'Westerns');
+(22, 'Western');
 
 -- --------------------------------------------------------
 
@@ -220,7 +221,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT pour la table `humans`
 --
@@ -259,22 +260,22 @@ ALTER TABLE `users`
 -- Contraintes pour la table `movies__genres`
 --
 ALTER TABLE `movies__genres`
-  ADD CONSTRAINT `movies__genres_ibfk_2` FOREIGN KEY (`idGenre`) REFERENCES `genres` (`id`),
-  ADD CONSTRAINT `movies__genres_ibfk_1` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`);
+  ADD CONSTRAINT `movies__genres_ibfk_1` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`),
+  ADD CONSTRAINT `movies__genres_ibfk_2` FOREIGN KEY (`idGenre`) REFERENCES `genres` (`id`);
 
 --
 -- Contraintes pour la table `movies__humans`
 --
 ALTER TABLE `movies__humans`
-  ADD CONSTRAINT `movies__humans_ibfk_2` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`),
-  ADD CONSTRAINT `movies__humans_ibfk_1` FOREIGN KEY (`idHuman`) REFERENCES `humans` (`id`);
+  ADD CONSTRAINT `movies__humans_ibfk_1` FOREIGN KEY (`idHuman`) REFERENCES `humans` (`id`),
+  ADD CONSTRAINT `movies__humans_ibfk_2` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`);
 
 --
 -- Contraintes pour la table `movies__users`
 --
 ALTER TABLE `movies__users`
-  ADD CONSTRAINT `movies__users_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `movies__users_ibfk_1` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`);
+  ADD CONSTRAINT `movies__users_ibfk_1` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`),
+  ADD CONSTRAINT `movies__users_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
