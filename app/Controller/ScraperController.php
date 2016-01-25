@@ -168,8 +168,9 @@ class ScraperController extends Controller
 
 
 	}
-
-		public function MovieInsert()
+		//fonction avec parametres a utiliser apres test complets en remplacement des tableaux ci dessous
+		/*public function MovieInsert($movie, $genres, $humans)*/
+		public function MovieInsert($movie, $genres)
 		{
 			$movie= [
 			"title" => "film de test",
@@ -181,6 +182,23 @@ class ScraperController extends Controller
 			"cover" => "http://ia.media-imdb.com/images/M/MV5BMTUyNzgxNjg2M15BMl5BanBnXkFtZTgwMTY1NDI1NjE@._V1_UY209_CR0,0,140,209_AL_.jpg"];
 
 			$genres = ["Crime", "Drama"];
+
+			$humans = [
+				[
+					"name" => "Alessandro Carloni",
+					"role" => "directors",
+					"imdbRef" => "nm1868917"
+				],
+				[
+					"name" => "Jennifer Yuh",
+					"role" => "writers",
+					"imdbRef" => "nm0950775"
+				],
+				[
+					"name" => "Dustin Hoffman",
+					"role" => "stars",
+					"imdbRef" => "nm0000163"
+				];
 
 			//Create 3 Instanciation of the differents manager for each table
 			$movieManager= new \Manager\MovieManager;
