@@ -1,7 +1,14 @@
 <?php $this->layout('layout', ['title' => 'Accueil']) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Let's code.</h2>
-	<p>Vous avez atteint la page d'accueil. Bravo.</p>
-	<p>Et maintenant, RTFM dans <strong><a href="../docs/tuto/" title="Documentation de W">docs/tuto</a></strong>.</p>
+<form class="clearfix" id="search-movie-form" method="get" action="<?=$this->url('search_movie')?>">
+	<div class="col-xs-12">
+		<div class="form-group">
+			<label class="sr-only" for="userLoginInput">Username Login</label>
+			<div class="input-group">
+				<input type="search" class="form-control" id="search-input" name="search-input" placeholder="Recherche de films">
+			</div>
+		</div>
+	</div>
+</form>
 <?php $this->stop('main_content') ?>

@@ -26,5 +26,6 @@
 <!-- scripts -->
 <script src="<?= $this->assetUrl('js/jquery-2.2.0.min.js') ?>"></script>
 <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+<script src="<?= $this->assetUrl('js/main.min.js') ?>"></script>
 </body>
 </html>

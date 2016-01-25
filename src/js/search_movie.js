@@ -1,4 +1,3 @@
-
 $("#search-input").on("keyup", function(){
 	var wordSearch = $("#search-input").val();
 
