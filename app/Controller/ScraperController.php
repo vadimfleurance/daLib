@@ -87,7 +87,7 @@ class ScraperController extends Controller
 	{
 		//extraire toutes les donnees necessaires d'une page d'un film
 		//initialisation du tableau qui contiendra toutes les données du film
-		$movie = ["title" => "", "synopsis" => "", "duration" => "", "year" => "", "imbdRef" => "", "rating" => "", "cover" => "", "directors" => "", "writers" =>"", "stars" => "", "genres" => ""];
+		$movie = ["title" => "", "synopsis" => "", "duration" => "", "year" => "", "imdbRef" => "", "imdbRating" => "", "cover" => "", "directors" => "", "writers" =>"", "stars" => "", "genres" => ""];
 		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 		$link = trim($link);
 
