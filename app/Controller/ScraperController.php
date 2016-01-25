@@ -27,7 +27,11 @@ class ScraperController extends Controller
 
 		//find every link to single  movie page inside the movies top page 
 		$page = $html->find(".titleColumn a");
+		//recup tableau de la bdd movie par select all mettre en variable
+		//si non inserage via le foreach
 		foreach ($page as $link) {
+		//interroge la  variablebdd si le film (imdbId) est deja present ou non
+		//si deja present continue
 			//affichage des lien pour develloper à virer en temps et en heure
 			echo $link->href;
 			echo '<br/>';
@@ -39,7 +43,7 @@ class ScraperController extends Controller
 		echo 'bien arrivé';
 	}
 
-	public function pageScraper()
+	public function pageScraper($link)
 	{
 		//extraire toutes les donnees necessaires d'une page d'un film
 	}
