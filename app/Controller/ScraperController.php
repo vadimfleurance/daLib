@@ -181,5 +181,15 @@ class ScraperController extends Controller
 			//affichage de l'erreur d'import (template pas encore créé)
 			// $this->show("movie/addMovie", [$error => "L'URL n'est pas correcte");
 		}
+
+
 	}
+
+		public function MovieInsert($movie)
+		{
+			
+			$movieManager= new \Manager\MovieManager;
+			$movieManager->insert($movie);
+			die();//die a virer
+		}
 }
