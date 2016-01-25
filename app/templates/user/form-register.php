@@ -12,7 +12,7 @@
 		<div class="form-group">
 			<label class="sr-only" for="emailRegisterInput">Email Register</label>
 			<div class="input-group">
-				<div class="input-group-addon"><i class="fa fa-user"></i></div>
+				<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
 				<input type="email" class="form-control" id="emailRegisterInput" name="user[email]" placeholder="Email">
 			</div>
 		</div>
@@ -36,6 +36,6 @@
 		</div>
 	</div>
 	<div class="col-xs-12">
-		<button type="submit" class="btn btn-default btn-block">Login</button>
+		<button type="submit" name="action[register]" class="btn btn-default btn-block btn-register">Register</button>
 	</div>
 </form>

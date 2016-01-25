@@ -1,11 +1,24 @@
 #informations {
 	.nav-tabs {
-		background-color: $grey;
-
+		background-color: $medium-grey;
+		border-bottom: 1px solid $medium-grey;
+		
+		li > a {
+			height: 50px;
+			line-height: 30px;
+			text-transform: uppercase;
+			font-size: 1.25em;
+			text-align: center;
+			color: #fff;
+		}
+		li > a:focus, li > a:hover {
+			background-color: $grey;
+		}
 		li[class*="col"] {
 			padding: 0;
 		}
 		li.active > a, li.active > a:focus, li.active > a:hover {
+			background-color: $main-color;
 			border: none; 
 			border-bottom-color: inherit; 
 		}
@@ -20,6 +33,7 @@
 
 		#login-form, #register-form {
 			padding: 20px 0;
+			color: $grey;
 		
 			.form-group {
 				margin: 0 0 20px;
@@ -55,12 +69,29 @@
 					box-shadow: none;
 				}
 			}
+			.btn-login, .btn-register {
+				background-color: $main-color;
+				height: 50px;
+				border-radius: 0;
+				border: none;
+				color: #fff;
+				font-size: 1.5em;
+				text-transform: uppercase;
+			}
+			.btn-login:hover, .btn-login:focus, .btn-register:hover, .btn-register:focus {
+				background-color: $light-main-color;
+			}
 		}
 
 		#login-form {
-			
+			.checkbox {
+				margin-top: 0;
+			}
 			.btn-forgot {
-				line-height: 40px;
+				line-height: 20px;
+			}
+			.btn-login {
+				margin-top: 20px;
 			}
 		}
 	}

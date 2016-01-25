@@ -7,12 +7,10 @@
 				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
 					<header>
 						<h3>daLib, what's it ?</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p>Keep track of your personal movie collection in a user friendly interface. Foo library comes with many features.
+						Add & delete movies or mark the ones you want to see. Get suggestions based on your tastes.
+						You change ! Foo changes with you ! You're a fan join the dedicated chat and discuss with others !
+						Join now or get your genitals cut off ! And as french says "foo parce qu'on est des foo !"</p>
 					</header>
 				</div>
 
@@ -20,8 +18,8 @@
 					<!-- Nav tabs -->
 					<div class="row">
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active col-sm-6"><a href="#login-form" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
-							<li role="presentation" class="col-sm-6"><a href="#register-form" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
+							<li role="presentation" class="active col-xs-6 col-sm-6"><a href="#login-form" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+							<li role="presentation" class="col-xs-6 col-sm-6"><a href="#register-form" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
 						</ul>
 					</div>
 

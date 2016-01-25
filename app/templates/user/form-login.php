@@ -32,6 +32,6 @@
 		</div>
 	</div>
 	<div class="col-xs-12">
-		<button type="submit" class="btn btn-default btn-block">Login</button>
+		<button type="submit" name="action[login]" class="btn btn-default btn-block btn-login">Login</button>
 	</div>
 </form>
