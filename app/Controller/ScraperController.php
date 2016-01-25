@@ -171,9 +171,14 @@ class ScraperController extends Controller
 
 		public function MovieInsert($movie)
 		{
-			
+			//Create 3 Instanciation of the differents manager for each table
 			$movieManager= new \Manager\MovieManager;
+			$MoviesGenresManager= new \Manager\MoviesGenresManager;
+			$MoviesHumanManager= new \Manager\MoviesHumanManager;
+			//Insert datas received in each respective table
 			$movieManager->insert($movie);
-			die();//die a virer
+			$Movies__GenreManager->insert($genres);
+			$Movies__HumanManager->insert($humans);
+		
 		}
 }
