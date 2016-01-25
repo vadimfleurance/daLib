@@ -8,7 +8,7 @@ class MoviesHumanManager extends \W\Manager\Manager
 	{
 		//use parent constructor method
 		parent::__construct();
-		//redifine table name for use
+		//redefine table name for use
 		$this->setTable('movies__humans');
 	}
 }

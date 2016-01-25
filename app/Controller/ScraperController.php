@@ -169,7 +169,9 @@ class ScraperController extends Controller
 
 	}
 		//fonction avec parametres a utiliser apres test complets en remplacement des tableaux ci dessous
+
 		/*public function MovieInsert($movie, $genres, $humans)*/
+		
 		public function MovieInsert($movie, $genres)
 		{
 			$movie= [
@@ -200,19 +202,21 @@ class ScraperController extends Controller
 					"imdbRef" => "nm0000163"
 				];
 
-			//Create 3 Instanciation of the differents manager for each table
+			//Create 1 object of the movie manager
 			$movieManager= new \Manager\MovieManager;
-			//Insert datas received in each respective table
+			//Insert datas received from previous $movie array into movie table in database
 			$movieManager->insert($movie);
-			//insere l'id du dernier film cree dans la variable $movieId
+			//get last movie id and stock it in $movieId
 			$movieId=$movieManager->lastId();
 
+			//Create 1 object of the genre manager
 			$genreManager= new \Manager\GenreManager();
-			//conversion du tableau de genre string en id
+			//convert $genres array of strings received from pagescrapper method into new id's array stored in $genreIds
 			$genreIds = $genreManager->strToId($genres);
-			//creation d'une instance de la table Movies__genres
+
+			//Create 1 object of MoviesGenreManager
 			$MoviesGenresManager = new \Manager\MoviesGenresManager();
-			//insertion des lignes
+			//insert as many lines into table movie__genre as movie as genres
 			$MoviesGenresManager->InsertLine($movieId, $genreIds);
 
 		}
