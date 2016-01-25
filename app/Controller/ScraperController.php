@@ -9,34 +9,37 @@ class ScraperController extends Controller
 	public function globalScraper()
 	{
 		
-		//on stocke l'url à scrapper dans une variable
+		// Target
 		$url = "http://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm_7";
-		//on empeche la page de passer a sa version francaise
-		$opts = ['http' => [
+		
+		// Switch the page in English
+		$options = ['http' => [
 		    'method'=>"GET",
 		    'header'=>"Accept-language: en\r\n"
 		]];
-
-		$context = stream_context_create($opts);
+		$context = stream_context_create($options);
 
 		// Open the file using the HTTP headers set above
 		$content = file_get_contents($url, false, $context);
 
-		//Create a new  domparser object we stock into $html
+		// Create a new  domparser object stocked into "$html"
 		$html = HtmlDomParser::str_get_html($content);
 
-		//find every link to single  movie page inside the movies top page 
-		$page = $html->find(".titleColumn a");
-		foreach ($page as $link) {
+		// Find every link to single movie page inside the movies top page 
+		foreach ( $html->find(".titleColumn a") as $href ) {
 			//affichage des lien pour develloper à virer en temps et en heure
-			echo $link->href;
-			echo '<br/>';
+
+			$regIdMovie = '!tt\d{7}!';
+			$urlMovie = $href->href;
+
+			preg_match( $regIdMovie , $urlMovie , $matches );
+
+			$link = "http://www.imdb.com/title/' . $matches[0] . '/";
 		}
 
 		
 		// extraire chacune de ces url avec un foreach, et les passer chacune tour à tour dans la fonction pageScraper
 		//pour en extraire l'ensemble des donnees du film
-		echo 'bien arrivé';
 	}
 
 	public function pageScraper()
