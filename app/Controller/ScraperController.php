@@ -60,10 +60,9 @@ class ScraperController extends Controller
 		
 
 
-		
-
 		// Find every link to single movie page inside the movies top page 
 		foreach ( $html->find(".titleColumn a") as $href ) {
+
 			$regIdMovie = '!tt\d{7}!';
 			$urlMovie = $href->href;
 
@@ -85,6 +84,8 @@ class ScraperController extends Controller
 
 	public function pageScraper($link)
 	{
+		//modifie le time out pour ne pas avoir de problème pendant le scrapping
+		ini_set("max_execution_time", 30);
 		//extraire toutes les donnees necessaires d'une page d'un film
 		//initialisation du tableau qui contiendra la plupart des données du film
 		$movie = [
