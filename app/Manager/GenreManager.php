@@ -9,7 +9,7 @@ class GenreManager extends \W\Manager\Manager
 		$genreIds=[];
 
 		foreach ($genres as $genre) {
-			$stmt= $pdo->prepare('SELECT id FROM genres WHERE name = :name';);
+			$stmt= $this->dbh->prepare('SELECT id FROM genres WHERE name = :name');
 			$stmt->bindValue(':name', $genre );
 			$stmt->execute();
 			$id= $stmt->fetchColumn();

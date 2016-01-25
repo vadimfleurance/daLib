@@ -58,7 +58,7 @@ class ScraperController extends Controller
 	{
 		//extraire toutes les donnees necessaires d'une page d'un film
 		//initialisation du tableau qui contiendra toutes les données du film
-		$movie = ["title" => "", "synopsis" => "", "duration" => "", "year" => "", "imbdRef" => "", "rating" => "", "cover" => "", "directors" => "", "writers" =>"", "stars" => "", "genres" => ""];
+		$movie = ["title" => "", "synopsis" => "", "duration" => "", "year" => "", "imdbRef" => "", "imdbRating" => "", "cover" => "", "directors" => "", "writers" =>"", "stars" => "", "genres" => ""];
 		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 		$link = trim($link);
 
@@ -169,16 +169,33 @@ class ScraperController extends Controller
 
 	}
 
-		public function MovieInsert($movie)
+		public function MovieInsert()
 		{
+			$movie= [
+			"title" => "film de test",
+			"synopsis" => "lorem hipsum",
+			"duration" => "93",
+			"year" => "1978",
+			"imdbRef" => "456", 
+			"imdbRating" => "5",
+			"cover" => "http://ia.media-imdb.com/images/M/MV5BMTUyNzgxNjg2M15BMl5BanBnXkFtZTgwMTY1NDI1NjE@._V1_UY209_CR0,0,140,209_AL_.jpg"];
+
+			$genres = ["Crime", "Drama"];
+
 			//Create 3 Instanciation of the differents manager for each table
 			$movieManager= new \Manager\MovieManager;
-			$MoviesGenresManager= new \Manager\MoviesGenresManager;
-			$MoviesHumanManager= new \Manager\MoviesHumanManager;
 			//Insert datas received in each respective table
 			$movieManager->insert($movie);
-			$Movies__GenreManager->insert($genres);
-			$Movies__HumanManager->insert($humans);
-		
+			//insere l'id du dernier film cree dans la variable $movieId
+			$movieId=$movieManager->lastId();
+
+			$genreManager= new \Manager\GenreManager();
+			//conversion du tableau de genre string en id
+			$genreIds = $genreManager->strToId($genres);
+			//creation d'une instance de la table Movies__genres
+			$MoviesGenresManager = new \Manager\MoviesGenresManager();
+			//insertion des lignes
+			$MoviesGenresManager->InsertLine($movieId, $genreIds);
+
 		}
 }
