@@ -59,10 +59,10 @@ class ScraperController extends Controller
 		
 		
 
-
+		$count=0;
 		// Find every link to single movie page inside the movies top page 
 		foreach ( $html->find(".titleColumn a") as $href ) {
-
+			if ($count == 3){break;}
 			$regIdMovie = '!tt\d{7}!';
 			$urlMovie = $href->href;
 
@@ -70,6 +70,7 @@ class ScraperController extends Controller
 
 			$link = "http://www.imdb.com/title/" . $matches[0] . "/";
 			$this->pageScraper($link);
+			$count++;
 		}
 
 		
@@ -112,7 +113,7 @@ class ScraperController extends Controller
 		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 
 		//titre du film
-		$title = trim($html->find('span[itemprop=name]',0)->plaintext);
+		$movie['title'] = trim($html->find('span[itemprop=name]',0)->plaintext);
 
 		//synopsis
 		$synopsisTmp = $html->find("p[itemprop=description]",0);
@@ -133,12 +134,12 @@ class ScraperController extends Controller
 		}
 
 		//imdbRef
-		$imdbRef = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
+		$movie['imdbRef'] = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
 
 		//imdbRating
 		$ratingTmp = $html->find("div[class=titlePageSprite star-box-giga-star]",0);
 		if (!empty($ratingTmp)){
-			$movie["rating"] = trim($ratingTmp->plaintext);
+			$movie["imdbRating"] = trim($ratingTmp->plaintext);
 		}
 
 		//url cover without suffix and extension
@@ -202,11 +203,14 @@ class ScraperController extends Controller
 			}
 			
 		}
+		$this->MovieInsert($movie,$genres,$humans);
 	}
 
 
 		public function MovieInsert($movie, $genres, $humans)
 		{
+			debug($movie);
+			die();
 			/*$movie= [
 			"title" => "film de test",
 			"synopsis" => "lorem hipsum",
@@ -263,21 +267,27 @@ class ScraperController extends Controller
 				//parcours le tableau humans pour en extraire chaque sous tableau dont il insere les données dans les tables human 
 				//et movies accompagné du dernier id de human parcouru et du dernier id movie parcouru
 				foreach ($humans as $human) {
-			
-				$HumanManager->insert(
-								[
-									'name'=>$human['name'],
-									'imdbRef'=>$human['imdbRef']
-								]);
+					if($HumanManager->isNew($human)){
+						$HumanManager->insert(
+										[
+											'name'=>$human['name'],
+											'imdbRef'=>$human['imdbRef']
+										]);
 
-				$lastHumanId = $HumanManager->lastId();
-				$MoviesHumanManager->insert(
-									[
-										'idMovie'=>$movieId,
-										'idHuman'=>$lastHumanId,
-										'role'=>$human['role']
-									]);
-	
+						$lastHumanId = $HumanManager->lastId();
+					}
+					else {
+
+						$lastHumanId = $HumanManager->getId($human);
+					}
+
+
+					$MoviesHumanManager->insert(
+										[
+											'idMovie'=>$movieId,
+											'idHuman'=>$lastHumanId,
+											'role'=>$human['role']
+										]);
 				}//end of foreach
 			}//end of if	
 	
