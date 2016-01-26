@@ -49,12 +49,22 @@ class UserController extends Controller
 					$errors['email'] = "Choisissez une autre adresse email, celle-ci est déjà utilisée !";
 				}
 
-				// Validation du mot de passe
+				// Validation des mots de passe identiques
 				if ( $password != $passwordBis )
 				{
 					$isValid = false;
 					$errors['password'] = "Les mots de passe ne sont pas identiques";
 				}
+
+				// Validation du mots de passe
+				if ( empty( $password ) || empty( $passwordBis ) )
+				{
+					$isValid = false;
+					$errors['password'] = "Les mots de passe ne sont pas renseignés";
+				}
+
+
+
 
 				if( $isValid )
 				{
@@ -71,7 +81,11 @@ class UserController extends Controller
 				}
 				else
 				{
-
+					$errors = [
+						"username" => "Un nom d'utilisateur doit être renseigné",
+						"email" => "Une adresse email doit être renseignée",
+						"password" => "Le mot de passe doit être saisie et confirmé dans le deuxième champs"
+					];
 				}
 			}
 		}
