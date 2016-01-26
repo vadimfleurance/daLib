@@ -158,6 +158,7 @@ class ScraperController extends Controller
 			if (!empty($genresTmp)){
 				$movie["genres"] = $genresTmp;		
 			}
+			
 		}
 		
 		//sinon (erreur)
@@ -170,11 +171,11 @@ class ScraperController extends Controller
 	}
 		//fonction avec parametres a utiliser apres test complets en remplacement des tableaux ci dessous
 
-		/*public function MovieInsert($movie, $genres, $humans)*/
-		
-		public function MovieInsert()
+		/*public function MovieInsert()*/
+
+		public function MovieInsert($movie, $genres, $humans)	
 		{
-			$movie= [
+			/*$movie= [
 			"title" => "film de test",
 			"synopsis" => "lorem hipsum",
 			"duration" => "93",
@@ -202,7 +203,7 @@ class ScraperController extends Controller
 					"role" => "star",
 					"imdbRef" => "nm0000163"
 				]
-			];
+			];*/
 
 			//Create 1 object of the movie manager
 			$movieManager = new \Manager\MovieManager;
@@ -246,7 +247,7 @@ class ScraperController extends Controller
 									]);
 	
 				}
-			}	
+			}//end of if	
 			
 		}
 }
