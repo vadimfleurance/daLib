@@ -1,20 +1,14 @@
 <?php
 namespace Manager;
 
+	//permet de gerer les interactions avec la table human
 class HumanManager extends \W\Manager\Manager
 {
-	//permet de gere les interactions avec la table human
-
-	//permet d'inserer les champs dans la table en ne prenant pas en compte la valeur role du tableau d'origine
-	public function partialInsert($humans)
+	//permet de recuperer le dernir id de human inseré en base
+	public function lastId()
 	{
-		
-		foreach ($humans as $key => $value) {
-			$stmt= $this->dbh->prepare('INSERT INTO humans (name , imdbRef) VALUES (:name , :imdbRef);');
-			$stmt->bindValue(':name',$humans[$key]['name'] );
-			$stmt->bindValue(':imdbRef',$humans[$key]['imdbRef'] );
-			$stmt->execute();
-
-		}
+		return $this->dbh->lastInsertId();
 	}
+
+	
 }

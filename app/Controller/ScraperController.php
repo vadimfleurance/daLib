@@ -189,17 +189,17 @@ class ScraperController extends Controller
 			[
 				[
 					"name" => "Alessandro Carloni",
-					"role" => "directors",
+					"role" => "director",
 					"imdbRef" => "nm1868917"
 				],
 				[
 					"name" => "Jennifer Yuh",
-					"role" => "writers",
+					"role" => "writer",
 					"imdbRef" => "nm0950775"
 				],
 				[
 					"name" => "Dustin Hoffman",
-					"role" => "stars",
+					"role" => "star",
 					"imdbRef" => "nm0000163"
 				]
 			];
@@ -212,7 +212,7 @@ class ScraperController extends Controller
 			$movieId=$movieManager->lastId();
 
 			//Create 1 object of the genre manager
-			$genreManager= new \Manager\GenreManager();
+			$genreManager = new \Manager\GenreManager();
 			//convert $genres array of strings received from pagescrapper method into new id's array stored in $genreIds
 			$genreIds = $genreManager->strToId($genres);
 
@@ -223,8 +223,25 @@ class ScraperController extends Controller
 
 			//Create 1 object of HumanManager
 			$HumanManager = new \Manager\HumanManager();
-			//insert name and imdbRef from $humans array into humans db table
-			$HumanManager->partialInsert($humans);
+			$MoviesHumanManager = new \Manager\MoviesHumanManager();
 
+			foreach ($humans as $human) {
+			
+			$HumanManager->insert(
+							[
+								'name'=>$human['name'],
+								'imdbRef'=>$human['imdbRef']
+							]);
+
+			$lastHumanId = $HumanManager->lastId();
+			$MoviesHumanManager->insert(
+								[
+									'idMovie'=>$movieId,
+									'idHuman'=>$lastHumanId,
+									'role'=>$human['role']
+								]);
+	
+			}
+			
 		}
 }
