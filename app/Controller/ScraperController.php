@@ -172,7 +172,7 @@ class ScraperController extends Controller
 
 		/*public function MovieInsert($movie, $genres, $humans)*/
 		
-		public function MovieInsert($movie, $genres)
+		public function MovieInsert()
 		{
 			$movie= [
 			"title" => "film de test",
@@ -185,7 +185,8 @@ class ScraperController extends Controller
 
 			$genres = ["Crime", "Drama"];
 
-			$humans = [
+			$humans = 
+			[
 				[
 					"name" => "Alessandro Carloni",
 					"role" => "directors",
@@ -200,10 +201,11 @@ class ScraperController extends Controller
 					"name" => "Dustin Hoffman",
 					"role" => "stars",
 					"imdbRef" => "nm0000163"
-				];
+				]
+			];
 
 			//Create 1 object of the movie manager
-			$movieManager= new \Manager\MovieManager;
+			$movieManager = new \Manager\MovieManager;
 			//Insert datas received from previous $movie array into movie table in database
 			$movieManager->insert($movie);
 			//get last movie id and stock it in $movieId
@@ -218,6 +220,11 @@ class ScraperController extends Controller
 			$MoviesGenresManager = new \Manager\MoviesGenresManager();
 			//insert as many lines into table movie__genre as movie as genres
 			$MoviesGenresManager->InsertLine($movieId, $genreIds);
+
+			//Create 1 object of HumanManager
+			$HumanManager = new \Manager\HumanManager();
+			//insert name and imdbRef from $humans array into humans db table
+			$HumanManager->partialInsert($humans);
 
 		}
 }
