@@ -14,31 +14,6 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/main.min.css') ?>">
 </head>
 <body>
-	<!-- <nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12 col-sm-3 col-md-2 navbar-title bg-dalib">
-					<h1><i class="fa fa-book"></i> <?= $this->e($nav_title) ?></h1>
-				</div>
-				
-				<div class="col-xs-12 col-sm-9 col-md-10">
-					<div class="row">
-						<div class="col-xs-12 col-sm-6">
-							<form>
-								<label class="sr-only" for="searchInput">Search</label>
-								<input type="search" class="form-control" id="searchInput" name="Search in daLib ...">
-							</form>
-						</div>
-						<div class="col-xs-12 col-sm-6">
-							<a href="#"><i class="fa fa-plus"></i> Add a movie</a>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</nav> -->
-
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -58,7 +33,7 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6">
-								<form id="search-form">
+								<form id="search-form" class="navbar-left">
 									<div class="form-group">
 										<label class="sr-only" for="searchInput">Search</label>
 										<div class="input-group">
@@ -69,19 +44,17 @@
 								</form>
 							</div>
 							<div class="col-xs-12 col-sm-6">
-								<ul class="nav navbar-nav">
+								<ul class="nav navbar-nav navbar-right">
 									<li><a href="#"><i class="fa fa-plus"></i> Add a movie</a></li>
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-											<img src="<?= $this->assetUrl('img/users/.png') ?>" class="img-reponsive img-circle" alt="Photo de profil de John Doe">
-											<p>John Doe</p>
-											<i class="fa fa-caret-down"></i>
+											<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle" alt="Photo de profil de John Doe"> <span>John Doe</span> <i class="fa fa-caret-down"></i>
 										</a>
 										<ul class="dropdown-menu">
-											<li><a href="#">Collection</a></li>
-											<li><a href="#">Settings</a></li>
-											<li role="separator" class="divider"></li>
-											<li><a href="#">Logout</a></li>
+											<li><a href="">Collection</a></li>
+											<li><a href="">Profil</a></li>
+											<li role="separator" class="divider hidden-xs"></li>
+											<li><a href="">Logout</a></li>
 										</ul>
 									</li>
 								</ul>

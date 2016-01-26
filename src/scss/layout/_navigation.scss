@@ -3,6 +3,7 @@
 // ===========================================================================
 .navbar {
 	background-color: $grey;
+	min-height: 70px;
 	border: {
 		top: 0;
 		right: 0;
@@ -20,9 +21,10 @@
 	}
 	.navbar-brand {
 		width: 75%;
+		height: 70px;
 		padding: 0 25px;
 		font-size: 2.5em;
-		line-height: 1.25em;
+		line-height: 70px;
 		color: $light-grey;
 		text-align: center;
 		&:hover {
@@ -45,5 +47,8 @@
 		&:hover, &:focus {
 			background-color: $primary-light;
 		}
+	}
+	.nav > li > a {
+		line-height: 38px;
 	}
 }

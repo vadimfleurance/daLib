@@ -28,6 +28,7 @@ a:visited {
  */
 .navbar {
   background-color: #1d1e22;
+  min-height: 70px;
   border-top: 0;
   border-right: 0;
   border-bottom: 3px;
@@ -47,9 +48,10 @@ a:visited {
 
 .navbar .navbar-brand {
   width: 75%;
+  height: 70px;
   padding: 0 25px;
   font-size: 2.5em;
-  line-height: 1.25em;
+  line-height: 70px;
   color: #eaeaea;
   text-align: center;
 }
@@ -81,6 +83,10 @@ a:visited {
   background-color: #22A7F0;
 }
 
+.navbar .nav > li > a {
+  line-height: 38px;
+}
+
 #informations .nav-tabs, #top-10 .nav-tabs {
   margin-top: 50px;
 }
@@ -101,7 +107,7 @@ a:visited {
 }
 
 #informations #login-form .form-group .input-group-addon, #top-10 #login-form .form-group .input-group-addon, #informations #login-form #search-form .form-group .form-control, #search-form #informations #login-form .form-group .form-control, #top-10 #login-form #search-form .form-group .form-control, #search-form #top-10 #login-form .form-group .form-control, #informations #register-form .form-group .input-group-addon, #top-10 #register-form .form-group .input-group-addon, #informations #register-form #search-form .form-group .form-control, #search-form #informations #register-form .form-group .form-control, #top-10 #register-form #search-form .form-group .form-control, #search-form #top-10 #register-form .form-group .form-control {
-  background-color: inherit;
+  background-color: #fff;
   border-top: 1px;
   border-right: 0;
   border-bottom: 1px;
@@ -160,7 +166,7 @@ a:visited {
 
 @media screen and (min-width: 768px) {
   #search-form .form-group {
-    margin: 2px 0;
+    margin: 20px 0;
   }
 }
 
@@ -178,7 +184,7 @@ a:visited {
 
 @media screen and (min-width: 768px) {
   #search-form .form-group .form-control {
-    height: 45px;
+    height: 30px;
   }
 }
 
