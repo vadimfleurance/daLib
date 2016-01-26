@@ -203,7 +203,7 @@ class ScraperController extends Controller
 		}
 	}
 
-		public function MovieInsert($movie)
+		public function MovieInsert($movie)//celle ci a remplacer par la grande
 		{
 			
 			$movieManager= new \Manager\MovieManager;
