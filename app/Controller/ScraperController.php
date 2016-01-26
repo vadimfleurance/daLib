@@ -62,7 +62,7 @@ class ScraperController extends Controller
 		$count=0;
 		// Find every link to single movie page inside the movies top page 
 		foreach ( $html->find(".titleColumn a") as $href ) {
-			if ($count == 3){break;}
+			/*if ($count == 50){break;}*/
 			$regIdMovie = '!tt\d{7}!';
 			$urlMovie = $href->href;
 
@@ -70,7 +70,7 @@ class ScraperController extends Controller
 
 			$link = "http://www.imdb.com/title/" . $matches[0] . "/";
 			$this->pageScraper($link);
-			$count++;
+			/*$count++;*/
 		}
 
 		
@@ -209,37 +209,8 @@ class ScraperController extends Controller
 
 		public function MovieInsert($movie, $genres, $humans)
 		{
-			debug($movie);
-			die();
-			/*$movie= [
-			"title" => "film de test",
-			"synopsis" => "lorem hipsum",
-			"duration" => "93",
-			"year" => "1978",
-			"imdbRef" => "456", 
-			"imdbRating" => "5",
-			"cover" => "http://ia.media-imdb.com/images/M/MV5BMTUyNzgxNjg2M15BMl5BanBnXkFtZTgwMTY1NDI1NjE@._V1_UY209_CR0,0,140,209_AL_.jpg"];
-
-			$genres = ["Crime", "Drama"];
-
-			$humans = 
-			[
-				[
-					"name" => "Alessandro Carloni",
-					"role" => "director",
-					"imdbRef" => "nm1868917"
-				],
-				[
-					"name" => "Jennifer Yuh",
-					"role" => "writer",
-					"imdbRef" => "nm0950775"
-				],
-				[
-					"name" => "Dustin Hoffman",
-					"role" => "star",
-					"imdbRef" => "nm0000163"
-				]
-			];*/
+			/*debug($movie);
+			die();*/
 
 			//Create 1 object of the movie manager
 			$movieManager = new \Manager\MovieManager;

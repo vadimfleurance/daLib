@@ -21,7 +21,7 @@ class HumanManager extends \W\Manager\Manager
 
 	public function getId($human)
 	{
-		$stmt = $this->dbh->prepare('SELECT imdbRef FROM humans WHERE imdbRef= :imdbRef');
+		$stmt = $this->dbh->prepare('SELECT id FROM humans WHERE imdbRef= :imdbRef');
 		$stmt->bindValue(':imdbRef', $human['imdbRef']);
 		$stmt->execute();
 		return $stmt->fetchColumn();
