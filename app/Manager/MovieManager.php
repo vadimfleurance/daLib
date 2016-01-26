@@ -17,4 +17,10 @@ class MovieManager extends \W\Manager\Manager
 		$result = $stmt->fetchColumn();
 		return ($result)? false : true ;
 	}
+
+	public function getInfos($id)
+	{
+		$sql =
+	}
+
 }
