@@ -2,5 +2,6 @@
 	
 	$w_routes = array(
 		['GET', '/', 'Default#home', 'home'],
-		['GET', '/search/', 'Movie#searchMovie', 'search_movie'],
+		['GET', '/movie/search/', 'Movie#search', 'search_movie'],
+		['GET', '/scrap/', 'Scraper#globalScraper', 'global_scraper'],
 	);
