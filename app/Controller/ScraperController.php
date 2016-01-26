@@ -6,12 +6,9 @@ use Sunra\PhpSimple\HtmlDomParser;
 
 class ScraperController extends Controller
 {
-	public function globalScraper()
+
+	public function addHeaderToUrl($url)
 	{
-		
-		// Target
-		$url = "http://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm_7";
-		
 		// Switch the page in English
 		$options = ['http' => [
 		    'method'=>"GET",
@@ -20,8 +17,41 @@ class ScraperController extends Controller
 		$context = stream_context_create($options);
 
 		// Open the file using the HTTP headers set above
-		$content = file_get_contents($url, false, $context);
+		return file_get_contents($url, false, $context);
+	}
 
+	public function verifyUrl()
+	{
+		// si l'url ou l'id passé a une syntaxe valide
+		if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link) || preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link) || preg_match("!^[t]{2}\d{7}$!", $link)){
+
+			//vérifie si le texte passé est un id d'IMDb  (sans les slash autour) de type "ttxxxxxxx" ou les x sont des chiffres de 0 à 9 et le traite si c'est le cas
+			if (preg_match("!^[t]{2}\d{7}$!", $link)){
+				return "http://www.imdb.com/title/" . $link . "/";
+			}
+
+			//vérifie si le texte passé est une URL d'un film sur IMDb
+			if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link)){
+				return $link;
+			}
+
+			//vérifie si le texte passé est une URL avec des paramètres et supprime les paramètres si c'est le cas
+			if(preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link)){
+				return preg_replace("/\?.*/", "", $link);
+			}
+		}
+		else{
+			return "Erreur";
+		}
+	}
+
+	public function globalScraper()
+	{
+		
+		// Target
+		$url = "http://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm_7";
+
+		$content = $this->addHeaderToUrl($url);
 		// Create a new  domparser object stocked into "$html"
 		$html = HtmlDomParser::str_get_html($content);
 
@@ -30,16 +60,15 @@ class ScraperController extends Controller
 		
 
 
-		
-
 		// Find every link to single movie page inside the movies top page 
 		foreach ( $html->find(".titleColumn a") as $href ) {
+
 			$regIdMovie = '!tt\d{7}!';
 			$urlMovie = $href->href;
 
 			preg_match( $regIdMovie , $urlMovie , $matches );
 
-			$link = "http://www.imdb.com/title/' . $matches[0] . '/";
+			$link = "http://www.imdb.com/title/" . $matches[0] . "/";
 			$this->pageScraper($link);
 		}
 
@@ -54,126 +83,129 @@ class ScraperController extends Controller
 
 
 	public function pageScraper($link)
-
 	{
+		//modifie le time out pour ne pas avoir de problème pendant le scrapping
+		ini_set("max_execution_time", 30);
 		//extraire toutes les donnees necessaires d'une page d'un film
-		//initialisation du tableau qui contiendra toutes les données du film
-		$movie = ["title" => "", "synopsis" => "", "duration" => "", "year" => "", "imdbRef" => "", "imdbRating" => "", "cover" => "", "directors" => "", "writers" =>"", "stars" => "", "genres" => ""];
+		//initialisation du tableau qui contiendra la plupart des données du film
+		$movie = [
+			"title" => "",
+			"synopsis" => "",
+			"duration" => "",
+			"year" => "",
+			"imdbRef" => "",
+			"imdbRating" => "",
+			"cover" => "",
+			"dateCreated" => date("Y-m-d H:i:s"),
+			"dateModified" => date("Y-m-d H:i:s")
+			];
+		$genres = [];
+		$humans = [];
 		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 		$link = trim($link);
 
-		// si l'url ou l'id passé a une syntaxe valide
-		if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link) || preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link) || preg_match("!^[t]{2}\d{7}$!", $link)){
+		$content = $this->addHeaderToUrl($link);
+		//crée un objet de la classe simple_html_dom et lui passe le contenu html de la page imdb
+		$html = HtmlDomParser::str_get_html($content);
 
-			//vérifie si le texte passé est un id d'IMDb  (sans les slash autour) de type "ttxxxxxxx" ou les x sont des chiffres de 0 à 9 et le traite si c'est le cas
-			if (preg_match("!^[t]{2}\d{7}$!", $link)){
-				$link = "http://www.imdb.com/title/" . $link . "/";
+		//récupération des différents champs
+		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
+
+		//titre du film
+		$title = trim($html->find('span[itemprop=name]',0)->plaintext);
+
+		//synopsis
+		$synopsisTmp = $html->find("p[itemprop=description]",0);
+		if (!empty($synopsisTmp)){
+			$movie["synopsis"] = trim($synopsisTmp->plaintext);
+		}
+
+		//duration
+		$durationTmp = $html->find("time[itemprop=duration]",0);
+		if (!empty($durationTmp)){
+			$movie["duration"] = trim(str_replace(" min", "", $durationTmp->plaintext));
+		}
+
+		//year
+		$yearTmp = $html->find(".header", 0)->find('.nobr', 0);
+		if (!empty($yearTmp)){
+			$movie["year"] = trim($yearTmp->find("a", 0)->plaintext);
+		}
+
+		//imdbRef
+		$imdbRef = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
+
+		//imdbRating
+		$ratingTmp = $html->find("div[class=titlePageSprite star-box-giga-star]",0);
+		if (!empty($ratingTmp)){
+			$movie["rating"] = trim($ratingTmp->plaintext);
+		}
+
+		//url cover without suffix and extension
+		$coverTmp = $html->find("#title-overview-widget",0)->find("img",0);
+		if (!empty($coverTmp)){
+			$movie["cover"] = trim(preg_replace("/@.*/", "", $coverTmp->src));
+		}
+
+		//directors
+		$directorsTmp = $html->find("div[itemprop=director]",0);
+		if(!empty($directorsTmp)){
+			$directors = $directorsTmp->find("a[itemprop=url]");
+			foreach ($directors as $director){
+				preg_match("!nm\d{7}!", $director->href, $matches);
+				$humans[] = [
+					"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
+					"role" => "director",
+					"imdbRef" => $matches[0]
+				];
 			}
+		}
 
-			//vérifie si le texte passé est une URL d'un film sur IMDb
-			if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link)){
-				// $link = $link;
+		//writers
+		$writersTmp = $html->find("div[itemprop=creator]",0);
+		if(!empty($writersTmp)){
+			$writers = $writersTmp->find("a[itemprop=url]");
+			foreach ($writers as $writer){
+				preg_match("!nm\d{7}!", $writer->href, $matches);
+				$humans[] = [
+					"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
+					"role" => "writer",
+					"imdbRef" => $matches[0]
+				];
 			}
+		}
 
-			//vérifie si le texte passé est une URL avec des paramètres et supprime les paramètres si c'est le cas
-			if(preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link)){
-				$link = preg_replace("/\?.*/", "", $link);
+		//stars
+		$starsTmp = $html->find("div[itemprop=actors]",0);
+		if (!empty($starsTmp)){
+			$stars = $starsTmp->find("> a[itemprop=url]");
+			foreach ($stars as $star){
+				preg_match("!nm\d{7}!", $star->href, $matches);
+				//permet d'arrêter le foreach quand il arrive à la balise <a> du "See full cast and crew"
+				if(empty($matches[0])){
+					break;
+				}
+
+				$humans[] = [
+					"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
+					"role" => "star",
+					"imdbRef" => $matches[0]
+				];
 			}
+		}
 
-			//permet d'avoir le titre en anglais
-			//création d'une entête HTTP
-			$opts = ['http' => [
-			    'method'=>"GET",
-			    'header'=>"Accept-language: en\r\n"
-			]];
-
-			$context = stream_context_create($opts);
-
-			// récupère le contenu html de l'url donnée en ajoutant à l'url l'entête HTTP créée plus haut
-			$content = file_get_contents($url, false, $context);
-
-			//crée un objet de la classe simple_html_dom et lui passe le contenu html de la page imdb
-			$html = str_get_html($content);
-
-			//récupération des différents champs
-			//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
-
-			//titre du film
-			$title = trim($html->find('span[itemprop=name]',0)->plaintext);
-
-			//synopsis
-			$synopsisTmp = $html->find("p[itemprop=description]",0);
-			if (!empty($synopsisTmp)){
-				$movie["synopsis"] = trim($synopsisTmp->plaintext);
-			}
-
-			//durée
-			$durationTmp = $html->find("time[itemprop=duration]",0);
-			if (!empty($durationTmp)){
-				$movie["duration"] = trim(str_replace(" min", "", $durationTmp->plaintext));
-			}
-			// $duration = trim(str_replace(" min", "", $html->find("time[itemprop=duration]",0)->plaintext));
-
-			//année
-			$yearTmp = $html->find(".header", 0)->find('.nobr', 0);
-			if (!empty($yearTmp)){
-				$movie["year"] = trim($yearTmp->find("a", 0)->plaintext);
-			}
-
-			//référence IMDb
-			$imdbRef = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
-
-			//évaluation
-			$ratingTmp = $html->find("div[class=titlePageSprite star-box-giga-star]",0);
-			if (!empty($ratingTmp)){
-				$movie["rating"] = trim($ratingTmp->plaintext);
-			}
-
-			//url de la cover sans le suffixe ni l'extension
-			$coverTmp = $html->find("#title-overview-widget",0)->find("img",0);
-			if (!empty($coverTmp)){
-				$movie["cover"] = trim(preg_replace("/@.*/", "", $coverTmp->src));
-			}
-
-			//réalisateurs
-			$directorsTmp = $html->find("div[itemprop=director]",0);
-			if(!empty($directorsTmp)){
-				$movie["directors"] = $directorsTmp->find("span[itemprop=name]");
-			}
-
-			//scénaristes
-			$writersTmp = $html->find("div[itemprop=creator]",0);
-			if(!empty($writersTmp)){
-				$movie["writers"] = $writersTmp->find("span[itemprop=name]");
-			}
-
-			//acteurs
-			$starsTmp = $html->find("div[itemprop=actors]",0);
-			if (!empty($starsTmp)){
-				$movie["stars"] = $starsTmp->find("span[itemprop=name]");
-			}
-
-			//genres
-			$genresTmp = $html->find("span[itemprop=genre]");
-			if (!empty($genresTmp)){
-				$movie["genres"] = $genresTmp;		
+		//genres
+		$genresTmp = $html->find("span[itemprop=genre]");
+		if (!empty($genresTmp)){
+			foreach ($genresTmp as $genre){
+				$genres[] = $genre->plaintext;
 			}
 			
 		}
-		
-		//sinon (erreur)
-		else{
-			//affichage de l'erreur d'import (pas encore créé)
-			// $this->show("movie/addMovie", [$error => "L'URL n'est pas correcte");
-		}
-
-
 	}
-		//fonction avec parametres a utiliser apres test complets en remplacement des tableaux ci dessous
 
-		/*public function MovieInsert()*/
 
-		public function MovieInsert($movie, $genres, $humans)	
+		public function MovieInsert($movie, $genres, $humans)
 		{
 			/*$movie= [
 			"title" => "film de test",
@@ -246,8 +278,8 @@ class ScraperController extends Controller
 										'role'=>$human['role']
 									]);
 	
-				}
+				}//end of foreach
 			}//end of if	
-			
-		}
-}
+	
+		}//end of method
+}//end of class
