@@ -4,8 +4,15 @@ $("#search-input").on("keyup", function(){
 
 	if (wordSearch.length>=3){
 		$.ajax({
-			"url": $("#search-movie-form").attr("action"),
+			"url": $("#search-movie-form").attr("data-ajax"),
 			"type": $("#search-movie-form").attr("method"),
-		}).done({});
+			"data": $("#bd-search-form").serialize()
+		}).done(function(response){
+			$("#result-search").html(response);
+		});
+	}
+
+	else{
+		$("#result-search").empty();
 	}
 });

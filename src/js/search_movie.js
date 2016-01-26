@@ -12,6 +12,6 @@ $("#search-input").on("keyup", function(){
 	}
 
 	else{
-		$("result-search").empty();
+		$("#result-search").empty();
 	}
 });
