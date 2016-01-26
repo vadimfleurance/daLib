@@ -128,9 +128,9 @@ class ScraperController extends Controller
 		}
 
 		//year
-		$yearTmp = $html->find(".header", 0)->find('.nobr', 0);
-		if (!empty($yearTmp)){
-			$movie["year"] = trim($yearTmp->find("a", 0)->plaintext);
+		preg_match_all("!\d{4}!", $html->find("title", 0)->plaintext, $matches);
+		if (!empty(end($matches))){
+			$movie["year"] = end($matches[0]);
 		}
 
 		//imdbRef
