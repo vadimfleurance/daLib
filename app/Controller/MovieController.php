@@ -6,8 +6,9 @@ use \W\Controller\Controller;
 
 class MovieController extends Controller
 {
-	public function searchMovie()
+	public function search()
 	{
+		$movieManager = new \Manager\MovieManager();
 		$this->show('movie/search');
 	}
 }
