@@ -1,0 +1,49 @@
+// ===========================================================================
+// Main Navigation
+// ===========================================================================
+.navbar {
+	background-color: $grey;
+	border: {
+		top: 0;
+		right: 0;
+		bottom: 3px;
+		left: 0;
+		style: solid;
+		color: #333439;
+		radius: 0;
+	}
+	.bg-dalib {
+		background-color: $primary;
+	}
+	.navbar-header {
+		width: 100%;
+	}
+	.navbar-brand {
+		width: 75%;
+		padding: 0 25px;
+		font-size: 2.5em;
+		line-height: 1.25em;
+		color: $light-grey;
+		text-align: center;
+		&:hover {
+			color: $light-grey;
+		}
+		@media screen and (min-width: $media-sm) {
+			width: 100%;
+		}
+	}
+	.navbar-collapse {
+		border-top: inherit; 
+		-webkit-box-shadow: inherit;
+		box-shadow: inherit;
+	}
+	.navbar-toggle .icon-bar {
+		background-color: $light-grey;
+	}
+	.navbar-toggle {
+		border-color: $light-grey;
+		&:hover, &:focus {
+			background-color: $primary-light;
+		}
+	}
+}

@@ -19,15 +19,16 @@
 	</div>
 	<div class="col-xs-12">
 		<div class="row">
-			<div class="col-xs-12 col-sm-6">
+			<div class="col-xs-12 col-sm-8">
 				<div class="checkbox">
+					<input type="checkbox" id="rememberInput" name="user[remember]">
 					<label for="rememberInput">
-						<input type="checkbox" id="rememberInput" name="user[remember]"> Remember me
+						Remember me
 					</label>
 				</div>
 			</div>
-			<div class="col-xs-120 col-sm-6">
-				<a href="#" class="pull-right btn-link btn-forgot">Forgot ?</a>
+			<div class="col-xs-12 col-sm-4">
+				<a href="#" class="btn-link btn-forgot">Forgot ?</a>
 			</div>
 		</div>
 	</div>

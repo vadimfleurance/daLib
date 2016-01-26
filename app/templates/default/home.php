@@ -4,9 +4,9 @@
 	<section id="informations" class="full-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
+				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0">
 					<header>
-						<h3>daLib, what's it ?</h3>
+						<h1>daLib, what's it ?</h1>
 						<p>Keep track of your personal movie collection in a user friendly interface. Foo library comes with many features.
 						Add & delete movies or mark the ones you want to see. Get suggestions based on your tastes.
 						You change ! Foo changes with you ! You're a fan join the dedicated chat and discuss with others !
@@ -14,7 +14,7 @@
 					</header>
 				</div>
 
-				<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1">
+				<div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
 					<!-- Nav tabs -->
 					<div class="row">
 						<ul class="nav nav-tabs" role="tablist">
@@ -44,7 +44,7 @@
 			<div class="row">
 				<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
 					<header>
-						<h1>Top 10</h1>
+						<h1>Top 10 movies of the week</h1>
 					</header>
 
 					<div id="owl-demo" class="owl-carousel owl-theme">
