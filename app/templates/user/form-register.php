@@ -8,7 +8,15 @@
 			</div>
 
 			<!-- Message d'erreur pour un USERNAME déjà utilisé -->
-			<?=  $errors['username']; ?>
+			<!-- Faire un foreach pour afficher les erreurs du coup -->
+			<?php 
+				if (!empty( $errors['username'] )) : 
+					foreach ( $errors['username'] as $error ) : ?>
+						<p><?= $error; ?></p>
+					<?php endforeach ;
+				endif ; 
+			?>
+
 		</div>
 	</div>
 	<div class="col-xs-12">
@@ -20,7 +28,14 @@
 			</div>
 
 			<!-- Message d'erreur pour une adresse EMAIL déjà utilisé -->
-			<?= $errors['email']; ?>
+			<?php 
+				if (!empty( $errors['email'] )) : 
+					foreach ( $errors['email'] as $error ) : ?>
+						<p><?= $error; ?></p>
+					<?php endforeach ;
+				endif ; 
+			?>
+
 		</div>
 	</div>
 	<div class="col-xs-12">
@@ -41,7 +56,14 @@
 			</div>
 
 			<!-- Message d'erreur pour une mauvaise saisie du PASSWORD -->
-			<?= $errors['password']; ?>
+
+			<?php 
+				if (!empty( $errors['password'] )) : 
+					foreach ( $errors['password'] as $error ) : ?>
+						<p><?= $error; ?></p>
+					<?php endforeach ;
+				endif ; 
+			?>
 		</div>
 	</div>
 	

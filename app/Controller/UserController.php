@@ -14,9 +14,10 @@ class UserController extends Controller
 	{
 		 
 		$errors = [
-			"username" => "",
-			"email" => "",
-			"password" => ""
+			"username" => [],
+			"email" => [],
+			"password" => [],
+			"total" => []
 			];
 
 		if ( $_POST )
@@ -28,43 +29,85 @@ class UserController extends Controller
 				$password = 	$_POST['user']['password'];
 				$passwordBis = 	$_POST['user']['passwordBis'];
 
-				//Validation des données
+				/** 
+				* 	VALIDATION DES DONNEES
+				*/
 				$isValid = true;
 
-				// Création d'un nouvel objet UserManager() afin de pouvoir accéder aux méthodes : 
-				// 		->usernameExists() et ->emailExists()
+				/**
+				*	Création d'un nouvel objet UserManager() afin de pouvoir accéder aux méthodes : 
+				*				 	->usernameExists() et ->emailExists()
+				*/ 	
 				$userManager = new \Manager\UserManager();
 				
-				// Validation du username 
+				/**
+				*	USERNAME
+				*/  
+				// On vérifie la longueur du username
+				if ( ( strlen( $username ) < 4 ) )
+				{
+					$isValid = false;
+					$errors['username'][] = "le nom d'utilisateur doit avoir 4 caractères minimum. " ;
+				}
+
+				// On vérifie que le username n'a pas de caractères spéciaux
+				// le username doit commencer par une lettre(avec accent ou non) ou un chiffre, les autres caractères ne sont pas autorisés
+				// le username est ensuite composé de minimum 3 caractères en plus comprenant : chiffres, lettres (accent ou non), tiret, underscore
+				$regUserName = "!^[0-9\p{L}]{1}[0-9\p{L}._-]{3,}$!";
+				if ( !preg_match( $regUserName , $username ) )
+				{
+					$isValid = false;
+					$errors['username'][] = "Votre nom d'utilisateur ne doit pas commencer par un caractère spécial. ";
+				}
+
+
+				// On vérifie que le username n'existe pas en BDD
 				if ( $userManager->usernameExists( $username ) )
 				{
 					$isValid = false;
-					$errors['username'] = "Choisissez un autre nom d'utilisateur, celui-ci est déjà utilisé !";
+					$errors['username'][] = "Choisissez un autre nom d'utilisateur, celui-ci est déjà utilisé !" ;
 				}
 
-				// Validation de l'email
+				/**
+				*	EMAIL
+				*/ 
+				// On vérifie que l'email est valide
+				if ( !filter_var( $email , FILTER_VALIDATE_EMAIL ) )
+				{
+					$isValid = false;
+					$errors['email'][] = "L'adresse email renseignée n'est pas valide. ";
+				}
+
+				// On vérifie qu'il n'existe pas en BDD
 				if ( $userManager->emailExists( $email ) )
 				{
 					$isValid = false;
-					$errors['email'] = "Choisissez une autre adresse email, celle-ci est déjà utilisée !";
+					$errors['email'][] = "Choisissez une autre adresse email, celle-ci est déjà utilisée !" ;
 				}
 
-				// Validation des mots de passe identiques
+				/**
+				* 	PASSWORD 
+				*/
+				// On vérifie la longueur du password
+				if ( ( strlen( $password ) < 8 ) )
+				{
+					$isValid = false;
+					$errors['password'][] = "Le mot de passe doit avoir 8 caractères minimum !" ;
+				}
+
+				// On vérifie que les deux password sont bien identiques
 				if ( $password != $passwordBis )
 				{
 					$isValid = false;
-					$errors['password'] = "Les mots de passe ne sont pas identiques";
+					$errors['password'][] = "Les mots de passe ne sont pas identiques. " ;
 				}
 
-				// Validation du mots de passe
+				// On vérifie qu'ils ne sont pas vides
 				if ( empty( $password ) || empty( $passwordBis ) )
 				{
 					$isValid = false;
-					$errors['password'] = "Les mots de passe ne sont pas renseignés";
+					$errors['password'][] = "Les mots de passe ne sont pas renseignés. " ;
 				}
-
-
-
 
 				if( $isValid )
 				{
@@ -81,11 +124,7 @@ class UserController extends Controller
 				}
 				else
 				{
-					$errors = [
-						"username" => "Un nom d'utilisateur doit être renseigné",
-						"email" => "Une adresse email doit être renseignée",
-						"password" => "Le mot de passe doit être saisie et confirmé dans le deuxième champs"
-					];
+					$errors['total'][] = "Tous les champs doivent être rempli." ;
 				}
 			}
 		}
