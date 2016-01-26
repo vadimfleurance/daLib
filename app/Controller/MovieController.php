@@ -6,9 +6,10 @@ use \W\Controller\Controller;
 
 class MovieController extends Controller
 {
-	public function search()
+	public function searchAjax()
 	{
 		$movieManager = new \Manager\MovieManager();
-		$this->show('movie/search');
+		$MoviesFound = $movieManager->searchAjax();
+		$this->show('movie/search_ajax', $moviesFound);
 	}
 }
