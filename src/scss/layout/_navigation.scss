@@ -35,17 +35,16 @@
 		}
 	}
 	.navbar-collapse {
-		border-top: inherit; 
-		-webkit-box-shadow: inherit;
+		border-top: inherit;
 		box-shadow: inherit;
-	}
-	.navbar-toggle .icon-bar {
-		background-color: $light-grey;
 	}
 	.navbar-toggle {
 		border-color: $light-grey;
 		&:hover, &:focus {
 			background-color: $primary-light;
+		}
+		.icon-bar {
+			background-color: $light-grey;
 		}
 	}
 	.nav > li > a {
@@ -61,13 +60,13 @@
 		box-shadow: inherit;
 	}
 	.navbar-nav > li > a, .dropdown-menu > li > a {
-		color: $link;
+		color: $light-grey;
 		&:hover {
+			background-color: $K10;
 			color: $link-hover;
 		}
 		&:visited {
 			color: $link-visited;
 		}
-	}
-	
+	}	
 }

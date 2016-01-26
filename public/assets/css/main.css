@@ -71,16 +71,16 @@ a:visited {
   box-shadow: inherit;
 }
 
-.navbar .navbar-toggle .icon-bar {
-  background-color: #eaeaea;
-}
-
 .navbar .navbar-toggle {
   border-color: #eaeaea;
 }
 
 .navbar .navbar-toggle:hover, .navbar .navbar-toggle:focus {
   background-color: #22A7F0;
+}
+
+.navbar .navbar-toggle .icon-bar {
+  background-color: #eaeaea;
 }
 
 .navbar .nav > li > a {
@@ -98,10 +98,15 @@ a:visited {
 }
 
 .navbar .navbar-nav > li > a, .navbar .dropdown-menu > li > a {
-  color: #0057A0;
+  color: #eaeaea;
 }
 
 .navbar .navbar-nav > li > a:hover, .navbar .dropdown-menu > li > a:hover {
+  background-color: #3C4A59;
+  color: #22A7F0;
+}
+
+.navbar .navbar-nav > li > a:visited, .navbar .dropdown-menu > li > a:visited {
   color: #22A7F0;
 }
 
