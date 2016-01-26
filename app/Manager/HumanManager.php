@@ -12,7 +12,7 @@ class HumanManager extends \W\Manager\Manager
 		foreach ($humans as $key => $value) {
 			$stmt= $this->dbh->prepare('INSERT INTO humans (name , imdbRef) VALUES (:name , :imdbRef);');
 			$stmt->bindValue(':name',$human[$key]['name'] );
-			$stmt->bindValue(':name',$human[$key]['imdbRef'] );
+			$stmt->bindValue(':imdbRef',$human[$key]['imdbRef'] );
 			$stmt->execute();
 
 		}
