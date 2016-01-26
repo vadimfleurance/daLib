@@ -87,6 +87,24 @@ a:visited {
   line-height: 38px;
 }
 
+.navbar .navbar-nav > .open > a, .navbar .dropdown-menu {
+  background-color: #1d1e22;
+}
+
+.navbar .navbar-nav > li > .dropdown-menu {
+  margin-top: 3px;
+  border: inherit;
+  box-shadow: inherit;
+}
+
+.navbar .navbar-nav > li > a, .navbar .dropdown-menu > li > a {
+  color: #0057A0;
+}
+
+.navbar .navbar-nav > li > a:hover, .navbar .dropdown-menu > li > a:hover {
+  color: #22A7F0;
+}
+
 #informations .nav-tabs, #top-10 .nav-tabs {
   margin-top: 50px;
 }
