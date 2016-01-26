@@ -175,17 +175,18 @@ class RegistrationController extends Controller
 					* 							/!\ 
 					*	LogOut volontaire tant que le bouton LogOut inexistant
 					*/
-									$authManager->logUserOut( $user );
+									// $authManager->logUserOut( $user );
 					/**
 					* 							/!\
 					*/			
 
-
-
 					/**
 					*	Redirection une fois créé en BDD et une fois connecté
 					*/
-					$this->redirectToRoute('home');	
+					// On appelle la méthode "success" (présente en dessous), elle peut paraître
+					// inutile vu son contenu mais dans un futur où on voudrait gérer un envoie de mail
+					// (par exemple), elle deviendrait alors justifiée.
+					$this->redirectToRoute('registration_success');
 				}
 				else
 				{	
@@ -200,6 +201,10 @@ class RegistrationController extends Controller
 			]);
 	}
 
-
-
+	public function success()
+	{
+		// On appelle le template "user/registration-confirmation" afin d'afficher la bonne réussite 
+		// de l'inscription de l'utilisateur
+		$this->show('user/registration-confirmation');	
+	}
 }

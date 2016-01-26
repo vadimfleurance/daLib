@@ -7,5 +7,4 @@ use \W\Manager\Manager;
 
 class UserManager extends \W\Manager\UserManager
 {
-	
 }
