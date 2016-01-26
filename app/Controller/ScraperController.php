@@ -155,7 +155,7 @@ class ScraperController extends Controller
 				preg_match("!nm\d{7}!", $director->href, $matches);
 				$humans[] = [
 					"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
-					"role" => "directors",
+					"role" => "director",
 					"imdbRef" => $matches[0]
 				];
 			}
@@ -169,7 +169,7 @@ class ScraperController extends Controller
 				preg_match("!nm\d{7}!", $writer->href, $matches);
 				$humans[] = [
 					"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
-					"role" => "writers",
+					"role" => "writer",
 					"imdbRef" => $matches[0]
 				];
 			}
@@ -188,7 +188,7 @@ class ScraperController extends Controller
 
 				$humans[] = [
 					"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
-					"role" => "stars",
+					"role" => "star",
 					"imdbRef" => $matches[0]
 				];
 			}
