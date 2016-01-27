@@ -11,5 +11,5 @@
 		</div>
 	</div>
 </form>
-<div id="#result-search"></div>
+<div id="result-search"></div>
 <?php $this->stop('main_content') ?>

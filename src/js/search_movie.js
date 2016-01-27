@@ -5,7 +5,7 @@ $("#search-input").on("keyup", function(){
 		$.ajax({
 			"url": $("#search-movie-form").attr("data-ajax"),
 			"type": $("#search-movie-form").attr("method"),
-			"data": $("#bd-search-form").serialize()
+			"data": $("#search-movie-form").serialize()
 		}).done(function(response){
 			$("#result-search").html(response);
 		});
