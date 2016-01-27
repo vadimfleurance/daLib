@@ -2,48 +2,5 @@
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
 section:nth-child(even) {
-	background-color: $grey;
+	background-color: $secondary;
 }
-
-#informations {
-	min-height: 550px;
-	header {
-		h1 {
-			margin: 0 0 25px;
-			font-size: 2em;
-			line-height: 1.313em;
-			text-transform: uppercase;
-			color: $primary-light;
-			
-			@media (min-width: $media-md) {
-				font-size: 2.75em;
-			}
-			@media (min-width: $media-lg) {
-				font-size: 3em;
-			}
-		}
-		h1::before {
-			content: '';
-			width: 250px;
-			margin-right: 15px;
-			border: 3px solid $primary-light;
-		}
-		p {
-			font-size: 18px;
-			line-height: 30px;
-			letter-spacing: 3px;
-		}
-	}
-}
-
-#top-10 {
-	@extend #informations;
-	min-height: inherit;
-	header h1 {
-		margin: 0 0 40px;
-	}
-}
-
-
-
-

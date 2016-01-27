@@ -1,16 +1,24 @@
 // ===========================================================================
-//
+// Variables - Globals
 // ===========================================================================
-$primary: $E8;
-$primary-light: $E4;
-$secondary: #131313;
-$grey: #1d1e22;
-$light-grey: #eaeaea;
+$background:								#131313;
+$primary:									$E8;
+$primary-light:								$E4;
+$secondary:									#1d1e22;
+$secondary-light:							#333439;
+$font-color-light:							#eaeaea;
 
-$link: $E9;
-$link-hover: $E4;
-$link-visited: $E4;
+$link:										$E9;
+$link-hover:								$E4;
+$link-visited:								$E4;
 
-$media-sm: 768px;
-$media-md: 992px;
-$media-lg: 1200px;
+$media-sm:									768px;
+$media-md:									992px;
+$media-lg:									1200px;
+
+// ===========================================================================
+// Variables - Navigations
+// ===========================================================================
+$navbar-background-color:					$secondary !default;
+$navbar-background-color-active:			$secondary-light !default;
+$navbar-font-color:							$font-color-light !default;

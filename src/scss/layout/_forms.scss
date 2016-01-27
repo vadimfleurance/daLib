@@ -1,102 +1,141 @@
 // ===========================================================================
 // Homepage - Login & Register Forms
 // ===========================================================================
-#informations {
-	.nav-tabs {
-		margin-top: 50px;
-		@media screen and (min-width: $media-sm) {
-			margin-top: 0;
-		}
+
+$form-normal:                      $AXX !default;
+$form-default:                     $secondary-light !default;
+$form-primary:                     $primary-light !default;
+$form-success:                     $grass-dark !default;
+$form-danger:                      $grapefruit-dark !default;
+$form-warning:                     $sunflower-dark !default;
+$form-info:                        $mint-dark !default;
+
+$message-success:                  $grass-dark !default;
+$message-danger:                   $grapefruit-dark !default;
+$message-warning:                  $sunflower-dark !default;
+
+$form-font-color:                  $darkgray-dark !default;
+$form-placeholder-font-color:      $lightgray-dark !default;
+
+$form-disabled-color:              $secondary-light !default;
+
+$search-query-value:               17px !default;
+
+$search-icon-width:                30px !default;
+$search-icon-line-height:          30px !default;   
+
+
+.form-control {
+	color: $form-font-color;
+	border-color: $K1;
+	border-radius: 0;
+	background-color: #fff;
+	box-shadow: none;
+
+	&:focus {
+		border-color: $primary-light;	
+	}
+	&::-moz-placeholder,
+	&::-ms-input-placeholder,
+	&::-webkit-input-placeholder {
+		color: $font-color-light;
 	}
 
-	#login-form, #register-form {
-		padding: 20px 0;
-		color: $M11;
-		.form-group {
-			margin: 0 0 20px;
-
-			.input-group-addon {
-				background-color: #fff;
-				border: {
-					top: 1px;
-					right: 0;
-					bottom: 1px;
-					left: 1px;
-					style: solid;
-					color: #ccc;
-					radius: 0;
-				}
-			}
-			.form-control {
-				border: {
-					top: 1px;
-					right: 1px;
-					bottom: 1px;
-					left: 0;
-					style: solid;
-					color: #ccc;
-					radius: 0;
-				}
-				height: 45px;
-				padding: 0;
-				-webkit-box-shadow: none;
-				box-shadow: none;
-			}
-			.input-group-addon, .form-control {
-				font-size: 1.125em;
-			}
-		}
-		.btn-login, .btn-register {
-			background-color: $primary;
-			height: 50px;
-			border-radius: 0;
-			border: none;
-			color: #fff;
-			font-size: 1.5em;
-			text-transform: uppercase;
-		}
-		.btn-login:hover, .btn-login:focus, .btn-register:hover, .btn-register:focus {
-			background-color: $primary-light;
-		}
-	}
-
-	#login-form {
-		.checkbox {
-			margin-top: 0;
-		}
-		.btn-forgot {
-			line-height: 20px;
-		}
-		.btn-login {
-			margin-top: 20px;
-		}
+	&.disabled, 
+	&[disabled] {
+		border-color: $secondary-light;
+		background-color: $secondary-light;
 	}
 }
 
-// ===========================================================================
-// Navigation - Search Forms
-// ===========================================================================
-#search-form {
-	.form-group {
-		margin: 10px 0;
-		@media screen and (min-width: $media-sm) {
-			margin: 20px 0;
-		}
+.input-group-btn {
+	& .btn + .btn {
+		border-width: 1px;
+		border-style: solid;
+		border-color: $secondary-light;
+		border-radius: 0;
+	}
+}
 
-		.input-group-addon {
-			background-color: inherit;
-			border: none;
-			font-size: 1.125em;
-		}
-		.form-control {
-			@extend .input-group-addon;
-			height: 60px;
-			padding: 0;
-			-webkit-box-shadow: none;
-			box-shadow: none;
-			@media screen and (min-width: $media-sm) {
-				height: 30px;
-			}
-		}
+.input-group-addon {
+	background-color: $primary-light;
+	border-color: $primary-light;
+	border-right: 0;
+	border-radius: 0;
+	color: $font-color-light;
+
+	& .radio,
+	& .checkbox {
+		margin: -3px 0 -4px !important;
+	}
+}
+
+.has-success {
+	& .help-block,
+	& .control-label,
+	& .radio,
+	& .checkbox,
+	& .radio-inline,
+	& .checkbox-inline {
+		color: $message-success;
+	}
+	& .form-control {
+		border-color: $message-success;
+	}
+	& .form-control:focus {
+		border-color: $message-success;
+	}
+	& .input-group-addon {
+		background-color: $message-success;
+		border-color: $message-success;
+	}
+	& .form-control-feedback {
+		color: $message-success;
+	}    
+}
+.has-warning {
+	& .help-block,
+	& .control-label,
+	& .radio,
+	& .checkbox,
+	& .radio-inline,
+	& .checkbox-inline {
+		color: $message-warning;
+	}
+	& .form-control {
+		border-color: $message-warning;
+	}
+	& .form-control:focus {
+		border-color: $message-warning;
+	}
+	& .input-group-addon {
+		background-color: $message-warning;
+		border-color: $message-warning;
+	}
+	& .form-control-feedback {
+		color: $message-warning;
+	}
+}
+.has-error {
+	& .help-block,
+	& .control-label,
+	& .radio,
+	& .checkbox,
+	& .radio-inline,
+	& .checkbox-inline {
+		color:  $message-danger;
+	}
+	& .form-control {
+		border-color:  $message-danger;
+	}
+	& .form-control:focus {
+		border-color:  $message-danger;
+	}
+	& .input-group-addon {
+		background-color:  $message-danger;
+		border-color:  $message-danger;
+	}
+	& .form-control-feedback {
+		color:  $message-danger;
 	}
 }

@@ -1,0 +1,102 @@
+// ===========================================================================
+// Homepage - Login & Register Forms
+// ===========================================================================
+#informations {
+	.nav-tabs {
+		margin-top: 50px;
+		@media screen and (min-width: $media-sm) {
+			margin-top: 0;
+		}
+	}
+
+	#login-form, #register-form {
+		padding: 20px 0;
+		color: $M11;
+		.form-group {
+			margin: 0 0 20px;
+
+			.input-group-addon {
+				background-color: #fff;
+				border: {
+					top: 1px;
+					right: 0;
+					bottom: 1px;
+					left: 1px;
+					style: solid;
+					color: #ccc;
+					radius: 0;
+				}
+			}
+			.form-control {
+				border: {
+					top: 1px;
+					right: 1px;
+					bottom: 1px;
+					left: 0;
+					style: solid;
+					color: #ccc;
+					radius: 0;
+				}
+				height: 45px;
+				padding: 0;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+			.input-group-addon, .form-control {
+				font-size: 1.125em;
+			}
+		}
+		.btn-login, .btn-register {
+			background-color: $primary;
+			height: 50px;
+			border-radius: 0;
+			border: none;
+			color: #fff;
+			font-size: 1.5em;
+			text-transform: uppercase;
+		}
+		.btn-login:hover, .btn-login:focus, .btn-register:hover, .btn-register:focus {
+			background-color: $primary-light;
+		}
+	}
+
+	#login-form {
+		.checkbox {
+			margin-top: 0;
+		}
+		.btn-forgot {
+			line-height: 20px;
+		}
+		.btn-login {
+			margin-top: 20px;
+		}
+	}
+}
+
+// ===========================================================================
+// Navigation - Search Forms
+// ===========================================================================
+#search-form {
+	.form-group {
+		margin: 10px 0;
+		@media screen and (min-width: $media-sm) {
+			margin: 20px 0;
+		}
+
+		.input-group-addon {
+			background-color: inherit;
+			border: none;
+			font-size: 1.125em;
+		}
+		.form-control {
+			@extend .input-group-addon;
+			height: 60px;
+			padding: 0;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			@media screen and (min-width: $media-sm) {
+				height: 30px;
+			}
+		}
+	}
+}
