@@ -2,29 +2,6 @@
 // Homepage - Login & Register Forms
 // ===========================================================================
 
-$form-normal:                      $AXX !default;
-$form-default:                     $secondary-light !default;
-$form-primary:                     $primary-light !default;
-$form-success:                     $grass-dark !default;
-$form-danger:                      $grapefruit-dark !default;
-$form-warning:                     $sunflower-dark !default;
-$form-info:                        $mint-dark !default;
-
-$message-success:                  $grass-dark !default;
-$message-danger:                   $grapefruit-dark !default;
-$message-warning:                  $sunflower-dark !default;
-
-$form-font-color:                  $darkgray-dark !default;
-$form-placeholder-font-color:      $lightgray-dark !default;
-
-$form-disabled-color:              $secondary-light !default;
-
-$search-query-value:               17px !default;
-
-$search-icon-width:                30px !default;
-$search-icon-line-height:          30px !default;   
-
-
 .form-control {
 	color: $form-font-color;
 	border-color: $K1;
@@ -33,18 +10,18 @@ $search-icon-line-height:          30px !default;
 	box-shadow: none;
 
 	&:focus {
-		border-color: $primary-light;	
+		border-color: $form-primary;	
 	}
 	&::-moz-placeholder,
 	&::-ms-input-placeholder,
 	&::-webkit-input-placeholder {
-		color: $font-color-light;
+		color: $form-font-color;
 	}
 
 	&.disabled, 
 	&[disabled] {
-		border-color: $secondary-light;
-		background-color: $secondary-light;
+		border-color: $form-default;
+		background-color: $form-default;
 	}
 }
 
@@ -52,17 +29,18 @@ $search-icon-line-height:          30px !default;
 	& .btn + .btn {
 		border-width: 1px;
 		border-style: solid;
-		border-color: $secondary-light;
+		border-color: $form-default;
 		border-radius: 0;
 	}
 }
 
 .input-group-addon {
-	background-color: $primary-light;
-	border-color: $primary-light;
+	background-color: $form-primary;
+	border-color: $form-primary;
 	border-right: 0;
 	border-radius: 0;
-	color: $font-color-light;
+	min-width: 40px;
+	color: $form-font-color;
 
 	& .radio,
 	& .checkbox {

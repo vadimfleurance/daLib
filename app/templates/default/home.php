@@ -13,16 +13,14 @@
 						Join now or get your genitals cut off ! And as french says "foo parce qu'on est des foo !"</p>
 					</header>
 				</div>
-
 				<div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
 					<!-- Nav tabs -->
 					<div class="row">
-						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active col-xs-6 col-sm-6"><a href="#login-form" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
-							<li role="presentation" class="col-xs-6 col-sm-6"><a href="#register-form" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
+						<ul class="nav nav-tabs nav-justified" role="tablist">
+							<li role="presentation" class="active"><a href="#login-form" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+							<li role="presentation"><a href="#register-form" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
 						</ul>
 					</div>
-
 					<!-- Tab panes -->
 					<div class="row">
 						<div class="tab-content">
@@ -46,7 +44,7 @@
 					<header>
 						<h1>Top 10 movies of the week</h1>
 					</header>
-
+					
 					<div id="owl-demo" class="owl-carousel owl-theme">
 						<!-- PHP - AJOUTER UNE BOUCLE QUI RECUPERE LE TOP 10 DES FILMS DE LA DB -->
 						<div class="item">

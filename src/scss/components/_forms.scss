@@ -1,0 +1,27 @@
+#search-form {
+	.form-control {
+		color: $form-font-color;
+		border-color: transparent;
+		background-color: transparent;
+		transition: none;
+		border: {
+			top: 0;
+			right: 0;
+			bottom: 1px;
+			left: 0;
+			style: solid;
+			color: $secondary-light;
+			radius: 0;
+		}
+
+		&:focus {
+			border-color: $primary;
+			box-shadow: none;
+		}
+	}
+
+	.input-group-addon {
+		background-color: transparent;
+		border-color: transparent;
+	}
+}

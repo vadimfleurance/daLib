@@ -17,7 +17,15 @@ a {
 	}
 }
 
-.full-section {
-	width: 100%;
-	padding: 75px 0;
+main {
+	margin-top: 70px;
+
+	@media (min-width: $media-sm) and (max-width: $media-md - 1px) {
+		margin-top: 140px;
+	}
+}
+
+section {
+	padding-top: 70px;
+	padding-bottom: 70px;	
 }
