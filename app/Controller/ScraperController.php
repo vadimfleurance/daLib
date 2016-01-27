@@ -153,52 +153,54 @@ class ScraperController extends Controller
 		//directors
 		$creditsSummaryItem1 = $html->find(".credit_summary_item", 0);
 		if(!empty($creditsSummaryItem1)){
-			$directorsTmp = $creditsSummaryItem1->find("span[itemprop=director]",0);			
-		}
-		if(!empty($directorsTmp)){
-			$directors = $directorsTmp->find("a[itemprop=url]");
-			foreach ($directors as $director){
-				preg_match("!nm\d{7}!", $director->href, $matches);
-				$humans[] = [
-					"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
-					"role" => "director",
-					"imdbRef" => $matches[0]
-				];
+			$directorsTmp = $creditsSummaryItem1->find("span[itemprop=director]");			
+			if(!empty($directorsTmp)){
+				foreach ($directorsTmp as $directorTmp){
+					$director = $directorTmp->find("a[itemprop=url]", 0);
+					preg_match("!nm\d{7}!", $director->href, $matches);
+
+					$humans[] = [
+						"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
+						"role" => "director",
+						"imdbRef" => $matches[0]
+					];
+				}
 			}
 		}
 
 		//writers
 		$creditsSummaryItem2 = $html->find(".credit_summary_item", 1);
 		if(!empty($creditsSummaryItem2)){
-			$writersTmp = $creditsSummaryItem2->find("span[itemprop=creator]",0);			
-		}
-		if(!empty($writersTmp)){
-			$writers = $writersTmp->find("a[itemprop=url]");
-			foreach ($writers as $writer){
-				preg_match("!nm\d{7}!", $writer->href, $matches);
-				$humans[] = [
-					"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
-					"role" => "writer",
-					"imdbRef" => $matches[0]
-				];
+			$writersTmp = $creditsSummaryItem2->find("span[itemprop=creator]");
+			if(!empty($writersTmp)){
+				foreach ($writersTmp as $writerTmp){
+					$writer = $writerTmp->find("a[itemprop=url]", 0);
+					preg_match("!nm\d{7}!", $writer->href, $matches);
+
+					$humans[] = [
+						"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
+						"role" => "writer",
+						"imdbRef" => $matches[0]
+					];
+				}
 			}
 		}
 
 		//stars
 		$creditsSummaryItem3 = $html->find(".credit_summary_item", 2);
 		if(!empty($creditsSummaryItem3)){
-			$starsTmp = $creditsSummaryItem3->find("span[itemprop=actors]",0);			
-		}
-		if (!empty($starsTmp)){
-			$stars = $starsTmp->find("> a[itemprop=url]");
-			foreach ($stars as $star){
-				preg_match("!nm\d{7}!", $star->href, $matches);
+			$starsTmp = $creditsSummaryItem3->find("span[itemprop=actors]");			
+			if (!empty($starsTmp)){
+				foreach ($starsTmp as $starTmp){
+					$star = $starTmp->find("> a[itemprop=url]", 0);
+					preg_match("!nm\d{7}!", $star->href, $matches);
 
-				$humans[] = [
-					"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
-					"role" => "star",
-					"imdbRef" => $matches[0]
-				];
+					$humans[] = [
+						"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
+						"role" => "star",
+						"imdbRef" => $matches[0]
+					];
+				}
 			}
 		}
 
