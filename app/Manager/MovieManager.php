@@ -16,6 +16,7 @@ class MovieManager extends \W\Manager\Manager
 		$statementStars->execute([':title' => "%" . $_GET['search-input']]);
 		$moviesStars = $statementStars->fetchAll();
 		return ;
+	}
 	//permet d'appeller le manager et d'inserer dans la table movies
 	public function lastId()
 	{
