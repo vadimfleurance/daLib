@@ -8,7 +8,10 @@
 
 	& > li {
 		margin-bottom: 0;
-		border-left: 1px solid $tab-border-color;
+		
+		@media (min-width: $media-sm) {
+			border-left: 1px solid $tab-border-color;
+		}
 	}
 	& > li:first-child {
 		border-left: none;
@@ -31,7 +34,7 @@
 	& > li.active > a:hover {
 		color: $tab-font-color;
 		border: none;
-		background-color: $tab-font-color-acitve !important;
+		background-color: $tab-font-color-active !important;
 	}
 
 	& .dropdown-toggle,
@@ -77,7 +80,7 @@
 	&.nav-justified > .active > a:focus {
 		border: none;
 	}
-	@media (min-width: 768px) {
+	@media (min-width: $media-sm) {
 		&.nav-justified > li > a {
 			border-bottom: none;
 		}
@@ -90,7 +93,7 @@
 
 	@at-root .tab-content {
 		padding: 30px 10px;
-		background-color: $secondary-light;
+		background-color: $tab-background-color-light;
 	}
 }
 

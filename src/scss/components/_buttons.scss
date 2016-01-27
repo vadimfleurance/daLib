@@ -1,9 +1,11 @@
-/*.btn-default {
-	background-color: $main-color;
-	border-color: $main-color;
-	color: #fff;
+// ===========================================================================
+// Components Buttons
+// ===========================================================================
+
+.btn-login {
+	height: 45px;
 }
-.btn-default:hover {
-	background-color: $dark-main-color;
-	border-color: $dark-main-color;
-}*/
+
+.btn-register {
+	@extend .btn-login;
+}

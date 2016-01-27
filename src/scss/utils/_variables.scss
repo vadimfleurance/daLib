@@ -6,6 +6,7 @@ $primary:									$E8;
 $primary-light:								$E4;
 $secondary:									#1d1e22;
 $secondary-light:							#333439;
+$font-color-dark:							$A8;
 $font-color-light:							#eaeaea;
 
 $link:										$E9;
@@ -40,7 +41,7 @@ $message-danger:							$A16 !default;
 $message-warning:							$H7 !default;
 
 $form-font-color:							$font-color-light !default;
-$form-placeholder-font-color:				$font-color-light !default;
+$form-placeholder-font-color:				$font-color-dark !default;
 $form-disabled-color:						$form-default !default;
 
 
@@ -48,11 +49,12 @@ $form-disabled-color:						$form-default !default;
 // Variables - Tabs
 // ===========================================================================
 $tab-background-color:						$secondary !default;
+$tab-background-color-light:				$secondary-light !default;
 $tab-background-color-hover:				$primary-light !default;
 $tab-radius:								4px !default;
 
 $tab-font-color:							$A22 !default;
-$tab-font-color-acitve:						$primary !default;
+$tab-font-color-active:						$primary !default;
 
 $tab-aside-width:							74px !default;
 
