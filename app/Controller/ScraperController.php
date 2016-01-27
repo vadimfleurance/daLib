@@ -6,12 +6,9 @@ use Sunra\PhpSimple\HtmlDomParser;
 
 class ScraperController extends Controller
 {
-	public function globalScraper()
+
+	public function addHeaderToUrl($url)
 	{
-		
-		// Target
-		$url = "http://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm_7";
-		
 		// Switch the page in English
 		$options = ['http' => [
 		    'method'=>"GET",
@@ -20,8 +17,41 @@ class ScraperController extends Controller
 		$context = stream_context_create($options);
 
 		// Open the file using the HTTP headers set above
-		$content = file_get_contents($url, false, $context);
+		return file_get_contents($url, false, $context);
+	}
 
+	public function verifyUrl()
+	{
+		// si l'url ou l'id passé a une syntaxe valide
+		if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link) || preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link) || preg_match("!^[t]{2}\d{7}$!", $link)){
+
+			//vérifie si le texte passé est un id d'IMDb  (sans les slash autour) de type "ttxxxxxxx" ou les x sont des chiffres de 0 à 9 et le traite si c'est le cas
+			if (preg_match("!^[t]{2}\d{7}$!", $link)){
+				return "http://www.imdb.com/title/" . $link . "/";
+			}
+
+			//vérifie si le texte passé est une URL d'un film sur IMDb
+			if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link)){
+				return $link;
+			}
+
+			//vérifie si le texte passé est une URL avec des paramètres et supprime les paramètres si c'est le cas
+			if(preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link)){
+				return preg_replace("/\?.*/", "", $link);
+			}
+		}
+		else{
+			return "Erreur";
+		}
+	}
+
+	public function globalScraper()
+	{
+		
+		// Target
+		$url = "http://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm_7";
+
+		$content = $this->addHeaderToUrl($url);
 		// Create a new  domparser object stocked into "$html"
 		$html = HtmlDomParser::str_get_html($content);
 
@@ -29,18 +59,18 @@ class ScraperController extends Controller
 		
 		
 
-
-		
-
+		$count=0;
 		// Find every link to single movie page inside the movies top page 
 		foreach ( $html->find(".titleColumn a") as $href ) {
+			/*if ($count == 50){break;}*/
 			$regIdMovie = '!tt\d{7}!';
 			$urlMovie = $href->href;
 
 			preg_match( $regIdMovie , $urlMovie , $matches );
 
-			$link = "http://www.imdb.com/title/' . $matches[0] . '/";
+			$link = "http://www.imdb.com/title/" . $matches[0] . "/";
 			$this->pageScraper($link);
+			/*$count++;*/
 		}
 
 		
@@ -54,126 +84,192 @@ class ScraperController extends Controller
 
 
 	public function pageScraper($link)
-
 	{
+		//modifie le time out pour ne pas avoir de problème pendant le scrapping
+		ini_set("max_execution_time", 30);
 		//extraire toutes les donnees necessaires d'une page d'un film
-		//initialisation du tableau qui contiendra toutes les données du film
-		$movie = ["title" => "", "synopsis" => "", "duration" => "", "year" => "", "imbdRef" => "", "rating" => "", "cover" => "", "directors" => "", "writers" =>"", "stars" => "", "genres" => ""];
+		//initialisation du tableau qui contiendra la plupart des données du film
+		$movie = [
+			"title" => "",
+			"synopsis" => "",
+			"duration" => "",
+			"year" => "",
+			"imdbRef" => "",
+			"imdbRating" => "",
+			"cover" => "",
+			"dateCreated" => date("Y-m-d H:i:s"),
+			"dateModified" => date("Y-m-d H:i:s")
+			];
+		$genres = [];
+		$humans = [];
 		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 		$link = trim($link);
 
-		// si l'url ou l'id passé a une syntaxe valide
-		if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link) || preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link) || preg_match("!^[t]{2}\d{7}$!", $link)){
+		$content = $this->addHeaderToUrl($link);
+		//crée un objet de la classe simple_html_dom et lui passe le contenu html de la page imdb
+		$html = HtmlDomParser::str_get_html($content);
 
-			//vérifie si le texte passé est un id d'IMDb  (sans les slash autour) de type "ttxxxxxxx" ou les x sont des chiffres de 0 à 9 et le traite si c'est le cas
-			if (preg_match("!^[t]{2}\d{7}$!", $link)){
-				$link = "http://www.imdb.com/title/" . $link . "/";
-			}
+		//récupération des différents champs
+		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 
-			//vérifie si le texte passé est une URL d'un film sur IMDb
-			if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link)){
-				// $link = $link;
-			}
+		//titre du film
+		$movie["title"] = preg_replace("!&.+!", "", $html->find('h1[itemprop=name]', 0)->plaintext);
 
-			//vérifie si le texte passé est une URL avec des paramètres et supprime les paramètres si c'est le cas
-			if(preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link)){
-				$link = preg_replace("/\?.*/", "", $link);
-			}
+		//synopsis
+		$synopsisTmp = $html->find("div[itemprop=description]",1);
+		if (!empty($synopsisTmp)){
+			$writtenBy = $synopsisTmp->find('em',0);
 
-			//permet d'avoir le titre en anglais
-			//création d'une entête HTTP
-			$opts = ['http' => [
-			    'method'=>"GET",
-			    'header'=>"Accept-language: en\r\n"
-			]];
+			$movie["synopsis"] = trim(str_replace($writtenBy ? $writtenBy->plaintext : "", "", $synopsisTmp->plaintext));
+		}
 
-			$context = stream_context_create($opts);
+		//duration
+		$durationTmp = $html->find("time[itemprop=duration]",0);
+		if (!empty($durationTmp)){
+			$movie["duration"] = preg_replace("![^\d]!", "", $durationTmp->datetime);
+		}
 
-			// récupère le contenu html de l'url donnée en ajoutant à l'url l'entête HTTP créée plus haut
-			$content = file_get_contents($url, false, $context);
+		//year
+		preg_match_all("!\d{4}!", $html->find("title", 0)->plaintext, $matches);
+		if (!empty(end($matches))){
+			$movie["year"] = end($matches[0]);
+		}
 
-			//crée un objet de la classe simple_html_dom et lui passe le contenu html de la page imdb
-			$html = str_get_html($content);
+		//imdbRef
+		$movie['imdbRef'] = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
 
-			//récupération des différents champs
-			//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
+		//imdbRating
+		$ratingTmp = $html->find("span[itemprop=ratingValue]",0);
+		if (!empty($ratingTmp)){
+			$movie["imdbRating"] = trim($ratingTmp->plaintext);
+		}
 
-			//titre du film
-			$title = trim($html->find('span[itemprop=name]',0)->plaintext);
+		//url cover without suffix and extension
+		$coverTmp = $html->find("#title-overview-widget",0)->find("img",0);
+		if (!empty($coverTmp)){
+			$movie["cover"] = trim(preg_replace("/@.*/", "", $coverTmp->src));
+		}
 
-			//synopsis
-			$synopsisTmp = $html->find("p[itemprop=description]",0);
-			if (!empty($synopsisTmp)){
-				$movie["synopsis"] = trim($synopsisTmp->plaintext);
-			}
-
-			//durée
-			$durationTmp = $html->find("time[itemprop=duration]",0);
-			if (!empty($durationTmp)){
-				$movie["duration"] = trim(str_replace(" min", "", $durationTmp->plaintext));
-			}
-			// $duration = trim(str_replace(" min", "", $html->find("time[itemprop=duration]",0)->plaintext));
-
-			//année
-			$yearTmp = $html->find(".header", 0)->find('.nobr', 0);
-			if (!empty($yearTmp)){
-				$movie["year"] = trim($yearTmp->find("a", 0)->plaintext);
-			}
-
-			//référence IMDb
-			$imdbRef = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
-
-			//évaluation
-			$ratingTmp = $html->find("div[class=titlePageSprite star-box-giga-star]",0);
-			if (!empty($ratingTmp)){
-				$movie["rating"] = trim($ratingTmp->plaintext);
-			}
-
-			//url de la cover sans le suffixe ni l'extension
-			$coverTmp = $html->find("#title-overview-widget",0)->find("img",0);
-			if (!empty($coverTmp)){
-				$movie["cover"] = trim(preg_replace("/@.*/", "", $coverTmp->src));
-			}
-
-			//réalisateurs
-			$directorsTmp = $html->find("div[itemprop=director]",0);
+		//directors
+		$creditsSummaryItem1 = $html->find(".credit_summary_item", 0);
+		if(!empty($creditsSummaryItem1)){
+			$directorsTmp = $creditsSummaryItem1->find("span[itemprop=director]");			
 			if(!empty($directorsTmp)){
-				$movie["directors"] = $directorsTmp->find("span[itemprop=name]");
-			}
+				foreach ($directorsTmp as $directorTmp){
+					$director = $directorTmp->find("a[itemprop=url]", 0);
+					preg_match("!nm\d{7}!", $director->href, $matches);
 
-			//scénaristes
-			$writersTmp = $html->find("div[itemprop=creator]",0);
+					$humans[] = [
+						"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
+						"role" => "director",
+						"imdbRef" => $matches[0]
+					];
+				}
+			}
+		}
+
+		//writers
+		$creditsSummaryItem2 = $html->find(".credit_summary_item", 1);
+		if(!empty($creditsSummaryItem2)){
+			$writersTmp = $creditsSummaryItem2->find("span[itemprop=creator]");
 			if(!empty($writersTmp)){
-				$movie["writers"] = $writersTmp->find("span[itemprop=name]");
-			}
+				foreach ($writersTmp as $writerTmp){
+					$writer = $writerTmp->find("a[itemprop=url]", 0);
+					preg_match("!nm\d{7}!", $writer->href, $matches);
 
-			//acteurs
-			$starsTmp = $html->find("div[itemprop=actors]",0);
+					$humans[] = [
+						"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
+						"role" => "writer",
+						"imdbRef" => $matches[0]
+					];
+				}
+			}
+		}
+
+		//stars
+		$creditsSummaryItem3 = $html->find(".credit_summary_item", 2);
+		if(!empty($creditsSummaryItem3)){
+			$starsTmp = $creditsSummaryItem3->find("span[itemprop=actors]");			
 			if (!empty($starsTmp)){
-				$movie["stars"] = $starsTmp->find("span[itemprop=name]");
-			}
+				foreach ($starsTmp as $starTmp){
+					$star = $starTmp->find("> a[itemprop=url]", 0);
+					preg_match("!nm\d{7}!", $star->href, $matches);
 
-			//genres
-			$genresTmp = $html->find("span[itemprop=genre]");
-			if (!empty($genresTmp)){
-				$movie["genres"] = $genresTmp;		
+					$humans[] = [
+						"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
+						"role" => "star",
+						"imdbRef" => $matches[0]
+					];
+				}
 			}
 		}
-		
-		//sinon (erreur)
-		else{
-			//affichage de l'erreur d'import (pas encore créé)
-			// $this->show("movie/addMovie", [$error => "L'URL n'est pas correcte");
+
+		//genres
+		$genresTmp = $html->find("span[itemprop=genre]");
+		if (!empty($genresTmp)){
+			foreach ($genresTmp as $genre){
+				$genres[] = $genre->plaintext;
+			}
+			
 		}
-
-
+		$this->MovieInsert($movie,$genres,$humans);
 	}
 
-		public function MovieInsert($movie)
-		{
-			
-			$movieManager= new \Manager\MovieManager;
+
+	public function MovieInsert($movie, $genres, $humans)
+	{
+		/*debug($movie);
+		die();*/
+
+		//Create 1 object of the movie manager
+		$movieManager = new \Manager\MovieManager;
+		//Insert datas received from previous $movie array into movie table in database
+		if($movieManager->isnew($movie)){
 			$movieManager->insert($movie);
-			die();//die a virer
-		}
-}
+
+			//get last movie id and stock it in $movieId
+			$movieId=$movieManager->lastId();
+
+			//Create 1 object of the genre manager
+			$genreManager = new \Manager\GenreManager();
+			//convert $genres array of strings received from pagescrapper method into new id's array stored in $genreIds
+			$genreIds = $genreManager->strToId($genres);
+
+			//Create 1 object of MoviesGenreManager
+			$MoviesGenresManager = new \Manager\MoviesGenresManager();
+			//insert as many lines into table movie__genre as movie as genres
+			$MoviesGenresManager->InsertLine($movieId, $genreIds);
+
+			//Create 1 object of HumanManager and 1 object of MoviesHumanManager
+			$HumanManager = new \Manager\HumanManager();
+			$MoviesHumanManager = new \Manager\MoviesHumanManager();
+
+			//parcours le tableau humans pour en extraire chaque sous tableau dont il insere les données dans les tables human 
+			//et movies accompagné du dernier id de human parcouru et du dernier id movie parcouru
+			foreach ($humans as $human) {
+				if($HumanManager->isNew($human)){
+					$HumanManager->insert(
+									[
+										'name'=>$human['name'],
+										'imdbRef'=>$human['imdbRef']
+									]);
+
+					$lastHumanId = $HumanManager->lastId();
+				}
+				else {
+
+					$lastHumanId = $HumanManager->getId($human);
+				}
+
+
+				$MoviesHumanManager->insert(
+									[
+										'idMovie'=>$movieId,
+										'idHuman'=>$lastHumanId,
+										'role'=>$human['role']
+									]);
+			}//end of foreach
+		}//end of if	
+
+	}//end of method
+}//end of class
