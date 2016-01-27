@@ -207,60 +207,60 @@ class ScraperController extends Controller
 	}
 
 
-		public function MovieInsert($movie, $genres, $humans)
-		{
-			/*debug($movie);
-			die();*/
+	public function MovieInsert($movie, $genres, $humans)
+	{
+		/*debug($movie);
+		die();*/
 
-			//Create 1 object of the movie manager
-			$movieManager = new \Manager\MovieManager;
-			//Insert datas received from previous $movie array into movie table in database
-			if($movieManager->isnew($movie)){
-				$movieManager->insert($movie);
+		//Create 1 object of the movie manager
+		$movieManager = new \Manager\MovieManager;
+		//Insert datas received from previous $movie array into movie table in database
+		if($movieManager->isnew($movie)){
+			$movieManager->insert($movie);
 
-				//get last movie id and stock it in $movieId
-				$movieId=$movieManager->lastId();
+			//get last movie id and stock it in $movieId
+			$movieId=$movieManager->lastId();
 
-				//Create 1 object of the genre manager
-				$genreManager = new \Manager\GenreManager();
-				//convert $genres array of strings received from pagescrapper method into new id's array stored in $genreIds
-				$genreIds = $genreManager->strToId($genres);
+			//Create 1 object of the genre manager
+			$genreManager = new \Manager\GenreManager();
+			//convert $genres array of strings received from pagescrapper method into new id's array stored in $genreIds
+			$genreIds = $genreManager->strToId($genres);
 
-				//Create 1 object of MoviesGenreManager
-				$MoviesGenresManager = new \Manager\MoviesGenresManager();
-				//insert as many lines into table movie__genre as movie as genres
-				$MoviesGenresManager->InsertLine($movieId, $genreIds);
+			//Create 1 object of MoviesGenreManager
+			$MoviesGenresManager = new \Manager\MoviesGenresManager();
+			//insert as many lines into table movie__genre as movie as genres
+			$MoviesGenresManager->InsertLine($movieId, $genreIds);
 
-				//Create 1 object of HumanManager and 1 object of MoviesHumanManager
-				$HumanManager = new \Manager\HumanManager();
-				$MoviesHumanManager = new \Manager\MoviesHumanManager();
+			//Create 1 object of HumanManager and 1 object of MoviesHumanManager
+			$HumanManager = new \Manager\HumanManager();
+			$MoviesHumanManager = new \Manager\MoviesHumanManager();
 
-				//parcours le tableau humans pour en extraire chaque sous tableau dont il insere les données dans les tables human 
-				//et movies accompagné du dernier id de human parcouru et du dernier id movie parcouru
-				foreach ($humans as $human) {
-					if($HumanManager->isNew($human)){
-						$HumanManager->insert(
-										[
-											'name'=>$human['name'],
-											'imdbRef'=>$human['imdbRef']
-										]);
+			//parcours le tableau humans pour en extraire chaque sous tableau dont il insere les données dans les tables human 
+			//et movies accompagné du dernier id de human parcouru et du dernier id movie parcouru
+			foreach ($humans as $human) {
+				if($HumanManager->isNew($human)){
+					$HumanManager->insert(
+									[
+										'name'=>$human['name'],
+										'imdbRef'=>$human['imdbRef']
+									]);
 
-						$lastHumanId = $HumanManager->lastId();
-					}
-					else {
+					$lastHumanId = $HumanManager->lastId();
+				}
+				else {
 
-						$lastHumanId = $HumanManager->getId($human);
-					}
+					$lastHumanId = $HumanManager->getId($human);
+				}
 
 
-					$MoviesHumanManager->insert(
-										[
-											'idMovie'=>$movieId,
-											'idHuman'=>$lastHumanId,
-											'role'=>$human['role']
-										]);
-				}//end of foreach
-			}//end of if	
-	
-		}//end of method
+				$MoviesHumanManager->insert(
+									[
+										'idMovie'=>$movieId,
+										'idHuman'=>$lastHumanId,
+										'role'=>$human['role']
+									]);
+			}//end of foreach
+		}//end of if	
+
+	}//end of method
 }//end of class
