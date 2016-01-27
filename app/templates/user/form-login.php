@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-4">
-				<a href="#" class="btn-link btn-forgot">Forgot ?</a>
+				<a href="<?= $this->url('forgot_password')?>" class="btn-link btn-forgot">Forgot ?</a>
 			</div>
 		</div>
 	</div>

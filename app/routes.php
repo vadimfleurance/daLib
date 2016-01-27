@@ -16,9 +16,9 @@
 		['GET', '/logout/', 'Login#logOut', 'logout' ],
 
 		//ForgotPassword
-		['GET', '/forgot-password/', 'Login#forgotPassword', 'forgot_password' ],
+		['GET|POST', '/forgot-password/', 'Login#forgotPassword', 'forgot_password' ],
 
 		//NewPassword
-		['GET', '/new-password/', 'Login#newPassword', 'new_password' ],
+		['GET|POST', '/new-password/[:token]/[:id]/', 'Login#newPassword', 'new_password' ],
 
 	);
