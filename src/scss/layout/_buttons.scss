@@ -1,5 +1,10 @@
+// ===========================================================================
+// Layout Buttons (Default)
+// ===========================================================================
+
 .btn {
 	color: $button-font-color-light;
+	border-radius: 0;
 
 	&,
 	&.disabled, 
@@ -18,11 +23,11 @@
 	}
 	&:active,
 	&.active {
-		@include box-shadow($value: $button-shadow);
+		
 	}
 	&.disabled, 
 	&[disabled] {
-		@include opacity($opacity: $button-opacity, $filter: true);
+		
 	}
 
 	@at-root &-link {
@@ -36,7 +41,7 @@
 			border-color: transparent;
 			background-color: transparent;
 			color: $button-primary;
-			@include box-shadow($value: none);
+			
 		}
 		&:hover, 
 		&:focus {
@@ -45,7 +50,7 @@
 	}
 
 	@at-root &-default {
-		color: $button-font-color-dark;
+		color: $button-font-color-light;
 		border-color: $button-normal !important; 
 
 		&:hover, 

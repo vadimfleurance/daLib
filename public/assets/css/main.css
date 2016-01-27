@@ -40,6 +40,128 @@ section {
   background-color: #0067B0;
 }
 
+.btn {
+  color: #FFFFFF;
+  border-radius: 0;
+}
+
+.btn, .btn.disabled, .btn[disabled] {
+  border-color: #333439;
+  background-color: #333439;
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn.active {
+  color: #FFFFFF;
+  border-color: #22A7F0;
+  background-color: #22A7F0;
+  outline: none !important;
+}
+
+.btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active, .btn-link.active, .btn-link.disabled, .btn-link[disabled] {
+  border-color: transparent;
+  background-color: transparent;
+  color: #2980B9;
+}
+
+.btn-link:hover, .btn-link:focus {
+  text-decoration: underline;
+}
+
+.btn-default {
+  color: #FFFFFF;
+  border-color: #333439 !important;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
+  border-color: #22A7F0;
+  background-color: #22A7F0;
+}
+
+.btn-default, .btn-default.disabled, .btn-default[disabled] {
+  background-color: #0067B0;
+}
+
+.open .dropdown-toggle.btn-default {
+  border-color: #22A7F0;
+  background-color: #22A7F0;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+  border-color: #2980B9;
+  background-color: #2980B9;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  border-color: #3498DB;
+  background-color: #3498DB;
+}
+
+.open .dropdown-toggle.btn-primary {
+  border-color: #3498DB;
+  background-color: #3498DB;
+}
+
+.btn-info, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
+  border-color: #16A085;
+  background-color: #16A085;
+}
+
+.btn-info:hover, .btn-info:focus {
+  border-color: #1ABC9C;
+  background-color: #1ABC9C;
+}
+
+.open .dropdown-toggle.btn-info {
+  border-color: #1ABC9C;
+  background-color: #1ABC9C;
+}
+
+.btn-success, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled] {
+  border-color: #27AE60;
+  background-color: #27AE60;
+}
+
+.btn-success:hover, .btn-success:focus {
+  border-color: #2ECC71;
+  background-color: #2ECC71;
+}
+
+.open .dropdown-toggle.btn-success {
+  border-color: #2ECC71;
+  background-color: #2ECC71;
+}
+
+.btn-warning, .btn-warning:active, .btn-warning.active, .btn-warning.disabled, .btn-warning[disabled] {
+  border-color: #F39C12;
+  background-color: #F39C12;
+}
+
+.btn-warning:hover, .btn-warning:focus {
+  border-color: #F1C40F;
+  background-color: #F1C40F;
+}
+
+.open .dropdown-toggle.btn-warning {
+  border-color: #F1C40F;
+  background-color: #F1C40F;
+}
+
+.btn-danger, .btn-danger:active, .btn-danger.active, .btn-danger.disabled, .btn-danger[disabled],
+.btn-danger .open .dropdown-toggle.btn {
+  border-color: #C0392B;
+  background-color: #C0392B;
+}
+
+.btn-danger:hover, .btn-danger:focus {
+  border-color: #E74C3C;
+  background-color: #E74C3C;
+}
+
+.open .dropdown-toggle.btn-danger {
+  border-color: #E74C3C;
+  background-color: #E74C3C;
+}
+
 .navbar-default {
   background-color: #1d1e22;
   min-height: 70px;
@@ -212,7 +334,7 @@ fieldset[disabled] .navbar-default .btn-link:focus,
 }
 
 .form-control:focus {
-  border-color: #22A7F0;
+  border-color: #0067B0;
 }
 
 .form-control::-moz-placeholder, .form-control::-ms-input-placeholder, .form-control::-webkit-input-placeholder {
@@ -232,8 +354,8 @@ fieldset[disabled] .navbar-default .btn-link:focus,
 }
 
 .input-group-addon {
-  background-color: #22A7F0;
-  border-color: #22A7F0;
+  background-color: #0067B0;
+  border-color: #0067B0;
   border-right: 0;
   border-radius: 0;
   min-width: 40px;
@@ -251,24 +373,24 @@ fieldset[disabled] .navbar-default .btn-link:focus,
 .has-success .checkbox,
 .has-success .radio-inline,
 .has-success .checkbox-inline {
-  color: #2ECC71;
+  color: #27AE60;
 }
 
 .has-success .form-control {
-  border-color: #2ECC71;
+  border-color: #27AE60;
 }
 
 .has-success .form-control:focus {
-  border-color: #2ECC71;
+  border-color: #27AE60;
 }
 
 .has-success .input-group-addon {
-  background-color: #2ECC71;
-  border-color: #2ECC71;
+  background-color: #27AE60;
+  border-color: #27AE60;
 }
 
 .has-success .form-control-feedback {
-  color: #2ECC71;
+  color: #27AE60;
 }
 
 .has-warning .help-block,

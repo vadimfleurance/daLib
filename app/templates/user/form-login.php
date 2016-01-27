@@ -19,7 +19,7 @@
 	</div>
 	<div class="col-xs-12">
 		<div class="row">
-			<div class="col-xs-12 col-sm-8">
+			<div class="col-xs-12 col-sm-7">
 				<div class="checkbox">
 					<input type="checkbox" id="rememberInput" name="user[remember]">
 					<label for="rememberInput">
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-4">
-				<a href="#" class="btn-link btn-forgot">Forgot ?</a>
+				<a href="#" class="btn btn-link btn-forgot">Password ?</a>
 			</div>
 		</div>
 	</div>
