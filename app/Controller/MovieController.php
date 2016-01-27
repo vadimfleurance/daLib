@@ -8,6 +8,7 @@ class MovieController extends Controller
 	{
 		$movieManager = new \Manager\MovieManager;
 		
-		$movieManager->getInfos($id);
+		$movie = $movieManager->getInfos($id);
+		$this->show('movie/details', ['movie' => $movie]);
 	}
 }

@@ -4,5 +4,5 @@
 		['GET', '/', 'Default#home', 'home'],
 		['GET', '/scrap/', 'Scraper#globalScraper', 'global_scraper'],
 		['GET', '/scraptest/', 'Scraper#MovieInsert', 'MovieInsert'],
-		['GET', '/moviedetail/[i:id]/', 'Movie#movieDetails', 'movie_detail'],
+		['GET', '/movie-detail/[i:id]/', 'Movie#movieDetails', 'movie_detail'],
 	);

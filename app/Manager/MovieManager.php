@@ -21,7 +21,7 @@ class MovieManager extends \W\Manager\Manager
 	public function getInfos($id)
 	{
 		
-
+		//pour le panache
 		$sql = 'SELECT 
 				movies.title,
 				movies.synopsis,
