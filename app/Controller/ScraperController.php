@@ -113,18 +113,20 @@ class ScraperController extends Controller
 		//utilisation de la fonction trim pour supprimer les espaces en début et en fin de chaine
 
 		//titre du film
-		$movie['title'] = trim($html->find('span[itemprop=name]',0)->plaintext);
+		$movie["title"] = preg_replace("!&.+!", "", $html->find('h1[itemprop=name]', 0)->plaintext);
 
 		//synopsis
-		$synopsisTmp = $html->find("p[itemprop=description]",0);
+		$synopsisTmp = $html->find("div[itemprop=description]",1);
 		if (!empty($synopsisTmp)){
-			$movie["synopsis"] = trim($synopsisTmp->plaintext);
+			$writtenBy = $synopsisTmp->find('em',0);
+
+			$movie["synopsis"] = trim(str_replace($writtenBy ? $writtenBy->plaintext : "", "", $synopsisTmp->plaintext));
 		}
 
 		//duration
 		$durationTmp = $html->find("time[itemprop=duration]",0);
 		if (!empty($durationTmp)){
-			$movie["duration"] = trim(str_replace(" min", "", $durationTmp->plaintext));
+			$movie["duration"] = preg_replace("![^\d]!", "", $durationTmp->datetime);
 		}
 
 		//year
@@ -137,7 +139,7 @@ class ScraperController extends Controller
 		$movie['imdbRef'] = trim($html->find("meta[property=pageId]",0)->getAttribute('content'));
 
 		//imdbRating
-		$ratingTmp = $html->find("div[class=titlePageSprite star-box-giga-star]",0);
+		$ratingTmp = $html->find("span[itemprop=ratingValue]",0);
 		if (!empty($ratingTmp)){
 			$movie["imdbRating"] = trim($ratingTmp->plaintext);
 		}
@@ -149,7 +151,10 @@ class ScraperController extends Controller
 		}
 
 		//directors
-		$directorsTmp = $html->find("div[itemprop=director]",0);
+		$creditsSummaryItem1 = $html->find(".credit_summary_item", 0);
+		if(!empty($creditsSummaryItem1)){
+			$directorsTmp = $creditsSummaryItem1->find("span[itemprop=director]",0);			
+		}
 		if(!empty($directorsTmp)){
 			$directors = $directorsTmp->find("a[itemprop=url]");
 			foreach ($directors as $director){
@@ -163,7 +168,10 @@ class ScraperController extends Controller
 		}
 
 		//writers
-		$writersTmp = $html->find("div[itemprop=creator]",0);
+		$creditsSummaryItem2 = $html->find(".credit_summary_item", 1);
+		if(!empty($creditsSummaryItem2)){
+			$writersTmp = $creditsSummaryItem2->find("span[itemprop=creator]",0);			
+		}
 		if(!empty($writersTmp)){
 			$writers = $writersTmp->find("a[itemprop=url]");
 			foreach ($writers as $writer){
@@ -177,15 +185,14 @@ class ScraperController extends Controller
 		}
 
 		//stars
-		$starsTmp = $html->find("div[itemprop=actors]",0);
+		$creditsSummaryItem3 = $html->find(".credit_summary_item", 2);
+		if(!empty($creditsSummaryItem3)){
+			$starsTmp = $creditsSummaryItem3->find("span[itemprop=actors]",0);			
+		}
 		if (!empty($starsTmp)){
 			$stars = $starsTmp->find("> a[itemprop=url]");
 			foreach ($stars as $star){
 				preg_match("!nm\d{7}!", $star->href, $matches);
-				//permet d'arrêter le foreach quand il arrive à la balise <a> du "See full cast and crew"
-				if(empty($matches[0])){
-					break;
-				}
 
 				$humans[] = [
 					"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
