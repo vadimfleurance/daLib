@@ -91,6 +91,6 @@
 	?>
 
 	<div class="col-xs-12">
-		<button type="submit" class="btn btn-default btn-block" name="action[register]" value="register" action="">Login</button>
+		<button type="submit" class="btn btn-default btn-block" name="action[register]" value="register" >Login</button>
 	</div>
 </form>

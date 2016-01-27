@@ -43,7 +43,7 @@
 			Variable créée par le framework W contenant les infos de l'utilisateur 
 			et permettant de vérifier que la connexion est réussie
 		-->
-		<!-- <?php  debug($w_user); ?> -->
+		<?php  debug($w_user); ?>
 
 		<?= $this->section('main_content') ?>
 	</main>

@@ -19,10 +19,11 @@ class RegistrationController extends Controller
 			];
 
 		// Est testé si la soumission du formulaire est exécutée ou non
-		if ( $_POST )
-		{	
-			if ( !empty( $_POST['action']['register']) )
-			{
+		if ( $_POST ) {	
+
+			if ( !empty( $_POST['action']['register']) ) {
+
+				// On récupère les données postées dans des variables
 				$username =	 	$_POST['user']['username'];
 				$email = 		$_POST['user']['email'];
 				$password = 	$_POST['user']['password'];
@@ -49,15 +50,13 @@ class RegistrationController extends Controller
 				*
 				**************************************************/
 				// On vérifie que le champs n'est pas vide 
-				if ( empty( $username ) )
-				{
+				if ( empty( $username ) ) {
 					$isValid = false;
 					$errors['username'][] = "Veuillez renseigner un nom d'utilisateur. " ;
 				}
 
 				// On vérifie la longueur du username
-				elseif ( ( strlen( $username ) < 4 ) )
-				{
+				elseif ( ( strlen( $username ) < 4 ) ) {
 					$isValid = false;
 					$errors['username'][] = "Votre nom d'utilisateur doit avoir 4 caractères minimum. " ;
 				}
@@ -67,15 +66,13 @@ class RegistrationController extends Controller
 				$regUserName = "!^[0-9\p{L}]{1}[0-9\p{L}._-]{3,}$!";
 
 				// On vérifie que le username n'a pas de caractères spéciaux				
-				if ( !preg_match( $regUserName , $username ) )
-				{
+				if ( !preg_match( $regUserName , $username ) ) {
 					$isValid = false;
 					$errors['username'][] = "Votre nom d'utilisateur ne doit pas commencer par un caractère spécial. ";
 				}
 
 				// On vérifie que le username n'existe pas en BDD
-				if ( $userManager->usernameExists( $username ) )
-				{
+				if ( $userManager->usernameExists( $username ) ) {
 					$isValid = false;
 					$errors['username'][] = "Choisissez un autre nom d'utilisateur, celui-ci est déjà utilisé ! " ;
 				}
@@ -87,22 +84,19 @@ class RegistrationController extends Controller
 				*	
 				**************************************************/ 
 				// On vérifie que le champs n'est pas vide
-				if ( empty( $email ) )
-				{
+				if ( empty( $email ) ) {
 					$isValid = false;
 					$errors['email'][] = "Veuillez renseigner une adresse email. " ;
 				}
 
 				// On vérifie que l'email est valide
-				elseif ( !filter_var( $email , FILTER_VALIDATE_EMAIL ) )
-				{
+				elseif ( !filter_var( $email , FILTER_VALIDATE_EMAIL ) ) {
 					$isValid = false;
 					$errors['email'][] = "Votre adresse email n'est pas valide. ";
 				}
 
 				// On vérifie qu'il n'existe pas en BDD
-				elseif ( $userManager->emailExists( $email ) )
-				{
+				elseif ( $userManager->emailExists( $email ) ) {
 					$isValid = false;
 					$errors['email'][] = "Choisissez une autre adresse email, celle-ci est déjà utilisée ! " ;
 				}
@@ -114,22 +108,19 @@ class RegistrationController extends Controller
 				*
 				**************************************************/
 				// On vérifie qu'ils ne sont pas vides
-				if ( empty( $password ) || empty( $passwordBis ) )
-				{
+				if ( empty( $password ) || empty( $passwordBis ) ) {
 					$isValid = false;
 					$errors['password'][] = "Vos mots de passe ne sont pas renseignés. " ;
 				}
 
 				// On vérifie la longueur du password
-				elseif ( ( strlen( $password ) < 8 ) )
-				{
+				elseif ( ( strlen( $password ) < 8 ) ) {
 					$isValid = false;
 					$errors['password'][] = "Votre mot de passe doit avoir 8 caractères minimum! " ;
 				}
 
 				// On vérifie que les deux password sont bien identiques
-				if ( $password != $passwordBis )
-				{
+				if ( $password != $passwordBis ) {
 					$isValid = false;
 					$errors['password'][] = "Vos mots de passe ne sont pas identiques. " ;
 				}
@@ -143,15 +134,15 @@ class RegistrationController extends Controller
 				// Si la variable "$isValid" est restée à "true" alors l'envoie en BDD est effectué.
 				// Sinon, est ecrit un message d'erreur en dessous du formulaire indiquant la
 				// marche à suivre.
-				if( $isValid )
-				{
+				if( $isValid ) {
+					
 					/** 
 					*	Insertion en BDD
 					*/
 					$userManager->insert([
 						"username" 		=> $username,
 						"email" 		=> $email,
-						"password"		=> password_hash( $password, PASSWORD_DEFAULT ),
+						"password"		=> password_hash( $password , PASSWORD_DEFAULT ),
 						"dateCreated" 	=> date( "Y-m-d H:i:s" )
 						]);
 
@@ -162,7 +153,7 @@ class RegistrationController extends Controller
 					// On va chercher dans la BDD toutes les informations de l'utilisateur,
 					// pour pouvoir les passer en arguments de la fonction "->logUserIn()" 
 					// dans la variable "$user".
-					$user = $userManager->getUserByUsernameOrEmail($username);
+					$user = $userManager->getUserByUsernameOrEmail( $username );
 						
 					// On le log directement une fois le formulaire correctement rempli
 					// On crée un objet "$authManager" en instance de "AuthentificationManager.php"
@@ -188,17 +179,17 @@ class RegistrationController extends Controller
 					// (par exemple), elle deviendrait alors justifiée.
 					$this->redirectToRoute('registration_success');
 				}
-				else
-				{	
+				else {	
 					// Message d'erreur affiché en dessous du formulaire indiquant les champs non renseignés
 					$errors['total'][] = "Veuillez remplir correctement le formulaire en suivant les indications présentes en dessous des champs correspondant. " ;
 				}
 			}
+			// On affiche le template "default/login.php" en passant en argument le tableau "$errors" 
+			// afin de pouvoir y afficher les erreurs.
+			$this->show('default/register', [
+				"errors" => $errors,
+				]);
 		}
-		// Indique le template à afficher avec le tableau d'erreur "$errors" passer en argumant
-		$this->show('default/register', [
-			"errors" => $errors,
-			]);
 	}
 
 	public function success()
