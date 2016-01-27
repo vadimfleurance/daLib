@@ -135,15 +135,15 @@ class LoginController extends Controller
 			//Set the subject line
 			$mail->Subject = 'PHPMailer GMail SMTP test';
 
-			$token = \W\Security\StringUtils::randomString(32);
+			$passwordToken = \W\Security\StringUtils::randomString(32);
 
 			$userManager->update([
-				'token' => $token,
+				'passwordToken' => $passwordToken,
 				'dateModified' => date('Y-m-d H:i:s')
 				], $user['id']);
 
 			$resetLink = $this->generateUrl('new_password', [
-				'token' => $token,
+				'passwordToken' => $passwordToken,
 				'id' => $user['id']
 				], true );
 			
@@ -167,7 +167,7 @@ class LoginController extends Controller
 	}
 
 
-	public function newPassword( $token, $id )
+	public function newPassword( $passwordToken, $id )
 	{
 		$errors = [
 			"password" => [],
@@ -180,10 +180,13 @@ class LoginController extends Controller
 			if ( !empty($_POST['action']['sendRequest']) ) {
 
 				$userManager = new \Manager\UserManager();
-				$user = $userManager->find( $id );
+				$user = $userManager->find($id);
 			
 				$newPassword = $_POST['user']['newPassword'];
 				$newPasswordBis = $_POST['user']['newPasswordBis'];
+
+				debug ($user);
+				debug ($_POST);
 
 				$isValid = true;
 
@@ -196,18 +199,27 @@ class LoginController extends Controller
 				if ( empty( $newPassword ) || empty( $newPasswordBis ) ) {
 					$isValid = false;
 					$errors['password'][] = "Vos mots de passe ne sont pas renseignés. " ;
+
+					// debug ('On est dans le if vérifiant que les deux champs ne sont pas vides' );
+					// die();
 				}
 
 				// On vérifie la longueur du password
 				elseif ( ( strlen( $newPassword ) < 8 ) ) {
 					$isValid = false;
 					$errors['password'][] = "Votre mot de passe doit avoir 8 caractères minimum! " ;
+					
+					// debug ('On est dans le if vérifiant la longueur' );
+					// die();
 				}
 
 				// On vérifie que les deux password sont bien identiques
 				if ( $newPassword != $newPasswordBis ) {
 					$isValid = false;
 					$errors['password'][] = "Vos mots de passe ne sont pas identiques. " ;
+
+					// debug ('On est dans le if vérifiant qu\'ils ne sont pas différents' );
+					// die();
 				}
 
 				/**************************************************				
@@ -215,26 +227,35 @@ class LoginController extends Controller
 				*	ENVOIE EN BDD
 				*
 				**************************************************/
-				if ( $token === $user['token'] || $isValid ) {
 
-					/** 
-					*	Insertion en BDD
-					*/
-					$userManager->update([
-						'token' 		=> "",
-						'password' 		=> password_hash( $newPassword , PASSWORD_DEFAULT), 
-						'dateModified' 	=> date('Y-m-d H:i:s')
-						], $user['id'] );
+				if ( $isValid ) {
 
-					$authManager = new \W\Security\AuthentificationManager();
+					debug( $isValid );
+					debug( $passwordToken );
+					debug( $user['passwordToken'] );
+					die();
 
-					$user = $userManager->find( $user['id'] );
-					$authManager->logUserIn( $user );
-					
-					// $this->redirectToRoute('home');
-				} 
-				else {
-					$errors['total'][] = "Veuillez remplir correctement le formulaire en suivant les indications présentes en dessous des champs correspondant. " ;
+					if ( $passwordToken === $user['passwordToken'] ) {
+
+						/** 
+						*	Insertion en BDD
+						*/
+						$userManager->update([
+							'passwordToken' => "",
+							'password' 		=> password_hash( $newPassword , PASSWORD_DEFAULT), 
+							'dateModified' 	=> date('Y-m-d H:i:s')
+							], $user['id'] );
+
+						$authManager = new \W\Security\AuthentificationManager();
+
+						$user = $userManager->find( $user['id'] );
+						$authManager->logUserIn( $user );
+						
+						// $this->redirectToRoute('home');
+					} 
+					else {
+						$errors['total'][] = "Veuillez remplir correctement le formulaire en suivant les indications présentes en dessous des champs correspondant. " ;
+					}
 				}
 			}
 			$this->show('user/new-password', [

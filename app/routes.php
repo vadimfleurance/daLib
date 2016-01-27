@@ -19,6 +19,6 @@
 		['GET|POST', '/forgot-password/', 'Login#forgotPassword', 'forgot_password' ],
 
 		//NewPassword
-		['GET|POST', '/new-password/[:token]/[:id]/', 'Login#newPassword', 'new_password' ],
+		['GET|POST', '/new-password/[:passwordToken]/[:id]/', 'Login#newPassword', 'new_password' ],
 
 	);
