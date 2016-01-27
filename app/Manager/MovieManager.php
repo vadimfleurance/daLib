@@ -20,7 +20,7 @@ class MovieManager extends \W\Manager\Manager
 
 	public function getInfos($id)
 	{
-		
+		$moviesInfos =[];
 
 		$sql = 'SELECT 
 				movies.title,
@@ -48,6 +48,8 @@ class MovieManager extends \W\Manager\Manager
 		$stmt->execute();
 		$rawinfos= $stmt->fetchAll();
 		debug($rawinfos);
+
+		return $moviesInfos;
 		
 	}//end of getInfos method
 
