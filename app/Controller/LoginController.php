@@ -13,7 +13,7 @@ class LoginController extends Controller
 	{
 		//Initialisation du tableau des erreurs.
 		$errors = [
-			"total" => []
+			'total' => []
 		];
 
 		// Est testé si la soumission du formulaire est exécutée ou non
@@ -73,10 +73,40 @@ class LoginController extends Controller
 
 	public function rememeberMe()
 	{
-
-		
 		
 	}
 
+	public function forgotPassword()
+	{
+		$email = $_POST['email'];
+
+		// Vérifie qu'il existe
+		$userManager = new \Manager\UserManager();
+		$user = $userManager->getUserByUsernameOrEmail($email);
+
+		if ($user) {
+
+			//phpMailer
+			$token = \W\Security\StringUtils::randomString(32);
+
+			$userManager->update([
+				'token' => $token,
+				'dateModified' => date('Y-m-d H:i:s')
+				], $user['id']);
+
+			$resetLink = $this->generateUrl('new_password', [
+				'token' => $token,
+				'email' => $email
+				], true);
+		}
+	}
+
+
+	public function newPassword($token, $email)
+	{
+
+
+
+	}
 
 }
