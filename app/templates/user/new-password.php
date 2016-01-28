@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'New PassWord | Your collection of movies in your pocket', 'nav_title' => 'daLib']) ?>
+<?php $this->layout('layout', ['title' => 'New PassWord | Your collection of movies in your pocket']) ?>
 
 <?php $this->start('main_content') ?>
 	
@@ -10,7 +10,7 @@
 
 	<p>Rewrite your new password in the field below and remember it :) !</p>
 
-	<form class="clearfix" method="POST" action="<?= $this->url('new_password')?>">
+	<form class="clearfix" method="POST">
 		<div class="col-xs-12">
 			<div class="form-group">
 				<label class="sr-only" for="newPasswordInput">New Password</label>
@@ -38,6 +38,7 @@
 				<?php endforeach ;
 			endif ; 
 		?>
+		<!-- -->
 
 		<!-- Message d'erreur pour une mauvaise saisie du formulaire -->
 		<?php 
@@ -47,6 +48,7 @@
 				<?php endforeach ;
 			endif ; 
 		?>
+		<!-- -->
 			
 		<div class="col-xs-12">
 			<button type="submit" class="btn btn-default btn-block" name="action[sendRequest]" value="send" >Send request</button>

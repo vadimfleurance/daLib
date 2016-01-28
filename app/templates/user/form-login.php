@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-8">
 				<div class="checkbox">
-					<input type="checkbox" id="rememberInput" name="user[remember]">
+					<input type="checkbox" id="rememberInput" name="user[rememberMe]" value="checked">
 					<label for="rememberInput">
 						Remember me
 					</label>
@@ -41,6 +41,7 @@
 			<?php endforeach ;
 		endif ; 
 	?>
+	<!-- -->
 
 	<div class="col-xs-12">
 		<button type="submit" class="btn btn-default btn-block" name="action[login]" value="login" >Login</button>

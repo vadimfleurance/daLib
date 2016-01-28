@@ -28,7 +28,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#"><i class="fa fa-film"></i> <?= $this->e($nav_title) ?></a>
+						<a class="navbar-brand" href="#"><i class="fa fa-film"></i></a>
 					</div>
 				</div>
 

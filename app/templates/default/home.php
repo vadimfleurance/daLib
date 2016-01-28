@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'daLib | Your collection of movies in your pocket', 'nav_title' => 'daLib']) ?>
+<?php $this->layout('layout', ['title' => 'daLib | Your collection of movies in your pocket']) ?>
 
 <?php $this->start('main_content') ?>
 	<section id="informations" class="full-section">

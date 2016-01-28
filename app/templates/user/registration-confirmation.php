@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Registration Confirmed | Your collection of movies in your pocket', 'nav_title' => 'daLib']) ?>
+<?php $this->layout('layout', ['title' => 'Registration Confirmed | Your collection of movies in your pocket']) ?>
 
 <?php $this->start('main_content') ?>
 	
