@@ -90,7 +90,7 @@ CREATE TABLE `movies` (
   `title` varchar(127) COLLATE utf8mb4_unicode_ci NOT NULL,
   `synopsis` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `duration` smallint(5) UNSIGNED NOT NULL,
-  `year` year(4) NOT NULL,
+  `year` smallint(5) UNSIGNED NOT NULL,
   `imdbRef` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `imdbRating` float UNSIGNED NOT NULL,
   `cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
