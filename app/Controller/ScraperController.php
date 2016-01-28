@@ -20,7 +20,7 @@ class ScraperController extends Controller
 		return file_get_contents($url, false, $context);
 	}
 
-	public function verifyUrl()
+	public function verifyUrl($link)
 	{
 		// si l'url ou l'id passé a une syntaxe valide
 		if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link) || preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link) || preg_match("!^[t]{2}\d{7}$!", $link)){
@@ -41,7 +41,8 @@ class ScraperController extends Controller
 			}
 		}
 		else{
-			return "Erreur";
+			//si l'url n'est pas correcte, retourne false (erreur)
+			return false;
 		}
 	}
 
