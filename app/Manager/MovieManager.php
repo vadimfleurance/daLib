@@ -14,7 +14,7 @@ class MovieManager extends \W\Manager\Manager
 			WHERE movies.title LIKE :title LIMIT 6;";
 
 		$statement = $this->dbh->prepare($sql);
-		$statement->execute([":title" => "%" . $_GET["search-input"] . "%"]);
+		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
 		$moviesFound = $statement->fetchAll();
 
 		return $moviesFound;
