@@ -21,4 +21,4 @@
 
 		//NewPassword
 		['GET|POST', '/new-password/[:tokenPassword]/[:id]/', 'Login#newPassword', 'new_password' ],
-	);
+	);	

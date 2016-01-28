@@ -25,7 +25,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#"><i class="fa fa-film"></i> daLib</a>
+						<a class="navbar-brand" href="<?= $this->url('home')?>"><i class="fa fa-film"></i> daLib</a>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
@@ -44,7 +44,7 @@
 							</div>
 							<div class="col-xs-12 col-sm-6">
 								<ul class="nav navbar-nav navbar-right">
-									<li><a href="#"><i class="fa fa-plus"></i> Add a movie</a></li>
+									<li><a href="<?= $this->url('add_movie')?>"><i class="fa fa-plus"></i> Add a movie</a></li>
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 											<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle user-avatar" alt="Photo de profil de John Doe"> <span>John Doe</span> <i class="fa fa-caret-down"></i>
@@ -53,7 +53,7 @@
 											<li><a href=""><i class="fa fa-database"></i> Collection</a></li>
 											<li><a href=""><i class="fa fa-user"></i> Profile</a></li>
 											<li role="separator" class="divider hidden-xs"></li>
-											<li><a href=""><i class="fa fa-power-off"></i> Logout</a></li>
+											<li><a href="<?= $this->url('logout')?>"><i class="fa fa-power-off"></i> Logout</a></li>
 										</ul>
 									</li>
 								</ul>
