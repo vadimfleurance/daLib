@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.3.1
+-- version 4.5.4
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 27 Janvier 2016 à 17:19
+-- Généré le :  Jeu 28 Janvier 2016 à 11:49
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,11 +30,11 @@ CREATE TABLE `movies__users` (
   `id` int(10) UNSIGNED NOT NULL,
   `idMovie` int(10) UNSIGNED NOT NULL,
   `idUser` int(10) UNSIGNED NOT NULL,
-  `watched` tinyint(1) NOT NULL,
-  `toWatch` tinyint(1) NOT NULL,
-  `owned` tinyint(1) NOT NULL,
-  `ofInterest` tinyint(1) NOT NULL,
-  `wanted` tinyint(1) NOT NULL,
+  `watched` tinyint(1) DEFAULT NULL,
+  `toWatch` tinyint(1) DEFAULT NULL,
+  `owned` tinyint(1) DEFAULT NULL,
+  `ofInterest` tinyint(1) DEFAULT NULL,
+  `wanted` tinyint(1) DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
   `dateModified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

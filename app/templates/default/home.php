@@ -28,7 +28,7 @@
 								<?= $this->insert('user/form-login') ?>
 							</div>
 							<div role="tabpanel" class="tab-pane" id="register-form">
-								<?= $this->insert('user/form-register') ?>
+								<?= $this->insert('user/form-register' , [ 'errors' => $errors ]) ?>
 							</div>
 						</div>
 					</div>
