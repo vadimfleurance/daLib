@@ -90,7 +90,7 @@ CREATE TABLE `movies` (
   `title` varchar(127) COLLATE utf8mb4_unicode_ci NOT NULL,
   `synopsis` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `duration` smallint(5) UNSIGNED NOT NULL,
-  `year` year(4) NOT NULL,
+  `year` smallint(5) UNSIGNED NOT NULL,
   `imdbRef` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `imdbRating` float UNSIGNED NOT NULL,
   `cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -132,12 +132,12 @@ CREATE TABLE `movies__humans` (
 CREATE TABLE `movies__users` (
   `id` int(10) UNSIGNED NOT NULL,
   `idMovie` int(10) UNSIGNED NOT NULL,
-  `watched` tinyint(1) NOT NULL,
-  `toWatch` tinyint(1) NOT NULL,
-  `owned` tinyint(1) NOT NULL,
-  `ofInterest` tinyint(1) NOT NULL,
-  `wanted` tinyint(1) NOT NULL,
   `idUser` int(10) UNSIGNED NOT NULL,
+  `watched` tinyint(1) DEFAULT NULL,
+  `toWatch` tinyint(1) DEFAULT NULL,
+  `owned` tinyint(1) DEFAULT NULL,
+  `ofInterest` tinyint(1) DEFAULT NULL,
+  `wanted` tinyint(1) DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
   `dateModified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
