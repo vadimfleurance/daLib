@@ -32,15 +32,16 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6">
-								<form id="search-form" class="navbar-left navbar-form-search">
+								<form id="search-form" class="navbar-left navbar-form-search" action="" data-ajax="<?=$this->url('search_ajax')?>">
 									<div class="form-group">
 										<label class="sr-only" for="searchInput">Search</label>
 										<div class="input-group">
 											<div class="input-group-addon"><i class="fa fa-search"></i></div>
-											<input type="search" class="form-control" id="searchInput" name="search" placeholder="Search in daLib ...">
+											<input type="search" class="form-control" id="search-input" name="search" placeholder="Search in daLib ...">
 										</div>
 									</div>
 								</form>
+								<div id="result-search"></div>
 							</div>
 							<div class="col-xs-12 col-sm-6">
 								<ul class="nav navbar-nav navbar-right">
