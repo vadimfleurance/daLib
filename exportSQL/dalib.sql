@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.3.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 27 Janvier 2016 à 17:18
+-- Généré le :  Mer 27 Janvier 2016 à 20:10
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -33,6 +33,40 @@ CREATE TABLE `genres` (
   `name` varchar(127) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Contenu de la table `genres`
+--
+
+INSERT INTO `genres` (`id`, `name`) VALUES
+(1, 'Action'),
+(14, 'Adult'),
+(2, 'Adventure'),
+(16, 'Animation'),
+(25, 'Biography'),
+(3, 'Comedy'),
+(4, 'Crime'),
+(10, 'Documentary'),
+(15, 'Drama'),
+(6, 'Family'),
+(5, 'Fantasy'),
+(27, 'Film-Noir'),
+(24, 'Game Show'),
+(23, 'History'),
+(21, 'Horror'),
+(11, 'Music'),
+(12, 'Musical'),
+(19, 'Mystery'),
+(26, 'News'),
+(9, 'Reality-TV'),
+(20, 'Romance'),
+(17, 'Sci-Fi'),
+(28, 'Short'),
+(7, 'Sport'),
+(13, 'Talk Show'),
+(18, 'Thriller'),
+(8, 'War'),
+(22, 'Western');
+
 -- --------------------------------------------------------
 
 --
@@ -56,7 +90,7 @@ CREATE TABLE `movies` (
   `title` varchar(127) COLLATE utf8mb4_unicode_ci NOT NULL,
   `synopsis` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `duration` smallint(5) UNSIGNED NOT NULL,
-  `year` year(4) NOT NULL,
+  `year` smallint(5) UNSIGNED NOT NULL,
   `imdbRef` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `imdbRating` float UNSIGNED NOT NULL,
   `cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -98,12 +132,12 @@ CREATE TABLE `movies__humans` (
 CREATE TABLE `movies__users` (
   `id` int(10) UNSIGNED NOT NULL,
   `idMovie` int(10) UNSIGNED NOT NULL,
-  `watched` tinyint(1) NOT NULL,
-  `toWatch` tinyint(1) NOT NULL,
-  `owned` tinyint(1) NOT NULL,
-  `ofInterest` tinyint(1) NOT NULL,
-  `wanted` tinyint(1) NOT NULL,
   `idUser` int(10) UNSIGNED NOT NULL,
+  `watched` tinyint(1) DEFAULT NULL,
+  `toWatch` tinyint(1) DEFAULT NULL,
+  `owned` tinyint(1) DEFAULT NULL,
+  `ofInterest` tinyint(1) DEFAULT NULL,
+  `wanted` tinyint(1) DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
   `dateModified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -196,22 +230,22 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT pour la table `humans`
 --
 ALTER TABLE `humans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=466;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `movies__genres`
 --
 ALTER TABLE `movies__genres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `movies__humans`
 --
 ALTER TABLE `movies__humans`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=587;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `movies__users`
 --
