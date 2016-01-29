@@ -32,7 +32,7 @@
 					<div class="collapse navbar-collapse" id="navbar-main">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6">
-								<form id="search-form" class="navbar-left" action="" data-ajax="<?=$this->url('search_ajax')?>">
+								<form id="search-form" class="navbar-left" action="" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
 									<div class="form-group">
 										<label class="sr-only" for="searchInput">Search</label>
 										<div class="input-group">

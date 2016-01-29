@@ -686,6 +686,55 @@ section {
 		border-color: $B6;
 	}
 }*/
+.alert {
+  color: #FFFFFF;
+}
+
+.alert h4 {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.alert-dismissable .close {
+  color: #000000;
+}
+
+.alert-info {
+  background-color: #22A7F0;
+  border: #22A7F0;
+}
+
+.alert-warning {
+  background-color: #F39C12;
+  border: #F39C12;
+}
+
+.alert-danger {
+  background-color: #E74C3C;
+  border: #E74C3C;
+}
+
+.alert-success {
+  background-color: #27AE60;
+  border: #27AE60;
+}
+
+.alert .alert-link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.alert .btn-link,
+.alert .btn-link:hover,
+.alert .btn-link:focus {
+  color: #000000;
+}
+
+.alert .btn-link:focus,
+.alert .btn-link:hover {
+  text-decoration: none;
+}
+
 .btn {
   color: #FFFFFF;
   border-radius: 0;
