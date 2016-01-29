@@ -9,10 +9,8 @@ form {
 		font-size: 1.125em;
 	}
 	&#search-form {
-		margin-top: 24px;
-		@media (min-width: $media-sm) {
-			margin-top: 14px;
-		}
+		margin-top: 13px;
+		margin-bottom: 13px;
 
 		& .form-group {
 			margin-bottom: 0;
@@ -44,11 +42,16 @@ form {
 			border-color: transparent;
 		}
 	}
-	&~ #result-search-form {
-		position: absolute;
-		top: 70px;
-		left: 57px;
-		background-color: red;
-		width: calc(100% - 74px);
+}
+
+#result-search-form {
+	position: absolute;
+	top: 70px;
+	left: 57px;
+	background-color: red;
+	width: calc(100% - 74px);
+
+	& .search-movies {
+		margin: 5px;
 	}
 }
