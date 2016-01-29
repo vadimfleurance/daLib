@@ -5,8 +5,11 @@
 		['GET', '/search/ajax/', 'Movie#searchAjax', 'search_ajax'],
 		['GET', '/scrap/', 'Scraper#globalScraper', 'global_scraper'],
 		['GET', '/movie-detail/[i:id]/', 'Movie#movieDetails', 'movie_detail'],
-		['POST', '/addtocollection/', 'Collection#addToCollection', 'add_to_collection'],
+		['POST', '/managecollection/', 'Collection#manageCollection', 'manage_collection'],
+		['POST', '/statusmanage/', 'Collection#manageStatus', 'status_manage'],
 		['GET|POST', '/add-movie/', 'Movie#addMovie', 'add_movie'],
+		//['GET', '/testget/', 'Collection#getStatus', 'get_status'],
+
 
 		//Registration
 		['GET|POST', '/registration/', 'Registration#register', 'register' ],

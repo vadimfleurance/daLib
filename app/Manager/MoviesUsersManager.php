@@ -13,7 +13,7 @@ class MoviesUsersManager extends \W\Manager\Manager
 	public function collect($idMovie, $idUser)
 	{
 		if(!$this->isPresent($idMovie, $idUser)){
-			$stmt=$this->dbh->prepare(
+			$stmt = $this->dbh->prepare(
 							'INSERT INTO movies__users (idMovie, idUser, dateCreated, dateModified)
 							 VALUES (:idMovie, :idUser, NOW(), NOW())'
 							 );
@@ -24,7 +24,21 @@ class MoviesUsersManager extends \W\Manager\Manager
 		else echo "le film est deja present dans votre collection";
 
 	}
-
+	public function remove($idMovie, $idUser)
+	{
+		if($this->isPresent($idMovie, $idUser)){
+			$stmt = $this->dbh->prepare(
+					'DELETE FROM movies__users 
+					WHERE idMovie = :idMovie 
+					AND idUser = :idUser'
+				);
+			$stmt->bindValue('idMovie', $idMovie);
+			$stmt->bindValue('idUser', $idUser);
+			return $stmt->execute();
+		}
+		else echo  "ce film n'est pas present dans votre collection";
+	}
+	//LES METHODES CI DESSOUS SONT A VIRER SI PAS UTILISEE A LA FIN DU PROJET
 	public function watched($bool, $idMovie, $idUser)
 	{
 		$this->setStatus('watched',$bool, $idMovie, $idUser);
@@ -46,23 +60,29 @@ class MoviesUsersManager extends \W\Manager\Manager
 	{
 		$this->setStatus('wanted',$bool, $idMovie, $idUser);
 	}
+	//FIN DES METHODES A VIRER
 
 
-	protected function setStatus($status, $bool, $idMovie, $idUser)
-	{	if(is_string($status) && is_bool($bool) && is_int($idMovie) && is_int($idUser)) {
+	public function setStatus($status, $bool, $idMovie, $idUser)
+	{	
+		debug($status);
+		debug($bool);
+		debug($idMovie);
+		debug($idUser);
+		if(is_string($status) && is_int($bool) && is_int($idMovie) && is_int($idUser)) {
 
 				$stmt = $this->dbh->prepare(
 						"UPDATE movies__users
 						SET $status = :bool, dateModified = NOW()	
 						WHERE idMovie = :idMovie
-						AND idUser = idUser"
+						AND idUser = :idUser"
 						);
 				$stmt->bindValue(':bool', $bool);
 				$stmt->bindValue(':idMovie', $idMovie);
 				$stmt->bindValue(':idUser', $idUser);
 				return $stmt->execute();
 		}//end of if
-		echo "error in method arguments "
+		echo "error in method arguments ";
 
 	}//end of method
 
@@ -83,5 +103,22 @@ class MoviesUsersManager extends \W\Manager\Manager
 		}//end of if
 		return true;
 	}//end of method
+
+	public function getStatus($idMovie, $idUser)
+	{
+		$stmt = $this->dbh->prepare(
+			'SELECT watched, toWatch, owned, ofInterest, wanted
+			FROM movies__users
+			WHERE idUser = :idUser
+			AND idMovie = :idMovie '
+			);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->bindValue(':idMovie', $idMovie);
+		$stmt->execute();
+		$statusValues = $stmt->fetch();
+		//debug($statusValues);
+		return $statusValues;
+
+	}
 
 }//end of class
