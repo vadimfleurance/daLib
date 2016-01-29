@@ -32,7 +32,7 @@ class RememberMeChecker
 			// verifier si le token dans le cookie correspond au hash stocké en BDD
 			if ( password_verify( $tokenCookie , $hashedTokenCookie )) {
 				
-				$authentificationManager->logUserIn( $user );
+				$authManager->logUserIn( $user );
 				return true;
 			}
 			else {
