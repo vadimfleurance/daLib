@@ -151,56 +151,50 @@ class ScraperController extends Controller
 			$movie["cover"] = trim(preg_replace("/@.*/", "", $coverTmp->src));
 		}
 
-		//directors
-		$creditsSummaryItem1 = $html->find(".credit_summary_item", 0);
-		if(!empty($creditsSummaryItem1)){
-			$directorsTmp = $creditsSummaryItem1->find("span[itemprop=director]");			
-			if(!empty($directorsTmp)){
-				foreach ($directorsTmp as $directorTmp){
-					$director = $directorTmp->find("a[itemprop=url]", 0);
-					preg_match("!nm\d{7}!", $director->href, $matches);
+		$humansTmp = $html->find(".credit_summary_item");
 
-					$humans[] = [
-						"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
-						"role" => "director",
-						"imdbRef" => $matches[0]
-					];
+		//réalisateurs, scénaristes et acteurs
+		if ($humansTmp){
+			foreach($humansTmp as $human){
+				$directors = $human->find("span[itemprop=director]");
+				$writers = $human->find("span[itemprop=creator]");
+				$stars = $human->find("span[itemprop=actors]");
+
+				//réalisateurs
+				if($directors){
+					foreach ($directors as $director) {
+						preg_match("!nm\d{7}!", $director->find("a", 0)->href, $matches);
+
+						$humans[] = [
+							"name" => trim($director->find("span[itemprop=name]", 0)->plaintext),
+							"role" => "director",
+							"imdbRef" => $matches[0]
+						];
+					}
 				}
-			}
-		}
+				//scénaristes
+				if($writers){
+					foreach ($writers as $writer) {
+						preg_match("!nm\d{7}!", $writer->find("a", 0)->href, $matches);
 
-		//writers
-		$creditsSummaryItem2 = $html->find(".credit_summary_item", 1);
-		if(!empty($creditsSummaryItem2)){
-			$writersTmp = $creditsSummaryItem2->find("span[itemprop=creator]");
-			if(!empty($writersTmp)){
-				foreach ($writersTmp as $writerTmp){
-					$writer = $writerTmp->find("a[itemprop=url]", 0);
-					preg_match("!nm\d{7}!", $writer->href, $matches);
-
-					$humans[] = [
-						"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
-						"role" => "writer",
-						"imdbRef" => $matches[0]
-					];
+						$humans[] = [
+							"name" => trim($writer->find("span[itemprop=name]", 0)->plaintext),
+							"role" => "writer",
+							"imdbRef" => $matches[0]
+						];
+					}
 				}
-			}
-		}
+				//acteurs
+				if($stars){
+					foreach ($stars as $star) {
+						preg_match("!nm\d{7}!", $star->find("a", 0)->href, $matches);
 
-		//stars
-		$creditsSummaryItem3 = $html->find(".credit_summary_item", 2);
-		if(!empty($creditsSummaryItem3)){
-			$starsTmp = $creditsSummaryItem3->find("span[itemprop=actors]");			
-			if (!empty($starsTmp)){
-				foreach ($starsTmp as $starTmp){
-					$star = $starTmp->find("> a[itemprop=url]", 0);
-					preg_match("!nm\d{7}!", $star->href, $matches);
-
-					$humans[] = [
-						"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
-						"role" => "star",
-						"imdbRef" => $matches[0]
-					];
+						$humans[] = [
+							"name" => trim($star->find("span[itemprop=name]", 0)->plaintext),
+							"role" => "star",
+							"imdbRef" => $matches[0]
+						];
+					}
 				}
 			}
 		}
