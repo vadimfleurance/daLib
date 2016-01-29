@@ -8,9 +8,9 @@ class CollectionController extends Controller
 	{	
 
 		$bool = (bool) $_POST['bool'];
-		$idMovie = $_POST['idMovie'];
+		$idMovie = (int) $_POST['idMovie'];
 		$user= $this->getUser();
-		$idUser =$user['id'];
+		$idUser =(int) $user['id'];
 		//var_dump($bool);
 
 		$mUM = new \Manager\MoviesUsersManager; 

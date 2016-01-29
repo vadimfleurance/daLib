@@ -69,7 +69,7 @@ class MoviesUsersManager extends \W\Manager\Manager
 		debug($bool);
 		debug($idMovie);
 		debug($idUser);
-		if(is_string($status) && is_int($bool) && is_int($idMovie) && is_int($idUser)) {
+		//if( is_string($status) && is_int($bool) && is_int($idMovie) && is_int($idUser)) {
 
 				$stmt = $this->dbh->prepare(
 						"UPDATE movies__users
@@ -81,8 +81,8 @@ class MoviesUsersManager extends \W\Manager\Manager
 				$stmt->bindValue(':idMovie', $idMovie);
 				$stmt->bindValue(':idUser', $idUser);
 				return $stmt->execute();
-		}//end of if
-		echo "error in method arguments ";
+		//}//end of if
+		//echo "error in method arguments ";
 
 	}//end of method
 
