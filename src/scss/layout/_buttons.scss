@@ -52,6 +52,8 @@
 	@at-root &-default {
 		color: $button-font-color-light;
 		border-color: $button-normal !important; 
+		height: 45px;
+		line-height: 30px;
 
 		&:hover, 
 		&:focus,

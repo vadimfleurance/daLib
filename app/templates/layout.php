@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 bg-dalib">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -29,21 +29,21 @@
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<div class="row">
-							<div class="col-xs-12 col-sm-6">
-								<form id="search-form" class="navbar-left navbar-form-search" action="" data-ajax="<?=$this->url('search_ajax')?>">
-									<div class="form-group">
-										<label class="sr-only" for="searchInput">Search</label>
-										<div class="input-group">
-											<div class="input-group-addon"><i class="fa fa-search"></i></div>
-											<input type="search" class="form-control" id="search-input" name="search" placeholder="Search in daLib ...">
-										</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<form id="search-form" class="navbar-left" action="" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
+								<div class="form-group">
+									<label class="sr-only" for="searchInput">Search</label>
+									<div class="input-group">
+										<div class="input-group-addon"><i class="fa fa-search"></i></div>
+										<input type="search" class="form-control" id="search-input" name="search" placeholder="Search in daLib ...">
 									</div>
-								</form>
-								<div id="result-search"></div>
-							</div>
-							<div class="col-xs-12 col-sm-6">
+								</div>
+							</form>
+							<section id="result-search-form"></section>
+						</div>
+						<div class="collapse navbar-collapse" id="navbar-main">
+							<div class="col-xs-12 col-sm-6 col-md-8">
 								<ul class="nav navbar-nav navbar-right">
 									<li><a href="<?= $this->url('add_movie')?>"><i class="fa fa-plus"></i> Add a movie</a></li>
 									<li class="dropdown">
@@ -67,12 +67,6 @@
 	</nav>
 
 	<main>
-		<!--
-			Variable créée par le framework W contenant les infos de l'utilisateur 
-			et permettant de vérifier que la connexion est réussie
-		<?php  debug($w_user); ?>
-		-->
-
 		<?= $this->section('main_content') ?>
 	</main>
 

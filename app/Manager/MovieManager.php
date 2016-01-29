@@ -5,7 +5,7 @@ class MovieManager extends \W\Manager\Manager
 {
 	public function searchAjax()
 	{
-		$sql = "SELECT movies.title, movies.year, (
+		$sql = "SELECT movies.title, movies.year, movies.cover, (
 		   SELECT GROUP_CONCAT(humans.name SEPARATOR ', ') FROM humans 
 		   JOIN movies__humans ON humans.id = movies__humans.idHuman 
 		   WHERE movies__humans.idMovie = movies.id AND movies__humans.role = 'star'
