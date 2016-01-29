@@ -44,4 +44,11 @@ form {
 			border-color: transparent;
 		}
 	}
+	&~ #result-search-form {
+		position: absolute;
+		top: 70px;
+		left: 57px;
+		background-color: red;
+		width: calc(100% - 74px);
+	}
 }

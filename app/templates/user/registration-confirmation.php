@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Registration Confirmed | Your collection of movies in your pocket']) ?>
 
 <?php $this->start('main_content') ?>
-	<section>
+	<section class="section-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-md-8 col-md-offset-2">

@@ -12,18 +12,20 @@ $(document).ready(function() {
 });
 $("#search-input").on("keyup", function(){
 	var wordSearch = $("#search-input").val();
+	var listMovies = $("#result-search-form");
 
-	if (wordSearch.length>=3){
+	if(wordSearch.length >= 3) {
 		$.ajax({
 			"url": $("#search-form").attr("data-ajax"),
 			"type": $("#search-form").attr("method"),
 			"data": $("#search-form").serialize()
 		}).done(function(response){
-			$("#result-search").html(response);
+			listMovies.css('display', 'block');
+			listMovies.html(response);
 		});
 	}
-
-	else{
-		$("#result-search").empty();
+	else {
+		listMovies.css('display', 'none');
+		listMovies.empty();
 	}
 });

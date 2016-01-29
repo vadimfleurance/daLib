@@ -41,7 +41,7 @@
 										</div>
 									</div>
 								</form>
-								<div id="result-search-form"></div>
+								<section id="result-search-form"></section>
 							</div>
 							<div class="col-xs-12 col-sm-6">
 								<ul class="nav navbar-nav navbar-right">

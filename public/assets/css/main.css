@@ -644,16 +644,16 @@ main {
   }
 }
 
-section {
-  padding-top: 70px;
-  padding-bottom: 70px;
-}
-
 /**
  * Basic typography style for copy text
  */
 .bg-dalib {
   background-color: #0067B0;
+}
+
+.section-padding {
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 
 /*.alert{
@@ -1318,6 +1318,14 @@ form#search-form .form-control:focus {
 form#search-form .input-group-addon {
   background-color: transparent;
   border-color: transparent;
+}
+
+form ~ #result-search-form {
+  position: absolute;
+  top: 70px;
+  left: 57px;
+  background-color: red;
+  width: calc(100% - 74px);
 }
 
 section:nth-child(even) {

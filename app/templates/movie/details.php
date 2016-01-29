@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Movie Details | Your collection of movies in your pocket']) ?>
 
 <?php $this->start('main_content') ?>
-	<section id="movie-details">
+	<section id="movie-details" class="section-padding">
 		<article class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4">
