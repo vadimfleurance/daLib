@@ -156,6 +156,7 @@ CREATE TABLE `users` (
   `dateCreated` datetime NOT NULL,
   `dateModified` datetime NOT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `passwordToken` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sessionToken` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
