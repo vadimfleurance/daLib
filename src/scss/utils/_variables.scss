@@ -1,0 +1,85 @@
+// ===========================================================================
+// Variables - Globals
+// ===========================================================================
+$background:								#131313;
+$primary:									$E8;
+$primary-light:								$E4;
+$secondary:									#1d1e22;
+$secondary-light:							#333439;
+$font-color-dark:							$A8;
+$font-color-light:							#eaeaea;
+
+$link:										$E9;
+$link-hover:								$E4;
+$link-visited:								$E4;
+
+$media-sm:									768px;
+$media-md:									992px;
+$media-lg:									1200px;
+
+// ===========================================================================
+// Variables - Navigations
+// ===========================================================================
+$navbar-background-color:					$secondary !default;
+$navbar-background-color-active:			$secondary-light !default;
+$navbar-font-color:							$font-color-light !default;
+
+
+// ===========================================================================
+// Variables - Forms
+// ===========================================================================
+$form-normal:								$A17 !default;
+$form-default:								$secondary-light !default;
+$form-primary:								$primary !default;
+$form-success:								$A3 !default;
+$form-danger:								$A15 !default;
+$form-warning:								$A14 !default;
+$form-info:									$A1 !default;
+
+$message-success:							$A4 !default;
+$message-danger:							$A16 !default;
+$message-warning:							$H7 !default;
+
+$form-font-color:							$font-color-light !default;
+$form-placeholder-font-color:				$font-color-dark !default;
+$form-disabled-color:						$form-default !default;
+
+
+// ===========================================================================
+// Variables - Tabs
+// ===========================================================================
+$tab-background-color:						$secondary !default;
+$tab-background-color-light:				$secondary-light !default;
+$tab-background-color-hover:				$primary-light !default;
+$tab-radius:								4px !default;
+
+$tab-font-color:							$A22 !default;
+$tab-font-color-active:						$primary !default;
+
+$tab-aside-width:							74px !default;
+
+$tab-border-color:							$primary !default;
+
+// ===========================================================================
+// Variables - Buttons
+// ===========================================================================
+$button-normal:								$secondary-light !default;
+$button-default:							$primary !default;
+$button-primary:							$A6 !default;
+$button-success:							$A4 !default;
+$button-danger:								$A16 !default;
+$button-warning:							$A14 !default;
+$button-info:								$A2 !default;
+
+$button-normal-hover:						$primary-light !default;
+$button-default-hover:						$A18 !default;
+$button-primary-hover:						$A5 !default;
+$button-success-hover:						$A3 !default;
+$button-danger-hover:						$A15 !default;
+$button-warning-hover:						$A13 !default;
+$button-info-hover:							$A1 !default;
+
+$button-font-color-light:					$A22 !default;
+
+$button-opacity:							45 !default;
+$button-shadow:								inset 0 1px 2px rgba(0, 0, 0, .125) !default;

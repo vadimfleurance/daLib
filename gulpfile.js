@@ -44,6 +44,7 @@ gulp.task('js', function(){
 //les changements aux fichiers sources seront détectés automatiquement
 gulp.task('watch', function(){
 	gulp.watch('src/js/*.js', ['js']);
+	gulp.watch('src/scss/**/*.scss', ['css']);
 	gulp.watch('src/scss/*.scss', ['css']);
 });
 //à exécuter avec "gulp"
