@@ -47,7 +47,7 @@
 				<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
 				<input type="email" class="form-control" id="emailRegisterInput" name="user[email]" placeholder="Email">
 			</div>
-			<!-- Message d'erreur pour un USERNAME déjà utilisé  -->
+			<!-- Message d'erreur pour une mauvaise saisie de l'EMAIL -->
 			<?php if (!empty( $errors['email'] )) : ?>
 				<ul class="text-danger">
 				<?php foreach ( $errors['email'] as $error ) : ?>
@@ -73,7 +73,7 @@
 				<div class="input-group-addon"><i class="fa fa-lock"></i></div>
 				<input type="password" class="form-control" id="passwordConfirmRegisterInput" name="user[passwordBis]" placeholder="Password Confirm">
 			</div>
-			<!-- Message d'erreur pour un USERNAME déjà utilisé  -->
+			<!-- Message d'erreur pour une mauvaise saisie du PASSWORD -->
 			<?php if (!empty( $errors['password'] )) : ?>
 				<ul class="text-danger">
 				<?php foreach ( $errors['password'] as $error ) : ?>

@@ -82,9 +82,6 @@
 		border-top: none;
 		box-shadow: none;
 	}
-	& .navbar-form-search {
-		margin-top: 24px;
-	}
 	& div[class*="col-"] {
 		min-height: 0;
 	}
@@ -138,9 +135,6 @@
 		}
 		& .navbar-nav > li > a {
 			line-height: 34px;
-		}
-		& .navbar-form-search {
-			margin-top: 16px;
 		}
 		& .navbar-nav .user-avatar {
 			max-width: 36px;

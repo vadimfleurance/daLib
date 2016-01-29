@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 bg-dalib">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -29,10 +29,10 @@
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class="collapse navbar-collapse" id="navbar-main">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6">
-								<form id="search-form" class="navbar-left navbar-form-search" action="" data-ajax="<?=$this->url('search_ajax')?>">
+								<form id="search-form" class="navbar-left" action="" data-ajax="<?=$this->url('search_ajax')?>">
 									<div class="form-group">
 										<label class="sr-only" for="searchInput">Search</label>
 										<div class="input-group">
@@ -41,7 +41,7 @@
 										</div>
 									</div>
 								</form>
-								<div id="result-search"></div>
+								<div id="result-search-form"></div>
 							</div>
 							<div class="col-xs-12 col-sm-6">
 								<ul class="nav navbar-nav navbar-right">
@@ -67,12 +67,6 @@
 	</nav>
 
 	<main>
-		<!--
-			Variable créée par le framework W contenant les infos de l'utilisateur 
-			et permettant de vérifier que la connexion est réussie
-		<?php  debug($w_user); ?>
-		-->
-
 		<?= $this->section('main_content') ?>
 	</main>
 
