@@ -6,20 +6,20 @@ class MovieManager extends \W\Manager\Manager
 	public function searchAjax()
 	{
 		$sql = "SELECT
-		movies.title,
-		movies.year,
-		movies.cover,
-		(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
-			FROM humans 
-			JOIN movies__humans
-			ON humans.id = movies__humans.idHuman 
-			WHERE movies__humans.idMovie = movies.id
-			AND movies__humans.role = 'star'
-			) as humans
-			FROM movies
-			WHERE movies.title
-			LIKE :title
-			LIMIT 6;";
+				movies.title,
+				movies.year,
+				movies.cover,
+				(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
+					FROM humans 
+					JOIN movies__humans
+					ON humans.id = movies__humans.idHuman 
+					WHERE movies__humans.idMovie = movies.id
+					AND movies__humans.role = 'star'
+				) as humans
+				FROM movies
+				WHERE movies.title
+				LIKE :title
+				LIMIT 6;";
 
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
