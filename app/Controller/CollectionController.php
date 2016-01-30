@@ -10,7 +10,7 @@ class CollectionController extends Controller
 		$bool = (bool) $_POST['bool'];
 		$idMovie = (int) $_POST['idMovie'];
 		$user= $this->getUser();
-		$idUser =(int) $user['id'];
+		$idUser = (int) $user['id'];
 		//var_dump($bool);
 
 		$mUM = new \Manager\MoviesUsersManager; 
@@ -33,6 +33,21 @@ class CollectionController extends Controller
 
 		$mUM = new \Manager\MoviesUsersManager;
 		$mUM->setStatus($status, $bool, $idMovie, $idUser);
+	}
+
+	//affiche la page connection
+	public function showCollection()
+	{
+		//recupere l'id de l'utilisateur connecté
+		$user= $this->getUser();
+		$idUser = (int) $user['id'];
+
+		//récupere la collection de l'utilisateur connecté tableau/sous tableau voir la fonction getEntireCollection pour l'architecture
+		$mUM = new \Manager\MoviesUsersManager;
+		$collection = $mUM->getEntireCollection($idUser);
+		$this->show('collection/collection', ['collection' => $collection ]);
+
+
 	}
 
 }

@@ -7,6 +7,7 @@
 		['GET', '/movie-detail/[i:id]/', 'Movie#movieDetails', 'movie_detail'],
 		['POST', '/managecollection/', 'Collection#manageCollection', 'manage_collection'],
 		['POST', '/statusmanage/', 'Collection#manageStatus', 'status_manage'],
+		['GET', '/collection/', 'Collection#showCollection', 'show_collection'],
 		['GET|POST', '/add-movie/', 'Movie#addMovie', 'add_movie'],
 		//['GET', '/testget/', 'Collection#getStatus', 'get_status'],
 

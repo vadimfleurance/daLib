@@ -120,5 +120,32 @@ class MoviesUsersManager extends \W\Manager\Manager
 		return $statusValues;
 
 	}
+	public function getEntireCollection($idUser)
+	{
+		$stmt = $this->dbh->prepare(
+				'SELECT *
+				FROM movies__users
+				WHERE idUser = :idUser'
+			);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->execute();
+		$rawcollection = $stmt->fetchAll();
+		//debug($rawcollection);
+		//die();
+		$collection=[
+				'movies'=>[],
+				'statuses'=>[]
+		];
+
+		foreach ($rawcollection as $relation ) {
+			$movieManager = new \Manager\MovieManager;
+			$collection['movies'][]= $movieManager->getInfos($relation['idMovie']);
+			$collection['statuses'][] = $this->getStatus($relation['idMovie'],$relation['idUser']);
+		}
+		return $collection;
+		//debug($collection);
+		//die();
+
+	}
 
 }//end of class
