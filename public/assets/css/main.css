@@ -1318,13 +1318,49 @@ form#search-form .input-group-addon {
 #result-search-form {
   position: absolute;
   top: 70px;
-  left: 57px;
-  background-color: red;
-  width: calc(100% - 74px);
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+#result-search-form section {
+  background-color: #333439;
+  max-height: 350px;
+  overflow: auto;
 }
 
 #result-search-form .search-movies {
-  margin: 5px;
+  min-height: 45px;
+  margin: 10px 0;
+  border-bottom: 1px solid #333439;
+}
+
+#result-search-form .search-movies:last-of-type {
+  border-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  #result-search-form .search-movies h4 {
+    margin-top: 0;
+  }
+}
+
+#result-search-form .search-movies-notfound {
+  min-height: 45px;
+  line-height: 45px;
+}
+
+#result-search-form .search-movies-notfound p {
+  margin: 0;
+  font-style: italic;
+}
+
+#result-search-form footer {
+  background-color: #0067B0;
+}
+
+#result-search-form footer .btn-link {
+  min-height: inherit;
 }
 
 section:nth-child(even) {
