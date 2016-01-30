@@ -6,19 +6,46 @@ class MovieManager extends \W\Manager\Manager
 	public function searchAjax()
 	{
 		$sql = "SELECT movies.title, movies.year, movies.cover, (
-		   SELECT GROUP_CONCAT(humans.name SEPARATOR ', ') FROM humans 
-		   JOIN movies__humans ON humans.id = movies__humans.idHuman 
-		   WHERE movies__humans.idMovie = movies.id AND movies__humans.role = 'star'
+			SELECT GROUP_CONCAT(humans.name SEPARATOR ', ') FROM humans 
+			JOIN movies__humans ON humans.id = movies__humans.idHuman 
+			WHERE movies__humans.idMovie = movies.id AND movies__humans.role = 'star'
 			) as humans
 			FROM movies
 			WHERE movies.title LIKE :title LIMIT 6;";
 
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
-		$moviesFound = $statement->fetchAll();
-
-		return $moviesFound;
+		return $statement->fetchAll();
 	}
+
+	public function search()
+	{
+		$sql = "SELECT
+				movies.title,
+				movies.year,
+				movies.cover,
+				(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
+					FROM humans 
+					JOIN movies__humans
+					ON humans.id = movies__humans.idHuman 
+					WHERE movies__humans.idMovie = movies.id
+					AND movies__humans.role = 'star'
+				) as actors,
+				(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
+					FROM humans
+					JOIN movies__humans
+					ON humans.id = movies__humans.idHuman
+					WHERE movies__humans.idMovie = movies.id
+					AND movies__humans.role = 'director'
+				) as directors
+				FROM movies
+				WHERE movies.title LIKE :query LIMIT 20 OFFSET 0;";
+
+		$statement = $this->dbh->prepare($sql);
+		$statement->execute([":query" => "%" . $_GET["search"] . "%"]);
+		return $statement->fetchAll();
+	}
+
 	//permet d'appeller le manager et d'inserer dans la table movies
 	public function lastId()
 	{
