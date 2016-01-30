@@ -49,7 +49,7 @@ class ScraperController extends Controller
 	public function globalScraper()
 	{		
 		// Target
-		$url = "http://www.imdb.com/chart/moviemeter";
+		$url = "http://www.imdb.com/chart/top";
 
 		$content = $this->addHeaderToUrl($url);
 		// Create a new  domparser object stocked into "$html"
@@ -139,7 +139,7 @@ class ScraperController extends Controller
 		//url cover sans le suffixe ni l'extension
 		$coverTmp = $html->find(".poster img",0);
 		if ($coverTmp){
-			$movie["cover"] = trim(preg_replace("/@.*/", "", $coverTmp->src));
+			$movie["cover"] = trim(preg_replace("!\._.+!", "", $coverTmp->src));
 		}
 
 		//réalisateurs
