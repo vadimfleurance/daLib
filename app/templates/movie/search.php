@@ -5,11 +5,13 @@
 foreach ($moviesFound as $movie) {
 	?>
 	<div>
-		<h4><?=$movie['title']?></h4>
-		<img src="<?=$movie['cover'] . '@._V1__SY200_.jpg'?>">
-		<p><?=$movie['year']?></p>
-		<p>From : <?=$movie['directors']?></p>
-		<p>With : <?=$movie['actors']?></p>
+		<a href="<?=$this->url('movie_detail', ['id' => $movie['id']])?>">
+			<h4><?=$movie['title']?></h4>
+			<img src="<?=$movie['cover'] . '@._V1__SY150_.jpg'?>" alt="<?=$movie['title']?>">
+			<p><?=$movie['year']?></p>
+			<p>From : <?=$movie['directors']?></p>
+			<p>With : <?=$movie['actors']?></p>
+		</a>
 	</div>
 <?php
 }

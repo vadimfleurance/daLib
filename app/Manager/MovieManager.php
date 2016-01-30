@@ -5,13 +5,21 @@ class MovieManager extends \W\Manager\Manager
 {
 	public function searchAjax()
 	{
-		$sql = "SELECT movies.title, movies.year, movies.cover, (
-			SELECT GROUP_CONCAT(humans.name SEPARATOR ', ') FROM humans 
-			JOIN movies__humans ON humans.id = movies__humans.idHuman 
-			WHERE movies__humans.idMovie = movies.id AND movies__humans.role = 'star'
+		$sql = "SELECT
+		movies.title,
+		movies.year,
+		movies.cover,
+		(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
+			FROM humans 
+			JOIN movies__humans
+			ON humans.id = movies__humans.idHuman 
+			WHERE movies__humans.idMovie = movies.id
+			AND movies__humans.role = 'star'
 			) as humans
 			FROM movies
-			WHERE movies.title LIKE :title LIMIT 6;";
+			WHERE movies.title
+			LIKE :title
+			LIMIT 6;";
 
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
@@ -21,6 +29,7 @@ class MovieManager extends \W\Manager\Manager
 	public function search()
 	{
 		$sql = "SELECT
+				movies.id,
 				movies.title,
 				movies.year,
 				movies.cover,
@@ -39,7 +48,10 @@ class MovieManager extends \W\Manager\Manager
 					AND movies__humans.role = 'director'
 				) as directors
 				FROM movies
-				WHERE movies.title LIKE :query LIMIT 20 OFFSET 0;";
+				WHERE movies.title
+				LIKE :query
+				LIMIT 10
+				OFFSET 0;";
 
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute([":query" => "%" . $_GET["search"] . "%"]);
