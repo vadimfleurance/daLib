@@ -2,8 +2,7 @@
 
 <?php $this->start('main_content') ?>
 	
-	<?= '$user : recu dans la page profile.php'; ?>
-	<?= debug($user); ?>
+	<!-- <?= debug($user); ?> -->
 
 	<h2>Détail du user : <?= $user['username'] ?></h2>
 

@@ -6,7 +6,7 @@
 	
 	<p>Users</p>
 	
-	<?= debug($users); ?>
+	<!-- <?= debug($users); ?> -->
 
 <table>
 
