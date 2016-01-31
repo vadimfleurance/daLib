@@ -26,8 +26,11 @@ class MovieManager extends \W\Manager\Manager
 		return $statement->fetchAll();
 	}
 
-	public function search()
+	public function search($page, $elements)
 	{
+		(int) $limit = $elements;
+		(int) $offset = $page * $elements - $elements;
+
 		$sql = "SELECT
 				movies.id,
 				movies.title,
@@ -50,12 +53,21 @@ class MovieManager extends \W\Manager\Manager
 				FROM movies
 				WHERE movies.title
 				LIKE :query
-				LIMIT 10
-				OFFSET 0;";
+				LIMIT :offset, :limit;";
 
 		$statement = $this->dbh->prepare($sql);
-		$statement->execute([":query" => "%" . $_GET["search"] . "%"]);
+		$statement->bindValue(':query', "%" . $_GET['search'] . "%");
+		$statement->bindValue(':offset', (int) $offset, 1);
+		$statement->bindValue(':limit', (int) $limit, 1);
+		$statement->execute();
 		return $statement->fetchAll();
+	}
+
+	public function getCount(){
+		$sql = "SELECT COUNT(*) FROM movies WHERE title LIKE :title;";
+		$statement = $this->dbh->prepare($sql);
+		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
+		return $statement->fetchColumn();
 	}
 
 	//permet d'appeller le manager et d'inserer dans la table movies

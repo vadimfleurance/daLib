@@ -62,10 +62,11 @@ class MovieController extends Controller
 		$this->show('movie/search_ajax', ["moviesFound" => $moviesFound, "searchUrl" => "http://www.imdb.com/find?ref_=nv_sr_fn&q=" . $_GET["search"] . "&s=all"]);
 	}
 	
-	public function search()
+	public function search($page, $elements)
 	{
 		$movieManager = new \Manager\MovieManager();
-		$moviesFound = $movieManager->search();
+		$moviesCount = $movieManager->getCount();
+		$moviesFound = $movieManager->search($page, $elements);
 		$this->show('movie/search', ["moviesFound" => $moviesFound]);
 	}
 }
