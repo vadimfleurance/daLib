@@ -115,6 +115,7 @@ class MovieManager extends \W\Manager\Manager
 		
 	}//end of getInfos method
 
+
 	public function getAllDtbMovies()
 	{
 		$sql = 'SELECT * FROM movies ;';
@@ -151,6 +152,13 @@ class MovieManager extends \W\Manager\Manager
 		$stmt->bindValue(':id', $id);
 
 		return $stmt->execute();
+	}
+	public function getBestImdbRating()
+	{
+		$sql = "SELECT id, imdbRating, cover FROM movies ORDER BY imdbRating DESC LIMIT 10;";
+		$statement = $this->dbh->prepare($sql);
+		$statement->execute();
+		return $statement->fetchAll();
 	}
 
 }//end of class
