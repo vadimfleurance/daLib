@@ -92,6 +92,7 @@ class MovieManager extends \W\Manager\Manager
 		
 		//pour le panache
 		$sql = 'SELECT 
+				movies.id,
 				movies.title,
 				movies.synopsis,
 				movies.duration,
@@ -119,6 +120,7 @@ class MovieManager extends \W\Manager\Manager
 		//debug($rawinfos);
 
 		$movie=[
+			'id' =>$rawinfos[0]['id'],
 			'title' => $rawinfos[0]['title'],
 			'synopsis' => $rawinfos[0]['synopsis'],
 			'duration' => $rawinfos[0]['duration'],
@@ -131,6 +133,7 @@ class MovieManager extends \W\Manager\Manager
 			'stars'=>[]
 		];
 		
+		//debug($movie);
 		foreach ($rawinfos as $info) {
 
 			//ajoute le genre dans l'array movie final si le genre n'est pas deja present
