@@ -27,7 +27,7 @@ class MovieManager extends \W\Manager\Manager
 		return $statement->fetchAll();
 	}
 
-	public function search($page, $search)
+	public function search($search, $page)
 	{
 		(int) $limit = 10;
 		(int) $offset = $page * $limit - $limit;

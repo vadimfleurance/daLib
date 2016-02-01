@@ -66,11 +66,11 @@ class MovieController extends Controller
 		$this->show('movie/search_ajax', ["moviesFound" => $moviesFound]);
 	}
 	
-	public function search($page, $search)
+	public function search($search, $page = 1)
 	{
 		$movieManager = new \Manager\MovieManager();
 		$moviesNb = $movieManager->getCount($search);
-		$moviesFound = $movieManager->search($page, $search);
+		$moviesFound = $movieManager->search($search, $page);
 
 		// calcul du nombre de page à afficher
 		$nbPage = ceil($moviesNb/10);

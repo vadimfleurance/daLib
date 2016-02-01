@@ -10,7 +10,7 @@
 		['GET|POST', '/add-movie/', 'Movie#addMovie', 'add_movie'],
 
 		//Search	
-		['GET', '/search/[i:page]/[:search]/', 'Movie#search', 'search'],		
+		['GET', '/search/[:search]/[i:page]?/', 'Movie#search', 'search'],
 		['GET', '/search/ajax/', 'Movie#searchAjax', 'search_ajax'],
 
 		//Registration
