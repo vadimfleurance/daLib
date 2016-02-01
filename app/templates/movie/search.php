@@ -1,16 +1,6 @@
 <?php $this->layout('layout', ['title' => 'Search | Your collection of movies in your pocket']) ?>
 
 <?php $this->start('main_content') ?>
-<form method="get" action="">
-	<input type="hidden" name="search" value="<?=htmlentities($_GET['search'])?>">
-	<label for="element">Number of elements</label>
-	<select id ="elements" name="elements">
-		<option selected>10</option>
-		<option>20</option>
-		<option>30</option>
-	</select>
-	<input type="submit">
-</form>
 <?php
 foreach($moviesFound as $movie){
 	?>

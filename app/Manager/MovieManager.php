@@ -26,10 +26,10 @@ class MovieManager extends \W\Manager\Manager
 		return $statement->fetchAll();
 	}
 
-	public function search($page, $elements)
+	public function search($page)
 	{
-		(int) $limit = $elements;
-		(int) $offset = $page * $elements - $elements;
+		(int) $limit = 10;
+		(int) $offset = $page * 10 - 10;
 
 		$sql = "SELECT
 				movies.id,
