@@ -11,6 +11,11 @@ class LoginController extends Controller
 	*/
 	public function logIn()
 	{
+		if ( $this->getUser() ) {
+
+			$this->redirectToRoute('collection');
+		}
+
 		//Initialisation du tableau des erreurs.
 		$errors = [
 			'total' => []
@@ -76,11 +81,11 @@ class LoginController extends Controller
 					$errors['total'][] = "L'identifiant et/ou le mot de passe saisie n'est pas correct ! Veuillez recommencer. ";
 				}
 			}
-			// On affiche le template "default/login.php" en passant en argument le tableau "$errors" afin de pouvoir y afficher les erreurs.
-			$this->show('default/login', [
-				"errors" => $errors,
-				]);
 		}
+		// On affiche le template "default/login.php" en passant en argument le tableau "$errors" afin de pouvoir y afficher les erreurs.
+		$this->show('default/login', [
+			"errors" => $errors,
+			]);
 	}
 
 	public function logOut()
@@ -102,6 +107,11 @@ class LoginController extends Controller
 
 	public function forgotPassword()
 	{
+		if ( $this->getUser() ) {
+
+			$this->redirectToRoute('collection');
+		}
+		
 		//Initialisation du tableau des erreurs.
 		$errors = [
 			'total' => []
@@ -172,7 +182,7 @@ class LoginController extends Controller
 			$mail->Password = "merciwebforce3";
 
 			// L'adresse d'envoie
-			$mail->setFrom('contact.dalib@gmail.com', 'Contact');
+			$mail->setFrom('contact.dalib@gmail.com', 'daLIb : Password forgotten');
 
 			// Les detinatires des mails qui seront envoyés. On récupère l'email de l'utilisateur ainsi que son nom d'utilisateur
 			$mail->addAddress( $user['email'] , $user['username'] );
@@ -218,6 +228,11 @@ class LoginController extends Controller
 
 	public function newPassword( $tokenPassword, $id )
 	{
+		if ( $this->getUser() ) {
+
+			$this->redirectToRoute('collection');
+		}
+		
 		//Initialisation du tableau des erreurs.
 		$errors = [
 			"password" => [],
