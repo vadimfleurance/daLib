@@ -120,12 +120,15 @@ class MoviesUsersManager extends \W\Manager\Manager
 		return $statusValues;
 
 	}
-	public function getEntireCollection($idUser)
+	public function getEntireCollection($idUser,$totalMovies,$cPage,$perPage)
 	{
+				
 		$stmt = $this->dbh->prepare(
-				'SELECT *
+				"SELECT *
 				FROM movies__users
-				WHERE idUser = :idUser'
+				WHERE idUser = :idUser
+				ORDER BY dateModified DESC
+				LIMIT ".(($cPage-1)*$perPage).", $perPage "
 			);
 		$stmt->bindValue(':idUser', $idUser);
 		$stmt->execute();
@@ -156,7 +159,7 @@ class MoviesUsersManager extends \W\Manager\Manager
 			);
 		$stmt->bindValue(':idUser', $idUser);
 		$stmt->execute();
-		$totalMovies = $stmt->fetch();
+		$totalMovies = $stmt->fetchColumn();
 		return $totalMovies ;
 
 

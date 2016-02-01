@@ -36,7 +36,7 @@ class CollectionController extends Controller
 	}
 
 	//affiche la page connection
-	public function showCollection()
+	public function showCollection($cPage)
 	{
 		//recupere l'id de l'utilisateur connecté
 		$user= $this->getUser();
@@ -46,10 +46,24 @@ class CollectionController extends Controller
 		$mUM = new \Manager\MoviesUsersManager;
 		//compte le total de film de la collection
 		$totalMovies = $mUM->countCollection($idUser);
+		
+		//definition des variables de pagination
+		$perPage = 2;
+		$nbPages = ceil($totalMovies / $perPage);
+		//limite la mauvaise utilisation de l'id de page dans l'url
+		if($cPage > $nbPages){
+			$this->showNotFound();
+		}
+		
 
-
-		$collection = $mUM->getEntireCollection($idUser);
-		$this->show('collection/collection', ['collection' => $collection ]);
+		//appel de recuperation de collection
+		$collection = $mUM->getEntireCollection($idUser,$totalMovies, $cPage, $perPage);
+		//affichage de la page
+		$this->show('collection/collection', [
+												'collection' => $collection ,
+												'nbPages'	=> $nbPages,
+												'cPage' =>$cPage
+											 ]);
 
 
 	}

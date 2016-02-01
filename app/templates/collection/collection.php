@@ -3,6 +3,7 @@
 <?php $this->start('main_content') ?>
 <section>
 	<?php foreach ($collection['movies'] as $key =>$movie ): ?>
+
 		<article>
 			<a href="<?= $this->url('movie_detail',['id'=>$movie['id'] ]) ?>">
 				<img src=" <?= $movie['cover'].'@._V1_SY125_.jpg' ?>">
@@ -20,6 +21,19 @@
 		</article>
 		
 	<?php endforeach ?>
+
 </section>
+<div>
+	<?php for ($i=1 ; $i <= $nbPages; $i++): ?>
+		<?php if($i == $cPage):?>
+			<span><?=$i ?></span>
+		<?php else:?>
+			<span><a href="<?=$this->url('show_collection',['cPage'=>$i])?>"> <?=$i ?></a></span>
+		<?php endif; ?>
+
+		
+	<?php endfor ; ?>
+	 
+</div>
 
 <?php $this->stop('main_content') ?>
