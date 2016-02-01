@@ -44,10 +44,15 @@ class CollectionController extends Controller
 
 		//récupere la collection de l'utilisateur connecté tableau/sous tableau voir la fonction getEntireCollection pour l'architecture
 		$mUM = new \Manager\MoviesUsersManager;
+		//compte le total de film de la collection
+		$totalMovies = $mUM->countCollection($idUser);
+
+
 		$collection = $mUM->getEntireCollection($idUser);
 		$this->show('collection/collection', ['collection' => $collection ]);
 
 
 	}
+	
 
-}
+}//end of class

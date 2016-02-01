@@ -147,5 +147,19 @@ class MoviesUsersManager extends \W\Manager\Manager
 		//die();
 
 	}
+	public function countCollection($idUser)
+	{
+		$stmt = $this->dbh->prepare(
+			'SELECT COUNT(id) AS totalMovies
+			FROM movies__users
+			WHERE idUser = :idUser'
+			);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->execute();
+		$totalMovies = $stmt->fetch();
+		return $totalMovies ;
+
+
+	}
 
 }//end of class

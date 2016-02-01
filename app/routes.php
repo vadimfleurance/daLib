@@ -9,7 +9,6 @@
 		['POST', '/statusmanage/', 'Collection#manageStatus', 'status_manage'],
 		['GET', '/collection/', 'Collection#showCollection', 'show_collection'],
 		['GET|POST', '/add-movie/', 'Movie#addMovie', 'add_movie'],
-		//['GET', '/testget/', 'Collection#getStatus', 'get_status'],
 
 
 		//Registration
