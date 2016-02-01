@@ -38,10 +38,18 @@
 
 			//	Accès depuis le back-office aux utilisateurs
 		['POST', '/back-office/users/', 'BackOffice#listUsers', 'back_office_users' ],
-		// Accès à la page permettant de modifier le compte de l'utilisateur
+			
+			// Accès à la page permettant de modifier le compte de l'utilisateur
 		['GET|POST', '/back-office/users/profile/[:id]/', 'BackOffice#profile', 'profile'],
 			
 			//	Accès depuis le back-office aux films
-		['POST', '/back-office/movies/', 'BackOffice#getMovies', 'back_office_movies' ],
-		
+		['POST', '/back-office/movies/', 'BackOffice#listMovies', 'back_office_movies' ],
+
+			//	Accès depuis le back-office aux films
+		['GET|POST', '/back-office/movie/detail/[:id]/', 'BackOffice#movieDetail', 'detail' ],
+
+			//	Suppression d'un utilisateur
+		['GET|POST', '/back-office/user/delete/[:id]/', 'BackOffice#deleteUser', 'delete_user' ],
+
+	
 	);	

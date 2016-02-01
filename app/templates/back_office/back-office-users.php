@@ -6,21 +6,22 @@
 	
 	<p>Users</p>
 
-<table>
+	<table>
 
-	<?php foreach ($users as $user ) : ?> 
+		<?php foreach ($users as $user ) : ?> 
 
-		<tr>
-			<td><?= $user['username'] ?></td>
-			<td><?= $user['email'] ?></td>
-			<td><?= $user['dateCreated'] ?></td>
-			<td><?= $user['role'] ?></td>
-			<td><a href="<?= $this-> url('profile', ['id' => $user['id']]); ?>" >Custom</td>
-			<td><a href="<?= $this-> url('forgot_password'); ?>" >Generate a new password</td>
-		</tr>
+			<tr>
+				<td><?= $user['username'] ?></td>
+				<td><?= $user['email'] ?></td>
+				<td><?= $user['dateCreated'] ?></td>
+				<td><?= $user['role'] ?></td>
+				<td><a href="<?= $this-> url('profile', ['id' => $user['id']] ); ?>" >Custom</td>
+				<td><a href="<?= $this-> url('forgot_password'); ?>" >Generate a new password</td>
+				<td><a href="<?= $this-> url('delete_user', ['id' => $user['id']] ); ?>" >Delete</td>
+			</tr>
 
-	<?php endforeach; ?>	
+		<?php endforeach; ?>	
 
-</table>
+	</table>
 
 <?php $this->stop('main_content') ?>
