@@ -47,54 +47,11 @@
 					
 					<div id="owl-demo" class="owl-carousel owl-theme">
 						<!-- PHP - AJOUTER UNE BOUCLE QUI RECUPERE LE TOP 10 DES FILMS DE LA DB -->
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
-						<div class="item">
-							<img src="<?= $this->assetUrl('img/cover/test_thumb.jpg') ?>" class="img-responsive">
-						</div>
+						<?php foreach($moviesFound as $movieFound):?>
+							<div class="item">
+								<img src="<?=$movieFound['cover'] . '._V1_SY370_.jpg'?>" class="img-responsive">
+							</div>
+						<?php endforeach;?>
 					</div>
 
 				</div>

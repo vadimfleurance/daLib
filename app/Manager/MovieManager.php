@@ -115,5 +115,13 @@ class MovieManager extends \W\Manager\Manager
 		
 	}//end of getInfos method
 
+	public function getBestImdbRating()
+	{
+		$sql = "SELECT id, imdbRating, cover FROM movies ORDER BY imdbRating DESC LIMIT 10;";
+		$statement = $this->dbh->prepare($sql);
+		$statement->execute();
+		return $statement->fetchAll();
+	}
+
 }//end of class
 

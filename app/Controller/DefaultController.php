@@ -17,7 +17,8 @@ class DefaultController extends Controller
 			"email" => "",
 			"password" => ""
 		];
-
-		$this->show('default/home', [ 'errors' => $errors ]);
+		$movieManager = new \Manager\MovieManager;
+		$moviesFound = $movieManager->getBestImdbRating();
+		$this->show('default/home', [ 'errors' => $errors, 'moviesFound' => $moviesFound ]);
 	}
 }
