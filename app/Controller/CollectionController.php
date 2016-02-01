@@ -18,6 +18,7 @@ class CollectionController extends Controller
 
 		if($bool == true) {
 			$result = $mUM->collect($idMovie, $idUser);
+
 		}
 		else if($bool == false) {
 			$result = $mUM->remove($idMovie, $idUser);
@@ -35,7 +36,15 @@ class CollectionController extends Controller
 		//var_dump($bool);
 
 		$mUM = new \Manager\MoviesUsersManager;
-		$mUM->setStatus($status, $bool, $idMovie, $idUser);
+		//$mUM->setStatus($status, $bool, $idMovie, $idUser);
+		$value = $mUM->getSingleStatus($idMovie, $idUser, $status);
+
+		if($value == 0 OR $value == NULL){
+			$mUM->setStatus($status, 1 , $idMovie, $idUser);
+		}
+		else{
+			$mUM->setStatus($status, 0 , $idMovie, $idUser);
+		}
 	}
 
 	//affiche la page connection
@@ -44,7 +53,8 @@ class CollectionController extends Controller
 		$this->allowTo([ 'user' , 'admin' ]);
 
 		//recupere l'id de l'utilisateur connecté
-		$user= $this->getUser();
+		$user = $this->getUser();
+		$class = $this->btnClass; 
 		$idUser = (int) $user['id'];
 
 		//récupere la collection de l'utilisateur connecté tableau/sous tableau voir la fonction getEntireCollection pour l'architecture
@@ -53,10 +63,11 @@ class CollectionController extends Controller
 		$totalMovies = $mUM->countCollection($idUser);
 		
 		//definition des variables de pagination
-		$perPage = 2;
+		$perPage = 24;
 		$nbPages = ceil($totalMovies / $perPage);
 		//limite la mauvaise utilisation de l'id de page dans l'url
 		if($cPage > $nbPages){
+			//Si le num de la page courante est superieure au nb de page total, redirection  vers la 404
 			$this->showNotFound();
 		}
 		
@@ -70,8 +81,7 @@ class CollectionController extends Controller
 												'cPage' =>$cPage
 											 ]);
 
-
-	}
+	}//end of method
 	
 
 }//end of class

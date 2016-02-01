@@ -120,6 +120,20 @@ class MoviesUsersManager extends \W\Manager\Manager
 		return $statusValues;
 
 	}
+	public function getSingleStatus($idMovie, $idUser, $status)
+	{
+		$stmt = $this->dbh->prepare(
+			"SELECT $status
+			FROM movies__users
+			WHERE idUser = :idUser
+			AND idMovie = :idMovie"
+			);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->bindValue(':idMovie', $idMovie);
+		$stmt->execute();
+		return $value = $stmt->fetchColumn();
+		
+	}
 	public function getEntireCollection($idUser,$totalMovies,$cPage,$perPage)
 	{
 				
