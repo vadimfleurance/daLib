@@ -6,6 +6,7 @@ class MovieManager extends \W\Manager\Manager
 	public function searchAjax()
 	{
 		$sql = "SELECT
+				movies.id,
 				movies.title,
 				movies.year,
 				movies.cover,
@@ -26,10 +27,10 @@ class MovieManager extends \W\Manager\Manager
 		return $statement->fetchAll();
 	}
 
-	public function search($page)
+	public function search($page, $search)
 	{
 		(int) $limit = 10;
-		(int) $offset = $page * 10 - 10;
+		(int) $offset = $page * $limit - $limit;
 
 		$sql = "SELECT
 				movies.id,
@@ -52,21 +53,22 @@ class MovieManager extends \W\Manager\Manager
 				) as directors
 				FROM movies
 				WHERE movies.title
-				LIKE :query
+				LIKE :search
 				LIMIT :offset, :limit;";
 
 		$statement = $this->dbh->prepare($sql);
-		$statement->bindValue(':query', "%" . $_GET['search'] . "%");
+		$statement->bindValue(':search', "%" . $search . "%");
 		$statement->bindValue(':offset', (int) $offset, 1);
 		$statement->bindValue(':limit', (int) $limit, 1);
 		$statement->execute();
 		return $statement->fetchAll();
 	}
 
-	public function getCount(){
+	public function getCount($search)
+	{
 		$sql = "SELECT COUNT(*) FROM movies WHERE title LIKE :title;";
 		$statement = $this->dbh->prepare($sql);
-		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
+		$statement->execute([":title" => "%" . $search . "%"]);
 		return $statement->fetchColumn();
 	}
 

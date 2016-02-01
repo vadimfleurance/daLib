@@ -6,8 +6,8 @@
 		['GET', '/movie-detail/[i:id]/', 'Movie#movieDetails', 'movie_detail'],
 		['GET|POST', '/add-movie/', 'Movie#addMovie', 'add_movie'],
 
-		//Search
-		['GET', '/search/[i:page]/', 'Movie#search', 'search'],		
+		//Search	
+		['GET', '/search/[i:page]/[:search]/', 'Movie#search', 'search'],		
 		['GET', '/search/ajax/', 'Movie#searchAjax', 'search_ajax'],
 
 		//Registration

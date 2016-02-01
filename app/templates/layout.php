@@ -33,7 +33,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6">
-								<form id="search-form" class="navbar-left" method="get" action="<?=$this->url('search',	['page' => 1, 'elements' => 10])?>" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
+								<form id="search-form" class="navbar-left" method="get" action="<?=$this->url('search', ['page' => 1])?>" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
 									<div class="form-group">
 										<label class="sr-only" for="searchInput">Search</label>
 										<div class="input-group">
