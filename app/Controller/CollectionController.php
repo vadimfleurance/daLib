@@ -36,7 +36,7 @@ class CollectionController extends Controller
 	}
 
 	//affiche la page connection
-	public function showCollection($cPage)
+	public function showCollection($cPage = 1)
 	{
 		//recupere l'id de l'utilisateur connecté
 		$user= $this->getUser();
@@ -48,7 +48,7 @@ class CollectionController extends Controller
 		$totalMovies = $mUM->countCollection($idUser);
 		
 		//definition des variables de pagination
-		$perPage = 2;
+		$perPage = 24;
 		$nbPages = ceil($totalMovies / $perPage);
 		//limite la mauvaise utilisation de l'id de page dans l'url
 		if($cPage > $nbPages){
