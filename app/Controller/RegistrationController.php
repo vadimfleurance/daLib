@@ -17,7 +17,7 @@ class RegistrationController extends Controller
 			"password" => [],
 			"total" => [],
 			];
-
+			
 		// Est testé si la soumission du formulaire est exécutée ou non
 		if ( $_POST ) {	
 
@@ -143,7 +143,8 @@ class RegistrationController extends Controller
 						"username" 		=> $username,
 						"email" 		=> $email,
 						"password"		=> password_hash( $password , PASSWORD_DEFAULT ),
-						"dateCreated" 	=> date( "Y-m-d H:i:s" )
+						"dateCreated" 	=> date( "Y-m-d H:i:s" ),
+						"role"			=> "user"
 						]);
 
 
