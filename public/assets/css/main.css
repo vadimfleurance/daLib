@@ -1243,7 +1243,7 @@ fieldset[disabled] .navbar-default .btn-link:focus,
 }
 
 .tab-content {
-  padding: 30px 10px;
+  padding: 30px 0;
   background-color: #333439;
 }
 
@@ -1347,6 +1347,7 @@ form#search-form .input-group-addon {
 
 #result-search-form .search-movies-notfound {
   min-height: 45px;
+  margin: 10px 0;
   line-height: 45px;
 }
 

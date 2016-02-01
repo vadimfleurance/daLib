@@ -5,16 +5,10 @@
 		<article class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4">
-					<div class="row">
-						<div class="col-xs-12">
-							<figure>
-								<img src="<?= $movie['cover'].'@._V1_SY500_.jpg' ?>" class="img-responsive center-block" alt="Cover <?= $movie['title'] ?>">
-							</figure>
-						</div>
-						
-					</div>		
+					<figure>
+						<img src="<?= $movie['cover'].'._V1_SY500_.jpg' ?>" class="img-responsive center-block" alt="Cover <?= $movie['title'] ?>">
+					</figure>
 				</div>
-
 				<div class="col-xs-12 col-sm-8">
 					<header>
 						<h1><?= $movie['title'] ?> <small>(<?= $movie['year'] ?>)</small></h1>
@@ -65,5 +59,4 @@
 			</div>
 		</article>
 	</section>
-
 <?php $this->stop('main_content') ?>

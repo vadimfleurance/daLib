@@ -23,11 +23,11 @@
 					</div>
 					<!-- Tab panes -->
 					<div class="row">
-						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="login-form">
+						<div class="tab-content clearfix">
+							<div role="tabpanel" class="col-xs-12 tab-pane active" id="login-form">
 								<?= $this->insert('user/form-login') ?>
 							</div>
-							<div role="tabpanel" class="tab-pane" id="register-form">
+							<div role="tabpanel" class="col-xs-12 tab-pane" id="register-form">
 								<?= $this->insert('user/form-register' , [ 'errors' => $errors ]) ?>
 							</div>
 						</div>
