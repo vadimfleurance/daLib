@@ -38,22 +38,18 @@ class CollectionController extends Controller
 
 		if($value == 0 OR $value == NULL){
 			$mUM->setStatus($status, 1 , $idMovie, $idUser);
-			$btnClass = 'green';
 		}
 		else{
 			$mUM->setStatus($status, 0 , $idMovie, $idUser);
-			$btnClass = 'red';
 		}
-		debug($btnClass);
-		//die();
-
 	}
 
 	//affiche la page connection
 	public function showCollection($cPage)
 	{
 		//recupere l'id de l'utilisateur connecté
-		$user= $this->getUser();
+		$user = $this->getUser();
+		$class = $this->btnClass; 
 		$idUser = (int) $user['id'];
 
 		//récupere la collection de l'utilisateur connecté tableau/sous tableau voir la fonction getEntireCollection pour l'architecture
@@ -62,10 +58,11 @@ class CollectionController extends Controller
 		$totalMovies = $mUM->countCollection($idUser);
 		
 		//definition des variables de pagination
-		$perPage = 2;
+		$perPage = 24;
 		$nbPages = ceil($totalMovies / $perPage);
 		//limite la mauvaise utilisation de l'id de page dans l'url
 		if($cPage > $nbPages){
+			//Si le num de la page courante est superieure au nb de page total, redirection  vers la 404
 			$this->showNotFound();
 		}
 		
@@ -79,8 +76,7 @@ class CollectionController extends Controller
 												'cPage' =>$cPage
 											 ]);
 
-
-	}
+	}//end of method
 	
 
 }//end of class
