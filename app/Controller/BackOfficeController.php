@@ -17,6 +17,7 @@ class BackOfficeController extends Controller
 
 	public function scrapper()
 	{
+		$this->allowTo('admin');
 		if ( !empty( $_POST['action']['scrapping'] )) {
 
 			$scrapperController  = new ScraperController();
@@ -38,13 +39,8 @@ class BackOfficeController extends Controller
 
 	public function profile($id)
 	{	
-		$errors = [
-			"username" => [],
-			"email" => [],
-			"password" => [],
-			"total" => [],
-			];
-
+		$this->allowTo('admin');
+	
 		//Crée une instance de notre gestionnaire
 		$userManager = new \Manager\UserManager();
 
@@ -57,85 +53,42 @@ class BackOfficeController extends Controller
 
 		if ( $_POST ) {
 
-			// debug($_POST);
-			// die();
-			$newUsername = 	$_POST['user']['username'];
-			$newEmail = 	$_POST['user']['email'];
-			$newRole = 		$_POST['role'];
-
-			$isValid = true; 
-
-			/**************************************************
-			*
-			*	USERNAME
-			*
-			**************************************************/
-			if ( empty( $newUsername )) {
-				$isValid = false;
-				$errors['username'][] = "Veuillez renseigner un nom d'utilisateur. " ;
-			}
-
-			if ( $username === $newUsername ) {
-				$isValid = false;
-				$errors['username'][] = "Existe déjà en base de donnée. " ;
-			}
-
-			/**************************************************
-			*
-			*	EMAIL
-			*
-			**************************************************/
-			if ( empty( $newEmail )) {
-				$isValid = false;
-				$errors['email'][] = "Veuillez renseigner une adresse email. " ;
-			}
-
-			if ( $email === $newEmail ) {
-				$isValid = false;
-				$errors['email'][] = "Existe déjà en base de donnée. " ;
-			}
-
+			if ( !empty( $_POST['action']['modify'])) {
 			
-			/**************************************************
-			*
-			*	ROLE
-			*
-			**************************************************/
-			if ( $role === $newRole ) {
-				$isValid = false;
-				$errors['role'][] = "Ce rôle pour cet utilisateur existe déjà en base de donnée. " ;
-			}
+				$newUsername = 	$_POST['user']['username'];
+				$newEmail = 	$_POST['user']['email'];
+				$newRole = 		$_POST['role'];
 
+				if ( !empty( $newUsername ) && !empty( $newEmail ) && !empty( $newRole )) {
 
-			/**************************************************
-			*
-			*	ENVOIE EN BDD
-			*
-			**************************************************/
-			if ( $isValid ) {
+					if ( $username != $newUsername ) {
+						$userManager->update([
+							'username' => $newUsername,
+							'dateModified' => date("Y-m-d H:i:s")
+						], $user['id'] );
+					}
+					
+					if ( $email != $newEmail ) {
+						$userManager->update([
+							'email' => $newEmail,
+							'dateModified' => date("Y-m-d H:i:s")
+						], $user['id'] );
+					}
 
-				$userManager->update([
-					"username" => $newUsername,
-					"email" => $newEmail,
-					"role" => $newRole,
-					"dateModified" => date("Y-m-d H:i:s")
-				]);
+					if ( $role != $newRole ) {
+						$userManager->update([
+							'role' => $newRole,
+							'dateModified' => date("Y-m-d H:i:s")
+						], $user['id'] );	
+					}
+				}
 			}
 		}
-
-		// echo('$user : de la méthode profile');
-		// debug($user);
-
-		// echo('$_POST : de la méthode profile');
-		// debug($_POST);
-
 		$this->show( 'back_office/profile', [
-			"user" => $user,
-			'errors' => $errors
-			]);
+			"user" => $user
+		]);
 	}
-
-
+			
 	public function getMovies()
 	{
 		$this->allowTo('admin');

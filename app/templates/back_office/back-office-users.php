@@ -5,8 +5,6 @@
 	<h1>Back-Office</h1>
 	
 	<p>Users</p>
-	
-	<!-- <?= debug($users); ?> -->
 
 <table>
 
@@ -18,7 +16,7 @@
 			<td><?= $user['dateCreated'] ?></td>
 			<td><?= $user['role'] ?></td>
 			<td><a href="<?= $this-> url('profile', ['id' => $user['id']]); ?>" >Custom</td>
-			<td><a href="#" >Generate a new password</td>
+			<td><a href="<?= $this-> url('forgot_password'); ?>" >Generate a new password</td>
 		</tr>
 
 	<?php endforeach; ?>	

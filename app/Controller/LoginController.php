@@ -182,7 +182,7 @@ class LoginController extends Controller
 			$mail->Password = "merciwebforce3";
 
 			// L'adresse d'envoie
-			$mail->setFrom('contact.dalib@gmail.com', 'Contact');
+			$mail->setFrom('contact.dalib@gmail.com', 'daLIb : Password forgotten');
 
 			// Les detinatires des mails qui seront envoyés. On récupère l'email de l'utilisateur ainsi que son nom d'utilisateur
 			$mail->addAddress( $user['email'] , $user['username'] );
