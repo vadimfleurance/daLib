@@ -49,7 +49,7 @@
 						<!-- PHP - AJOUTER UNE BOUCLE QUI RECUPERE LE TOP 10 DES FILMS DE LA DB -->
 						<?php foreach($moviesFound as $movieFound):?>
 							<div class="item">
-								<img src="<?=$movieFound['cover'] . '._V1_SY370_.jpg'?>" class="img-responsive">
+								<a href="<?=$this->url('movie_detail', ['id' => $movieFound['id']])?>"><img src="<?=$movieFound['cover'] . '._V1_SY370_.jpg'?>" class="img-responsive"></a>
 							</div>
 						<?php endforeach;?>
 					</div>
