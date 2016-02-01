@@ -54,7 +54,9 @@
 						</div>
 					</div>
 					<p><?= $movie['synopsis'] ?></p>
-					<a href="#" class="btn btn-default"><i class="fa fa-plus"></i> Add</a>
+					<a href="<?= $this->url('manage_collection') ?>" class="btn btn-default add-link" data-mov-id="<?= $movie['id'] ?>"><i class="fa fa-plus"></i> Add</a>
+					<a href="<?= $this->url('manage_collection') ?>" class="btn btn-default remove-link" data-mov-id="<?= $movie['id'] ?>"><i class="fa fa-minus"></i> Remove</a>
+					<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link" data-mov-id="<?= $movie['id'] ?>" data-status-type="watched" data-status-value="<?= $statusValues['watched'] ?>" ><i class="fa fa-minus"></i>Watched</a>
 				</div>
 			</div>
 		</article>
