@@ -22,26 +22,23 @@ class ScraperController extends Controller
 
 	public function verifyUrl($link)
 	{
-		// si l'url ou l'id passé a une syntaxe valide
-		if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link) || preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link) || preg_match("!^[t]{2}\d{7}$!", $link)){
-
-			//vérifie si le texte passé est un id d'IMDb  (sans les slash autour) de type "ttxxxxxxx" ou les x sont des chiffres de 0 à 9 et le traite si c'est le cas
-			if (preg_match("!^[t]{2}\d{7}$!", $link)){
-				return "http://www.imdb.com/title/" . $link . "/";
-			}
-
-			//vérifie si le texte passé est une URL d'un film sur IMDb
-			if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link)){
-				return $link;
-			}
-
-			//vérifie si le texte passé est une URL avec des paramètres et supprime les paramètres si c'est le cas
-			if(preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link)){
-				return preg_replace("/\?.*/", "", $link);
-			}
+		//vérifie si le texte passé est un id d'IMDb  (sans les slash autour) de type "ttxxxxxxx" ou les x sont des chiffres de 0 à 9 et le traite si c'est le cas
+		if (preg_match("!^[t]{2}\d{7}$!", $link)){
+			return "http://www.imdb.com/title/" . $link . "/";
 		}
+
+		//sinon vérifie si le texte passé est une URL d'un film sur IMDb
+		else if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link)){
+			return $link;
+		}
+
+		//sinon vérifie si le texte passé est une URL avec des paramètres et supprime les paramètres si c'est le cas
+		else if(preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link)){
+			return preg_replace("/\?.*/", "", $link);
+		}
+		
+		//sinon l'url n'est pas correcte, retourne false (erreur)
 		else{
-			//si l'url n'est pas correcte, retourne false (erreur)
 			return false;
 		}
 	}
