@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'daLib | Your collection of movies in your pocket']) ?>
 
 <?php $this->start('main_content') ?>
-	<section id="informations" class="full-section">
+	<section id="informations" class="section-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0">
@@ -37,7 +37,7 @@
 		</div>
 	</section>
 
-	<section id="top-10" class="full-section">
+	<section id="top-10" class="section-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">

@@ -19,20 +19,21 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 bg-dalib">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="<?= $this->url('home')?>"><i class="fa fa-film"></i> daLib</a>
+						<a class="navbar-brand" href="<?= (isset($w_user)) ? $this->url('add_movie') : $this->url('home'); ?>"><i class="fa fa-film"></i> daLib</a>
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<?php if(isset($w_user)) : ?>
+				<div class="collapse navbar-collapse" id="navbar-main">
+					<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6">
-								<form id="search-form" class="navbar-left navbar-form-search" action="" data-ajax="<?=$this->url('search_ajax')?>">
+								<form id="search-form" class="navbar-left" action="" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
 									<div class="form-group">
 										<label class="sr-only" for="searchInput">Search</label>
 										<div class="input-group">
@@ -41,14 +42,15 @@
 										</div>
 									</div>
 								</form>
-								<div id="result-search"></div>
+								<div id="result-search-form" class="hidden-xs"></div>
 							</div>
+						
 							<div class="col-xs-12 col-sm-6">
 								<ul class="nav navbar-nav navbar-right">
 									<li><a href="<?= $this->url('add_movie')?>"><i class="fa fa-plus"></i> Add a movie</a></li>
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-											<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle user-avatar" alt="Photo de profil de John Doe"> <span>John Doe</span> <i class="fa fa-caret-down"></i>
+											<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle user-avatar" alt="Photo de profil de John Doe"> <span><?= (isset($w_user)) ? $w_user['username'] : 'John Doe'; ?></span> <i class="fa fa-caret-down"></i>
 										</a>
 										<ul class="dropdown-menu">
 											<li><a href=""><i class="fa fa-database"></i> Collection</a></li>
@@ -62,17 +64,12 @@
 						</div>
 					</div>
 				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</nav>
 
 	<main>
-		<!--
-			Variable créée par le framework W contenant les infos de l'utilisateur 
-			et permettant de vérifier que la connexion est réussie
-		<?php  debug($w_user); ?>
-		-->
-
 		<?= $this->section('main_content') ?>
 	</main>
 
