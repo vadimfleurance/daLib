@@ -17,6 +17,7 @@ class CollectionController extends Controller
 
 		if($bool == true) {
 			$result = $mUM->collect($idMovie, $idUser);
+
 		}
 		else if($bool == false) {
 			$result = $mUM->remove($idMovie, $idUser);
@@ -32,7 +33,20 @@ class CollectionController extends Controller
 		//var_dump($bool);
 
 		$mUM = new \Manager\MoviesUsersManager;
-		$mUM->setStatus($status, $bool, $idMovie, $idUser);
+		//$mUM->setStatus($status, $bool, $idMovie, $idUser);
+		$value = $mUM->getSingleStatus($idMovie, $idUser, $status);
+
+		if($value == 0 OR $value == NULL){
+			$mUM->setStatus($status, 1 , $idMovie, $idUser);
+			$btnClass = 'green';
+		}
+		else{
+			$mUM->setStatus($status, 0 , $idMovie, $idUser);
+			$btnClass = 'red';
+		}
+		debug($btnClass);
+		//die();
+
 	}
 
 	//affiche la page connection
