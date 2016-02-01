@@ -13,7 +13,7 @@ class DefaultController extends Controller
 	{	
 		if ( $this->getUser() ) {
 
-			$this->redirectToRoute('collection');
+			$this->redirectToRoute('show_collection');
 		}
 
 		$errors = [

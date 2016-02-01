@@ -13,7 +13,7 @@ class LoginController extends Controller
 	{
 		if ( $this->getUser() ) {
 
-			$this->redirectToRoute('collection');
+			$this->redirectToRoute('show_collection');
 		}
 
 		//Initialisation du tableau des erreurs.
@@ -109,7 +109,7 @@ class LoginController extends Controller
 	{
 		if ( $this->getUser() ) {
 
-			$this->redirectToRoute('collection');
+			$this->redirectToRoute('show_collection');
 		}
 		
 		//Initialisation du tableau des erreurs.
@@ -230,7 +230,7 @@ class LoginController extends Controller
 	{
 		if ( $this->getUser() ) {
 
-			$this->redirectToRoute('collection');
+			$this->redirectToRoute('show_collection');
 		}
 		
 		//Initialisation du tableau des erreurs.

@@ -1,0 +1,191 @@
+$Collection:
+Array
+(
+    [movies] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 5
+                    [title] => The Big Short
+                    [synopsis] => Three separate but parallel stories of the U.S mortgage housing crisis of 2005 are told. Michael Burry, an eccentric ex-physician turned one-eyed Scion Capital hedge fund manager, has traded traditional office attire for shorts, bare feet and a Supercuts haircut. He believes that the US housing market is built on a bubble that will burst within the next few years. Autonomy within the company allows Burry to do largely as he pleases, so Burry proceeds to bet against the housing market with the banks, who are more than happy to accept his proposal for something that has never happened in American history. The banks believe that Burry is a crackpot and therefore are confident in that they will win the deal. Jared Vennett with Deutschebank gets wind of what Burry is doing and, as an investor believes he too can cash in on Burry's beliefs. An errant telephone call to FrontPoint Partners gets this information into the hands of Mark Baum, an idealist who is fed up with the corruption in the ...
+                    [duration] => 130
+                    [year] => 2015
+                    [imdbRating] => 8
+                    [cover] => http://ia.media-imdb.com/images/M/MV5BMjM2MTQ2MzcxOF5BMl5BanBnXkFtZTgwNzE4NTUyNzE
+                    [genres] => Array
+                        (
+                            [0] => Biography
+                            [1] => Drama
+                        )
+
+                    [directors] => Array
+                        (
+                            [0] => Adam McKay
+                        )
+
+                    [writers] => Array
+                        (
+                            [0] => Charles Randolph
+                            [1] => Adam McKay
+                        )
+
+                    [stars] => Array
+                        (
+                            [0] => Christian Bale
+                            [1] => Steve Carell
+                            [2] => Ryan Gosling
+                        )
+
+                )
+
+            [1] => Array
+                (
+                    [id] => 35
+                    [title] => Rogue One: A Star Wars Story
+                    [synopsis] => Rogue One: A Star Wars Story focuses on an esteemed Imperial scientist who's genius was crucial to the technological development of the Death Star. After learning of the Empire's true intention, however, Galen Marek defects in order to find his only daughter and destroy the very weapon he helped create.
+                    [duration] => 0
+                    [year] => 2016
+                    [imdbRating] => 0
+                    [cover] => http://ia.media-imdb.com/images/M/MV5BMjM1NTQ5MDcyM15BMl5BanBnXkFtZTgwMzMwNTY1NjE
+                    [genres] => Array
+                        (
+                            [0] => Action
+                            [1] => Adventure
+                            [2] => Fantasy
+                        )
+
+                    [directors] => Array
+                        (
+                            [0] => Gareth Edwards
+                        )
+
+                    [writers] => Array
+                        (
+                            [0] => John Knoll
+                            [1] => George Lucas
+                        )
+
+                    [stars] => Array
+                        (
+                            [0] => Felicity Jones
+                            [1] => Mads Mikkelsen
+                            [2] => Ben Mendelsohn
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id] => 45
+                    [title] => Norm of the North
+                    [synopsis] => When a real estate development invades his Arctic home, Norm and his three lemming friends head to New York City, where Norm becomes the mascot of the corporation in an attempt to bring it down from the inside and protect his homeland.
+                    [duration] => 90
+                    [year] => 2016
+                    [imdbRating] => 2.4
+                    [cover] => http://ia.media-imdb.com/images/M/MV5BNTY4MDk4Mjc4NV5BMl5BanBnXkFtZTgwNzg4OTk0NzE
+                    [genres] => Array
+                        (
+                            [0] => Animation
+                            [1] => Adventure
+                            [2] => Comedy
+                        )
+
+                    [directors] => Array
+                        (
+                            [0] => Trevor Wall
+                        )
+
+                    [writers] => Array
+                        (
+                            [0] => Daniel Altiere
+                            [1] => Steven Altiere
+                        )
+
+                    [stars] => Array
+                        (
+                            [0] => Rob Schneider
+                            [1] => Heather Graham
+                            [2] => Ken Jeong
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [id] => 21
+                    [title] => Bridge of Spies
+                    [synopsis] => In the cold war, a lawyer, James B. Donovan recruited by the CIA and involved in an intense negotiation mission to release and exchange a CIA U-2 spy-plane pilot, Francis G. Powers that was arrested alive after his plane was shot down by the Soviet Union during a mission- with a KGB intelligence officer, Rudolf Abel who was arrested for espionage in the US.
+                    [duration] => 142
+                    [year] => 2015
+                    [imdbRating] => 7.7
+                    [cover] => http://ia.media-imdb.com/images/M/MV5BMjIxOTI0MjU5NV5BMl5BanBnXkFtZTgwNzM4OTk4NTE
+                    [genres] => Array
+                        (
+                            [0] => Biography
+                            [1] => Drama
+                            [2] => Thriller
+                        )
+
+                    [directors] => Array
+                        (
+                            [0] => Steven Spielberg
+                        )
+
+                    [writers] => Array
+                        (
+                            [0] => Matt Charman
+                            [1] => Ethan Coen
+                        )
+
+                    [stars] => Array
+                        (
+                            [0] => Tom Hanks
+                            [1] => Mark Rylance
+                            [2] => Alan Alda
+                        )
+
+                )
+
+        )
+
+    [statuses] => Array
+        (
+            [0] => Array
+                (
+                    [watched] => 
+                    [toWatch] => 
+                    [owned] => 
+                    [ofInterest] => 
+                    [wanted] => 
+                )
+
+            [1] => Array
+                (
+                    [watched] => 
+                    [toWatch] => 
+                    [owned] => 
+                    [ofInterest] => 
+                    [wanted] => 
+                )
+
+            [2] => Array
+                (
+                    [watched] => 0
+                    [toWatch] => 
+                    [owned] => 
+                    [ofInterest] => 
+                    [wanted] => 
+                )
+
+            [3] => Array
+                (
+                    [watched] => 1
+                    [toWatch] => 
+                    [owned] => 
+                    [ofInterest] => 
+                    [wanted] => 
+                )
+
+        )
+
+)
