@@ -11,7 +11,7 @@
 
 		//Search	
 		['GET', '/search/[:search]/[i:page]?/', 'Movie#search', 'search'],
-		['GET', '/search/ajax/', 'Movie#searchAjax', 'search_ajax'],
+		['GET', '/search-ajax/', 'Movie#searchAjax', 'search_ajax'],
 
 		//Registration
 		['GET|POST', '/registration/', 'Registration#register', 'register' ],
