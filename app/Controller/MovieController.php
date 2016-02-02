@@ -21,11 +21,13 @@ class MovieController extends Controller
 	public function addMovie()
 	{
 		//variable qui s'affiche dans le template et qui dit si le film a été ajouté, s'il est déjà présent en base de données ou si l'url n'est pas correcte
-		$stateScrap = "";
+		$errorScrap = "";
+		$successScrap = "";
 
 		//si le formulaire est soumis
 		if ($_POST){
 			$url = $_POST["add-movie-input"];
+
 			//vérification que l'url est correcte
 			$scraperController = new \Controller\ScraperController;
 			$results = $scraperController->verifyUrl($url);
@@ -41,22 +43,22 @@ class MovieController extends Controller
 				//si le film n'est pas présent dans la base de données
 				if($isNew){
 					$scraperController->pageScraper($results);
-					$stateScrap = "The movie has been added.";					
+					$successScrap = "The movie has been added.";
 				}
 
 				//si le film est déjà présent dans la base de données
 				else{
-					$stateScrap = "The movie is already present in our database.";
+					$errorScrap = "The movie is already present in our database.";
 				}
 			}
 
 			//si l'url n'est pas correcte
 			else{
-				$stateScrap = "URL is not valid.";
+				$errorScrap = "URL is not valid.";
 			}
 
 		}
-		$this->show('movie/add_movie', ["stateScrap" => $stateScrap]);
+		$this->show('movie/add_movie', ["successScrap" => $successScrap, "errorScrap" => $errorScrap]);
 	}
 
 	public function searchAjax()
