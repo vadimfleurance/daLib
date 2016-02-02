@@ -13,11 +13,6 @@
 						</figure>
 						<h4><?= $movie['title'] ?> <small>(<?= $movie['year'] ?>)</small></h4>
 						<p class=""><i class="fa fa-star"></i> <?= $movie['imdbRating'] ?>/10</p>
-						<!-- <div class="div-collection-icons">
-							<i class="fa fa-eye collection-icon" data-icon-status-value="<?= $collection['statuses'][$key]['watched'] ?>"></i>
-							<i class="fa fa-bookmark collection-icon" data-icon-status-value="<?= $collection['statuses'][$key]['toWatch'] ?>"></i>
-							<i class="fa fa-hand-lizard-o collection-icon" data-icon-status-value="<?= $collection['statuses'][$key]['owned'] ?>"></i>
-						</div>	 -->
 					</article>
 				</a>
 			<?php endforeach ?>
