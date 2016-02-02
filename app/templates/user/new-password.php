@@ -21,7 +21,7 @@
 						</div>
 					<?php endif; ?>
 
-					<form class="clearfix" method="POST">
+					<form method="POST">
 						<div class="form-group">
 							<label class="sr-only" for="newPasswordInput">New Password</label>
 							<div class="input-group">
