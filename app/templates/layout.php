@@ -75,7 +75,7 @@
 		<?= $this->section('main_content') ?>
 	</main>
 
-	<footer class="main-footer">daLib &copy; 2015 - All rights reserved</footer>
+	<footer class="main-footer">daLib &copy; 2016 - All rights reserved</footer>
 
 	<!-- scripts -->
 	<script src="<?= $this->assetUrl('js/jquery-2.2.0.min.js') ?>"></script>

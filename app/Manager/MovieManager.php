@@ -213,6 +213,47 @@ class MovieManager extends \W\Manager\Manager
 		$statement->execute();
 		return $statement->fetchAll();
 	}
+	public function getSuggestion($idUser,$cPage, $perPage)
+	{
+		$sql ="SELECT 
+				movies.id,
+				movies.title,
+				movies.synopsis,
+				movies.duration,
+				movies.year,
+				movies.imdbRating,
+				movies.cover
+				FROM    movies 
+				WHERE movies.id NOT IN (
+		   		SELECT movies__users.idMovie 
+		  		FROM movies__users 
+		  		WHERE movies__users.idUser = $idUser
+				)
+				ORDER BY movies.imdbRating DESC
+				LIMIT ".(($cPage-1)*$perPage).", $perPage ";
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->execute();
+		return $suggestion= $stmt->fetchAll();
+
+	}
+	public function countAllMovies($idUser)
+	{
+		$stmt = $this->dbh->prepare(
+			"SELECT COUNT(id) AS allMovies
+			FROM movies
+			WHERE movies.id NOT IN 
+			(
+			SELECT movies__users.idMovie 
+			FROM movies__users 
+			WHERE movies__users.idUser = :idUser
+			)"
+		);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->execute();
+		return $allMovies  = $stmt->fetchColumn();
+
+	}//end of method
 
 }//end of class
 
