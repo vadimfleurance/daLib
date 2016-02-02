@@ -16,14 +16,22 @@
 	<a href="<?=$this->url('search', [ 'page' => $i + 1]) . '?search=' . $_GET['search']?>"><?=$i+1?></a>
 <?php endfor;?>
 
+<!-- Affichage des résultats de la recherche -->
 <?php foreach($moviesFound as $movie):?>
 	<div>
 		<a href="<?=$this->url('movie_detail', ['id' => $movie['id']])?>">
-			<h4><?=$movie['title']?></h4>
-			<img src="<?=$movie['cover'] . '._V1__SY150_.jpg'?>" alt="<?=$movie['title']?>">
-			<p><?=$movie['year']?></p>
+			<h4><?= $movie['title'] ?><?=$movie['year'] ? " <small>(" . $movie['year'] . ")</small>" : ''?></h4>
+			<?php if($movie['cover']):?>
+				<img src="<?=$movie['cover'] . '._V1__SY150_.jpg'?>" alt="<?=$movie['title']?>">
+			<?php else:?>
+				<img src="<?=$this->assetUrl('img/cover/placeholder_150.png')?>" alt="No cover available">
+			<?php endif;?>
+		<?php if($movie['directors']):?>
 			<p>From : <?=$movie['directors']?></p>
+		<?php endif;?>
+		<?php if($movie['actors']):?>
 			<p>With : <?=$movie['actors']?></p>
+		<?php endif;?>
 		</a>
 	</div>
 <?php endforeach; ?>
