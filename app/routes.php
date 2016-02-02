@@ -63,5 +63,11 @@
 
 			//	lancement du scrapper
 		['GET|POST', '/back-office/scrapper/launch/', 'BackOffice#launchScrapper', 'launch_scrapper' ],
+
+		/**
+		* 	USER-PROFILE
+		*/
+		//	Affçicher le profile de l'utilisateyr
+		['GET|POST', '/profile/', 'User#userProfile', 'user_profile' ],
 	
 	);	

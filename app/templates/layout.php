@@ -54,7 +54,7 @@
 									</a>
 									<ul class="dropdown-menu">
 										<li><a href="<?= $this->url('show_collection')?>"><i class="fa fa-database"></i> Collection</a></li>
-										<li><a href=""><i class="fa fa-user"></i> Profile</a></li>
+										<li><a href="<?= $this->url('user_profile')?>"><i class="fa fa-user"></i> Profile</a></li>
 										<li role="separator" class="divider hidden-xs"></li>
 										<?php if(isset($w_user) && $w_user['role'] === 'admin') : ?>
 										<li><a href="<?= $this->url('back_office')?>" class="btn btn-danger"><i class="fa fa-tachometer"></i> Back Office</a></li>
