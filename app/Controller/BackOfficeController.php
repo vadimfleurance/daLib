@@ -12,19 +12,24 @@ class BackOfficeController extends Controller
 	public function home()
 	{	
 		$this->allowTo('admin');
-		$this->show('back_office/home');
+		$this->show('back_office/back-office-home');
 	}
 
-	public function scrapper()
+	public function scrapperHome()
 	{
 		$this->allowTo('admin');
-		// if ( !empty( $_POST['action']['scrapping'] )) {
+		
+		$this->show('back_office/loading-scrapper');
+	}
 
-		// 	$scrapperController  = new ScraperController();
-		// 	$movies = $scrapperController->globalScraper();
-		// }
+	public function launchScrapper()
+	{
+		$this->allowTo('admin');
+		
 		$scrapperController  = new ScraperController();
 		$movies = $scrapperController->globalScraper();
+		
+		$this->show('back_office/loading-scrapper');
 	}
 
 	public function listUsers()
@@ -42,8 +47,8 @@ class BackOfficeController extends Controller
 	public function deleteUser( $id )
 	{
 		$this->allowTo('admin');
-		$userManager = new \Manager\UserManager();
 
+		$userManager = new \Manager\UserManager();
 		$user = $userManager->find( $id );		
 
 		$userManager->delete( $id );
@@ -53,15 +58,27 @@ class BackOfficeController extends Controller
 			]);
 	}
 
-	public function profile($id)
+	public function generateNewPasswordUser( $id ) 
+	{
+		$this->allowTo('admin');
+
+		$userManager = new \Manager\UserManager();
+		$user = $userManager->find( $id );	
+
+		$emailSender = new \Security\EmailSender();
+		$emailSender->sendResetPasswordLink( $user );
+
+		$this->show('back_office/generate_new_password_user', [
+			"user" => $user
+		]);
+	}
+
+	public function profile( $id )
 	{	
 		$this->allowTo('admin');
 
-	
 		//Crée une instance de notre gestionnaire
 		$userManager = new \Manager\UserManager();
-
-		//Récupère l'utilisateur en BDD en fct de l'identification dans l'url
 		$user = $userManager->find($id);
 
 		$username = 	$user['username'];
@@ -76,7 +93,7 @@ class BackOfficeController extends Controller
 
 		if ( $_POST ) {
 
-			if ( !empty( $_POST['action']['modify'])) {
+			if ( !empty( $_POST['action']['modify'] )) {
 			
 				$newUsername = 	$_POST['user']['username'];
 				$newEmail = 	$_POST['user']['email'];
@@ -221,4 +238,5 @@ class BackOfficeController extends Controller
 			"updatedRows" => $updatedRows
 		]);
 	}
+
 }

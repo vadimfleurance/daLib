@@ -110,6 +110,9 @@
 				</form>
 			</div>
 		</div>
+		<div class="col-xs-12 col-sm-4">
+			<a href="<?= $this->url('back_office_movies')?>" class="btn btn-default btn-block">Back to the list</a>
+		</div>
 	</div>
 </section>
 <?php $this->stop('main_content') ?>

@@ -43,10 +43,22 @@
 						endif ; 
 					?>
 
+
 					<div class="form-group">
 						<select name="role" class="form-control">
-							<option value="admin" selected>admin</option>
-							<option value="user">user</option>
+							
+							<?php if ( $user['role'] == 'admin' ) { ?>
+
+								<option value="admin" selected>admin</option>
+								<option value="user">user</option>
+							
+							<?php } else { ?>
+
+								<option value="admin">admin</option>
+								<option value="user" selected>user</option>
+
+							<?php } ?>
+						
 						</select>
 					</div>
 					<!-- Message de confirmation-->
