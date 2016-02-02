@@ -53,6 +53,7 @@
 										<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle user-avatar" alt="Photo de profil de John Doe"> <span><?= (isset($w_user)) ? $w_user['username'] : 'John Doe'; ?></span> <i class="fa fa-caret-down"></i>
 									</a>
 									<ul class="dropdown-menu">
+										<li><a href="<?= $this->url('show_suggestion')?>"><i class="fa fa-bullhorn"></i> Suggestion</a></li>
 										<li><a href="<?= $this->url('show_collection')?>"><i class="fa fa-database"></i> Collection</a></li>
 										<li><a href=""><i class="fa fa-user"></i> Profile</a></li>
 										<li role="separator" class="divider hidden-xs"></li>
