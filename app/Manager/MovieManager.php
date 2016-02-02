@@ -5,20 +5,73 @@ class MovieManager extends \W\Manager\Manager
 {
 	public function searchAjax()
 	{
-		$sql = "SELECT movies.title, movies.year, movies.cover, (
-		   SELECT GROUP_CONCAT(humans.name SEPARATOR ', ') FROM humans 
-		   JOIN movies__humans ON humans.id = movies__humans.idHuman 
-		   WHERE movies__humans.idMovie = movies.id AND movies__humans.role = 'star'
-			) as humans
-			FROM movies
-			WHERE movies.title LIKE :title LIMIT 6;";
+		$sql = "SELECT
+				movies.id,
+				movies.title,
+				movies.year,
+				movies.cover,
+				(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
+					FROM humans 
+					JOIN movies__humans
+					ON humans.id = movies__humans.idHuman 
+					WHERE movies__humans.idMovie = movies.id
+					AND movies__humans.role = 'star'
+				) as humans
+				FROM movies
+				WHERE movies.title
+				LIKE :title
+				LIMIT 6;";
 
 		$statement = $this->dbh->prepare($sql);
 		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
-		$moviesFound = $statement->fetchAll();
-
-		return $moviesFound;
+		return $statement->fetchAll();
 	}
+
+	public function search($page)
+	{
+		(int) $limit = 10;
+		(int) $offset = $page * $limit - $limit;
+
+		$sql = "SELECT
+				movies.id,
+				movies.title,
+				movies.year,
+				movies.cover,
+				(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
+					FROM humans 
+					JOIN movies__humans
+					ON humans.id = movies__humans.idHuman 
+					WHERE movies__humans.idMovie = movies.id
+					AND movies__humans.role = 'star'
+				) as actors,
+				(	SELECT GROUP_CONCAT(humans.name SEPARATOR ', ')
+					FROM humans
+					JOIN movies__humans
+					ON humans.id = movies__humans.idHuman
+					WHERE movies__humans.idMovie = movies.id
+					AND movies__humans.role = 'director'
+				) as directors
+				FROM movies
+				WHERE movies.title
+				LIKE :search
+				LIMIT :offset, :limit;";
+
+		$statement = $this->dbh->prepare($sql);
+		$statement->bindValue(':search', "%" . $_GET['search'] . "%");
+		$statement->bindValue(':offset', (int) $offset, 1);
+		$statement->bindValue(':limit', (int) $limit, 1);
+		$statement->execute();
+		return $statement->fetchAll();
+	}
+
+	public function getCount()
+	{
+		$sql = "SELECT COUNT(*) FROM movies WHERE title LIKE :title;";
+		$statement = $this->dbh->prepare($sql);
+		$statement->execute([":title" => "%" . $_GET['search'] . "%"]);
+		return $statement->fetchColumn();
+	}
+
 	//permet d'appeller le manager et d'inserer dans la table movies
 	public function lastId()
 	{

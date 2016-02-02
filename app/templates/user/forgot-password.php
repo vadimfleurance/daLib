@@ -20,7 +20,7 @@
 						</div>
 					<?php endif; ?>
 
-					<form class="clearfix" method="POST" action="<?= $this->url('forgot_password')?>">
+					<form method="POST" action="<?= $this->url('forgot_password')?>">
 						<div class="form-group">
 							<label class="sr-only" for="emailForgotPasswordInput">Email Forgot Password</label>
 							<div class="input-group">

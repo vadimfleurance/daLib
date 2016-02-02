@@ -2,8 +2,8 @@
 	
 	$w_routes = array(
 		['GET', '/', 'Default#home', 'home'],
-		['GET', '/search/ajax/', 'Movie#searchAjax', 'search_ajax'],
 		// ['GET', '/scrap/', 'Scraper#globalScraper', 'global_scraper'],
+
 		['GET', '/movie-detail/[i:id]/', 'Movie#movieDetails', 'movie_detail'],
 		['POST', '/managecollection/', 'Collection#manageCollection', 'manage_collection'],
 		['POST', '/statusmanage/', 'Collection#manageStatus', 'status_manage'],
@@ -12,6 +12,9 @@
 
 		['GET|POST', '/add-movie/', 'Movie#addMovie', 'add_movie'],
 
+		//Search	
+		['GET', '/search/[i:page]?/', 'Movie#search', 'search'],
+		['GET', '/search-ajax/', 'Movie#searchAjax', 'search_ajax'],
 
 		//Registration
 		['GET|POST', '/registration/', 'Registration#register', 'register' ],
@@ -40,16 +43,16 @@
 		['GET', '/back-office/', 'BackOffice#home', 'back_office' ],
 
 			// Lancement du scrapping depuis le backoffice
-		['POST', '/back-office/scrapper/', 'BackOffice#scrapper', 'back_office_scrapper' ],
+		['GET|POST', '/back-office/scrapper/', 'BackOffice#scrapper', 'back_office_scrapper' ],
 
 			//	Accès depuis le back-office aux utilisateurs
-		['POST', '/back-office/users/', 'BackOffice#listUsers', 'back_office_users' ],
+		['GET|POST', '/back-office/users/', 'BackOffice#listUsers', 'back_office_users' ],
 			
 			// Accès à la page permettant de modifier le compte de l'utilisateur
 		['GET|POST', '/back-office/users/profile/[:id]/', 'BackOffice#profile', 'profile'],
 			
 			//	Accès depuis le back-office aux films
-		['POST', '/back-office/movies/', 'BackOffice#listMovies', 'back_office_movies' ],
+		['GET|POST', '/back-office/movies/', 'BackOffice#listMovies', 'back_office_movies' ],
 
 			//	Accès depuis le back-office aux films
 		['GET|POST', '/back-office/movie/detail/[:id]/', 'BackOffice#movieDetail', 'detail' ],
