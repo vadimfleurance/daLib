@@ -4,16 +4,16 @@
 
 <!-- Bouton previous et next en haut de la page -->
 <?php if($page > 1):?>
-	<a href="<?=$this->url('search', [ 'page' => $page - 1, 'search' => $search])?>">Previous</a>
+	<a href="<?=$this->url('search', [ 'page' => $page - 1]) . '?search=' . $_GET['search']?>">Previous</a>
 <?php endif; ?>
 
 <?php if($page < $nbPage):?>
-	<a href="<?=$this->url('search', [ 'page' => $page + 1, 'search' => $search])?>">Next</a>
+	<a href="<?=$this->url('search', [ 'page' => $page + 1]) . '?search=' . $_GET['search']?>">Next</a>
 <?php endif; ?>
 <br>
 <!-- Affichage des numéros de page -->
 <?php for($i=0; $i<$nbPage; $i++):?>
-	<a href="<?=$this->url('search', [ 'page' => $i + 1, 'search' => $search])?>"><?=$i+1?></a>
+	<a href="<?=$this->url('search', [ 'page' => $i + 1]) . '?search=' . $_GET['search']?>"><?=$i+1?></a>
 <?php endfor;?>
 
 <?php foreach($moviesFound as $movie):?>
@@ -30,15 +30,15 @@
 
 <!-- Bouton previous et next en bas de la page -->
 <?php if($page > 1):?>
-	<a href="<?=$this->url('search', [ 'page' => $page - 1, 'search' => $search])?>">Previous</a>
+	<a href="<?=$this->url('search', [ 'page' => $page - 1]) . '?search=' . $_GET['search']?>">Previous</a>
 <?php endif; ?>
 
 <?php if($page < $nbPage):?>
-	<a href="<?=$this->url('search', [ 'page' => $page + 1, 'search' => $search])?>">Next</a>
+	<a href="<?=$this->url('search', [ 'page' => $page + 1]) . '?search=' . $_GET['search']?>">Next</a>
 <?php endif; ?>
 <br>
 <!-- Affichage des numéros de page -->
 <?php for($i=0; $i<$nbPage; $i++):?>
-	<a href="<?=$this->url('search', [ 'page' => $i + 1, 'search' => $search])?>"><?=$i+1?></a>
+	<a href="<?=$this->url('search', [ 'page' => $i + 1]) . '?search=' . $_GET['search']?>"><?=$i+1?></a>
 <?php endfor;?>
 <?php $this->stop('main_content') ?>

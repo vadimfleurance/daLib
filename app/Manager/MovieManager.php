@@ -27,7 +27,7 @@ class MovieManager extends \W\Manager\Manager
 		return $statement->fetchAll();
 	}
 
-	public function search($search, $page)
+	public function search($page)
 	{
 		(int) $limit = 10;
 		(int) $offset = $page * $limit - $limit;
@@ -57,18 +57,18 @@ class MovieManager extends \W\Manager\Manager
 				LIMIT :offset, :limit;";
 
 		$statement = $this->dbh->prepare($sql);
-		$statement->bindValue(':search', "%" . $search . "%");
+		$statement->bindValue(':search', "%" . $_GET['search'] . "%");
 		$statement->bindValue(':offset', (int) $offset, 1);
 		$statement->bindValue(':limit', (int) $limit, 1);
 		$statement->execute();
 		return $statement->fetchAll();
 	}
 
-	public function getCount($search)
+	public function getCount()
 	{
 		$sql = "SELECT COUNT(*) FROM movies WHERE title LIKE :title;";
 		$statement = $this->dbh->prepare($sql);
-		$statement->execute([":title" => "%" . $search . "%"]);
+		$statement->execute([":title" => "%" . $_GET['search'] . "%"]);
 		return $statement->fetchColumn();
 	}
 
