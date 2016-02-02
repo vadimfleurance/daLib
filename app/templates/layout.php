@@ -33,9 +33,9 @@
 				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
 					<div class="row collapse navbar-collapse" id="navbar-main">
 						<div class="col-xs-12 col-sm-6">
-							<form id="search-form" class="navbar-left" action="" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
+							<form id="search-form" class="navbar-left" action="<?=$this->url('search')?>" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
 								<div class="form-group">
-									<label class="sr-only" for="searchInput">Search</label>
+									<label class="sr-only" for="search-input">Search</label>
 									<div class="input-group">
 										<div class="input-group-addon"><i class="fa fa-search"></i></div>
 										<input type="search" class="form-control" id="search-input" name="search" placeholder="Search in daLib ...">
