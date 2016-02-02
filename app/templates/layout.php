@@ -25,7 +25,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="<?= (isset($w_user)) ? $this->url('add_movie') : $this->url('home'); ?>"><i class="fa fa-film"></i> daLib</a>
+						<a class="navbar-brand" href="<?= $this->url('home'); ?>"><i class="fa fa-film"></i> daLib</a>
 					</div>
 				</div>
 
@@ -56,6 +56,9 @@
 										<li><a href="<?= $this->url('show_collection')?>"><i class="fa fa-database"></i> Collection</a></li>
 										<li><a href=""><i class="fa fa-user"></i> Profile</a></li>
 										<li role="separator" class="divider hidden-xs"></li>
+										<?php if(isset($w_user) && $w_user['role'] === 'admin') : ?>
+										<li><a href="<?= $this->url('back_office')?>" class="btn btn-danger"><i class="fa fa-tachometer"></i> Back Office</a></li>
+										<?php endif; ?>
 										<li><a href="<?= $this->url('logout')?>"><i class="fa fa-power-off"></i> Logout</a></li>
 									</ul>
 								</li>

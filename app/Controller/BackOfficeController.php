@@ -18,11 +18,13 @@ class BackOfficeController extends Controller
 	public function scrapper()
 	{
 		$this->allowTo('admin');
-		if ( !empty( $_POST['action']['scrapping'] )) {
+		// if ( !empty( $_POST['action']['scrapping'] )) {
 
-			$scrapperController  = new ScraperController();
-			$movies = $scrapperController->globalScraper();
-		}
+		// 	$scrapperController  = new ScraperController();
+		// 	$movies = $scrapperController->globalScraper();
+		// }
+		$scrapperController  = new ScraperController();
+		$movies = $scrapperController->globalScraper();
 	}
 
 	public function listUsers()

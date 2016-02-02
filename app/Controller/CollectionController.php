@@ -54,7 +54,7 @@ class CollectionController extends Controller
 
 		//recupere l'id de l'utilisateur connecté
 		$user = $this->getUser();
-		$class = $this->btnClass; 
+		//$class = $this->btnClass; 
 		$idUser = (int) $user['id'];
 
 		//récupere la collection de l'utilisateur connecté tableau/sous tableau voir la fonction getEntireCollection pour l'architecture
