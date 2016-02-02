@@ -162,15 +162,30 @@ class MovieManager extends \W\Manager\Manager
 	}
 	public function getSuggestion($idUser)
 	{
-		// $sql='SELECT id FROM movies LEFT JOIN movies__users WHERE NOT EXIST '
-		// $sousreq = 'SELECT idMovie FROM movies__users WHERE idUser = :idUser ';
-		// 'SELECT movies.id  FROM movies LEFT JOIN movies__users ON movies.id = movies__users.idMovie'
-		// 'SELECT movies.id  
-		// FROM movies 
-		// LEFT JOIN movies__users 
-		// ON movies.id = movies__users.idMovie 
-		// IN (SELECT idMovie FROM movies__users WHERE idUser = 1 )'
-		// 'SELECT movies.id, title  FROM movies WHERE movies.id  IN (SELECT idMovie FROM movies__users WHERE idUser = 1 )'
+		$sql ='SELECT 
+				movies.id,
+				movies.title,
+				movies.synopsis,
+				movies.duration,
+				movies.year,
+				movies.imdbRating,
+				movies.cover
+				FROM    movies 
+				WHERE movies.id NOT IN (
+		   		SELECT movies__users.idMovie 
+		  		FROM movies__users 
+		  		WHERE movies__users.idUser = 1
+				FROM    movies 
+				WHERE movies.id NOT IN (
+		   		SELECT movies__users.idMovie 
+		  		FROM movies__users 
+		  		WHERE movies__users.idUser = :idUser
+		);'
+		$stmt=$this->dbh->prepare($sql);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->execute();
+		$suggest= $stmt->fecthAll();
+
 	}
 
 }//end of class
