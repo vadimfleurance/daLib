@@ -92,12 +92,11 @@ class CollectionController extends Controller
 
 		$movieManager = new \Manager\MovieManager;
 		$allMovies = $movieManager->countAllMovies($idUser);
-		debug($allMovies);
-		//die();
+		
 		$perPage = 24;
 		$nbPages = ceil($allMovies / $perPage);
 		$suggestion = $movieManager->getSuggestion($idUser,$cPage, $perPage);
-		//debug($suggest);
+		
 		$this->show('collection/suggestion', [
 												'suggestion' => $suggestion,
 												'nbPages'	=> $nbPages,
