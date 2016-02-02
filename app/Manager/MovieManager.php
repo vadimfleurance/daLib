@@ -175,16 +175,12 @@ class MovieManager extends \W\Manager\Manager
 		   		SELECT movies__users.idMovie 
 		  		FROM movies__users 
 		  		WHERE movies__users.idUser = 1
-				FROM    movies 
-				WHERE movies.id NOT IN (
-		   		SELECT movies__users.idMovie 
-		  		FROM movies__users 
-		  		WHERE movies__users.idUser = :idUser
-		);'
-		$stmt=$this->dbh->prepare($sql);
+				)
+				LIMIT 0, 50 ;';
+		$stmt = $this->dbh->prepare($sql);
 		$stmt->bindValue(':idUser', $idUser);
 		$stmt->execute();
-		$suggest= $stmt->fecthAll();
+		return $suggest= $stmt->fetchAll();
 
 	}
 

@@ -54,7 +54,7 @@ class CollectionController extends Controller
 
 		//recupere l'id de l'utilisateur connecté
 		$user = $this->getUser();
-		$class = $this->btnClass; 
+		//$class = $this->btnClass; a virer
 		$idUser = (int) $user['id'];
 
 		//récupere la collection de l'utilisateur connecté tableau/sous tableau voir la fonction getEntireCollection pour l'architecture
@@ -82,6 +82,20 @@ class CollectionController extends Controller
 											 ]);
 
 	}//end of method
+	public function showSuggestion()
+	{
+		$user = $this->getUser();
+		$idUser = (int) $user['id'];
+
+		$movieManager = new \Manager\MovieManager;
+		$suggest = $movieManager->getSuggestion($idUser);
+		debug($suggest);
+		$this->show('collection/suggestion', [
+												'suggestion' => $suggestion 
+												
+											 ]);
+
+	}
 	
 
 }//end of class
