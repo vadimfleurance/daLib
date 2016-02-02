@@ -22,9 +22,40 @@ class MovieController extends Controller
 		$movieManager = new \Manager\MovieManager;
 		$movie = $movieManager->getInfos($id);
 
+		// Si movie est faux (donc que le film n'est pas présent en base de données), redirige vers une erreur 404
+		if(!$movie){
+			$this->showNotFound();
+		}
+		// Calcul du nombre de genres, de producteurs, de scénaristes et d'acteurs
+		$genresNb = count($movie['genres']);
+		$directorsNb = count($movie['directors']);
+		$writersNb = count($movie['writers']);
+		$starsNb = count($movie['stars']);
+
+		// Si une durée est présente
+		if ($movie['duration']){
+
+			// Si le film dure au moins 60 minutes, calcul de la durée en format heure minute avec durée en minute entre parenthèses
+			if (floor($movie['duration']/60) != 0){
+				$movie['duration'] = floor($movie['duration']/60) . 'h ' . $movie['duration']%60 . 'min (' . $movie['duration'] . ' min)';
+			}
+
+			// Sinon laisse la durée en minutes
+			else{
+				$movie['duration'] = $movie['duration'] . ' min';
+			}			
+		}
+
 		$moviesUserManager = new \Manager\MoviesUsersManager;
 		$movieCollectionFound = $moviesUserManager->isPresent($id, $user['id']);
-		$this->show('movie/details', ['movie' => $movie, 'movieCollectionFound' => $movieCollectionFound]);
+		$this->show('movie/details', [
+										'movie' => $movie,
+										'movieCollectionFound' => $movieCollectionFound,
+										'genresNb' => $genresNb,
+										'directorsNb' => $directorsNb,
+										'writersNb' => $writersNb,
+										'starsNb' => $starsNb,
+									]);
 	}
 
 	public function addMovie()

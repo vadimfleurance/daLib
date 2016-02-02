@@ -18,14 +18,13 @@
 						<h1><?= $movie['title'] ?><?=$movie['year'] ? " <small>(" . $movie['year'] . ")</small>" : ''?></h1>
 						<?php if($movie['genres']):?>
 						<p class="genre">
-							<?php $genresNb = count($movie['genres']);?>
 							<?php $i = 0;?>
 							<?php foreach($movie['genres'] as $genre):?>
 								<?php $i++;?>
 								<?php if($genresNb == $i ):?>
-									<span><?= $genre?></span>
+								<span><?=$genre?></span>
 								<?php else:?>
-									<span><?=$genre . ', '?></span>
+								<span><?=$genre . ', '?></span>
 								<?php endif;?>
 							<?php endforeach ?>
 						</p>
@@ -36,16 +35,11 @@
 							<dl class="row">
 							<?php if($movie['duration']):?>
 								<dt class="col-xs-4 col-sm-3">Duration</dt>
-								<?php if(floor($movie['duration']/60) != 0):?>
-								<dd class="col-xs-8 col-sm-9"><?=floor($movie['duration']/60)?>h <?=$movie['duration']%60?>min (<?= $movie['duration'] ?> min)</dd>
-								<?php else:?>
-								<dd class="col-xs-8 col-sm-9"><?= $movie['duration'] ?> min</dd>
-								<?php endif;?>
+								<dd class="col-xs-8 col-sm-9"><?=$movie['duration']?></dd>
 							<?php endif;?>
 							<?php if($movie['directors']):?>
 								<dt class="col-xs-4 col-sm-3">Directors</dt>
 								<dd class="col-xs-8 col-sm-9">
-								<?php $directorsNb = count($movie['directors']);?>
 								<?php $i = 0;?>
 									<?php foreach($movie['directors'] as $director): ?>
 										<?php $i++;?>
@@ -60,7 +54,6 @@
 								<?php if($movie['writers']):?>
 								<dt class="col-xs-4 col-sm-3">Writers</dt>
 								<dd class="col-xs-8 col-sm-9">
-								<?php $writersNb = count($movie['writers']);?>
 								<?php $i = 0;?>
 									<?php foreach($movie['writers'] as $writer): ?>
 										<?php $i++;?>
@@ -75,7 +68,6 @@
 								<?php if($movie['stars']):?>
 								<dt class="col-xs-4 col-sm-3">Stars</dt>
 								<dd class="col-xs-8 col-sm-9">
-								<?php $starsNb = count($movie['stars']);?>
 								<?php $i = 0;?>
 									<?php foreach($movie['stars'] as $star): ?>
 										<?php $i++;?>
