@@ -8,14 +8,23 @@ class MovieController extends Controller
 {
 	public function movieDetails($id)
 	{	
-		$user = $this->getUser();
+		/*$user = $this->getUser();
 		
 		$movieManager = new \Manager\MovieManager;
 		$movie = $movieManager->getInfos($id);
 
 		$moviesUserManager = new \Manager\MoviesUsersManager;
 		$statusValues = $moviesUserManager->getStatus($id, $user['id'] );
-		$this->show('movie/details', ['movie' => $movie, 'statusValues' => $statusValues ]);
+		$this->show('movie/details', ['movie' => $movie, 'statusValues' => $statusValues ]);*/
+
+		$user = $this->getUser();
+
+		$movieManager = new \Manager\MovieManager;
+		$movie = $movieManager->getInfos($id);
+
+		$moviesUserManager = new \Manager\MoviesUsersManager;
+		$movieCollectionFound = $moviesUserManager->isPresent($id, $user['id']);
+		$this->show('movie/details', ['movie' => $movie, 'movieCollectionFound' => $movieCollectionFound]);
 	}
 
 	public function addMovie()

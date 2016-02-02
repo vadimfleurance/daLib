@@ -8,35 +8,41 @@ class CollectionController extends Controller
 	{	
 		$this->allowTo([ 'user' , 'admin' ]);
 
-		$bool = (bool) $_POST['bool'];
+		// $bool = (bool) $_POST['bool'];
+		// $idMovie = (int) $_POST['idMovie'];
+		// $user= $this->getUser();
+		// $idUser = (int) $user['id'];
+		// //var_dump($bool);
+
+		// $mUM = new \Manager\MoviesUsersManager; 
+
+		// if($bool == true) {
+		// 	$result = $mUM->collect($idMovie, $idUser);
+
+		// }
+		// else if($bool == false) {
+		// 	$result = $mUM->remove($idMovie, $idUser);
+		// }
+
 		$idMovie = (int) $_POST['idMovie'];
-		$user= $this->getUser();
+		$user = $this->getUser();
 		$idUser = (int) $user['id'];
-		//var_dump($bool);
 
-		$mUM = new \Manager\MoviesUsersManager; 
+		$moviesUserManager = new \Manager\MoviesUsersManager;
+		$isPresent = $moviesUserManager->isPresent($idMovie, $idUser);
+		($isPresent) ? $moviesUserManager->removeToCollection($idMovie, $idUser) : $moviesUserManager->addToCollection($idMovie, $idUser);
 
-		if($bool == true) {
-			$result = $mUM->collect($idMovie, $idUser);
-
-		}
-		else if($bool == false) {
-			$result = $mUM->remove($idMovie, $idUser);
-		}
 	}
 	public function manageStatus()
 	{	
 		$this->allowTo([ 'user' , 'admin' ]);
 
-		$status =$_POST['status'];
-		$bool = (bool) $_POST['bool'];
+		$status = $_POST['status'];
 		$idMovie = $_POST['idMovie'];
 		$user= $this->getUser();
 		$idUser =$user['id'];
-		//var_dump($bool);
 
 		$mUM = new \Manager\MoviesUsersManager;
-		//$mUM->setStatus($status, $bool, $idMovie, $idUser);
 		$value = $mUM->getSingleStatus($idMovie, $idUser, $status);
 
 		if($value == 0 OR $value == NULL){

@@ -1275,6 +1275,27 @@ fieldset[disabled] .navbar-default .btn-link:focus,
   margin-left: 19px;
 }
 
+.btn-watched,
+.btn-toWatch,
+.btn-owned,
+.btn-wanted {
+  background-color: green;
+}
+
+.btn-watched:focus,
+.btn-toWatch:focus,
+.btn-owned:focus,
+.btn-wanted:focus {
+  background-color: green;
+}
+
+.btn-watched:hover,
+.btn-toWatch:hover,
+.btn-owned:hover,
+.btn-wanted:hover {
+  background-color: green;
+}
+
 form .form-control,
 form .input-group-addon {
   height: 40px;
