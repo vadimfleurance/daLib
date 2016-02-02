@@ -84,16 +84,24 @@ class CollectionController extends Controller
 											 ]);
 
 	}//end of method
-	public function showSuggestion()
+	public function showSuggestion($cPage = 1)
 	{
+		$this->allowTo([ 'user' , 'admin' ]);
 		$user = $this->getUser();
 		$idUser = (int) $user['id'];
 
 		$movieManager = new \Manager\MovieManager;
-		$suggest = $movieManager->getSuggestion($idUser);
-		debug($suggest);
+		$allMovies = $movieManager->countAllMovies($idUser);
+		debug($allMovies);
+		//die();
+		$perPage = 24;
+		$nbPages = ceil($allMovies / $perPage);
+		$suggestion = $movieManager->getSuggestion($idUser,$cPage, $perPage);
+		//debug($suggest);
 		$this->show('collection/suggestion', [
-												'suggestion' => $suggestion 
+												'suggestion' => $suggestion,
+												'nbPages'	=> $nbPages,
+												'cPage' =>$cPage
 												
 											 ]);
 
