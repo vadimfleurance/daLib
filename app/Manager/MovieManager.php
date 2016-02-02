@@ -160,6 +160,18 @@ class MovieManager extends \W\Manager\Manager
 		$statement->execute();
 		return $statement->fetchAll();
 	}
+	public function getSuggestion($idUser)
+	{
+		// $sql='SELECT id FROM movies LEFT JOIN movies__users WHERE NOT EXIST '
+		// $sousreq = 'SELECT idMovie FROM movies__users WHERE idUser = :idUser ';
+		// 'SELECT movies.id  FROM movies LEFT JOIN movies__users ON movies.id = movies__users.idMovie'
+		// 'SELECT movies.id  
+		// FROM movies 
+		// LEFT JOIN movies__users 
+		// ON movies.id = movies__users.idMovie 
+		// IN (SELECT idMovie FROM movies__users WHERE idUser = 1 )'
+		// 'SELECT movies.id, title  FROM movies WHERE movies.id  IN (SELECT idMovie FROM movies__users WHERE idUser = 1 )'
+	}
 
 }//end of class
 
