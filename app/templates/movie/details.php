@@ -36,8 +36,8 @@
 							<dl class="row">
 							<?php if($movie['duration']):?>
 								<dt class="col-xs-4 col-sm-3">Duration</dt>
-								<?php if(round($movie['duration']/60) != 0):?>
-								<dd class="col-xs-8 col-sm-9"><?=round($movie['duration']/60)?>h <?=$movie['duration']%60?>min (<?= $movie['duration'] ?> min)</dd>
+								<?php if(floor($movie['duration']/60) != 0):?>
+								<dd class="col-xs-8 col-sm-9"><?=floor($movie['duration']/60)?>h <?=$movie['duration']%60?>min (<?= $movie['duration'] ?> min)</dd>
 								<?php else:?>
 								<dd class="col-xs-8 col-sm-9"><?= $movie['duration'] ?> min</dd>
 								<?php endif;?>
