@@ -18,8 +18,9 @@
 						Join now or get your genitals cut off ! And as french says "foo parce qu'on est des foo !"</p>
 					</header>
 				</div>
-				<?php if( !isset($w_user)) : ?>
+				
 				<div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
+					<?php if(!isset($w_user)) : ?>
 					<!-- Nav tabs -->
 					<div class="row">
 						<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -38,8 +39,10 @@
 							</div>
 						</div>
 					</div>
+					<?php else: ?>
+						<img src="<?= $this->assetUrl('img/daLib.png')?>" class="img-responsive">
+					<?php endif; ?>
 				</div>
-				<?php endif; ?>
 			</div>
 		</div>
 	</section>

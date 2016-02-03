@@ -9,17 +9,12 @@
 				
 				<p>Start to scrap on click the link below.<p>
 
-				<div class="col-xs-12 col-sm-4">
-						<a href="<?= $this->url('launch_scrapper')?>" class="btn btn-default btn-block">Start Scraper</a>
-				</div>
+				<a href="<?= $this->url('launch_scrapper')?>" class="btn btn-default btn-block">Start Scraper</a>
 
-				<p>Don't do anything until the current tab is loading (check the wheel).</p>
+				<p>Don't do anything until the current tab is loading (check the wheel).<br>
+				When is done (you can see the favicon on the tab) you can do what you want :).</p>
 
-				<p>When is done (you can see the favicon on the tab) you can do what you want :).</p>
-
-				<div class="col-xs-12 col-sm-4">
-					<a href="<?= $this->url('back_office')?>" class="btn btn-default btn-block">Back to Back-Office</a>
-				</div>
+				<a href="<?= $this->url('back_office')?>" class="btn btn-default">Back to Back-Office</a>
 			</div>
 		</div>
 	</div>

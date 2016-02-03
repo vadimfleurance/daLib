@@ -11,7 +11,7 @@
 
 					<p>Your registration has been well achieved :D !<br>
 					Now you are a new member of the daLib community and the team is very proud of it !<br>
-					Check the link below to be redirect to the <a href="<?= $this-> url('home'); ?>" title="Back to the home page">home page</a>.<br><br>
+					Check the link below to be redirect to the <a href="<?= $this-> url('show_suggestion'); ?>" title="Go to the suggestion page">suggestion page</a> to start the adventure.<br><br>
 					Have fun :-)</p>
 				</div>
 			</div>

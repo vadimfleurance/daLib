@@ -34,8 +34,8 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-xs-4 col-sm-4">
-				<a href="<?= $this->url('back_office')?>" class="btn btn-default btn-block">Back to Back-Office</a>
+			<div class="col-xs-12 col-sm-8 col-md-offset-2">
+				<a href="<?= $this->url('back_office')?>" class="btn btn-default">Back to Back-Office</a>
 			</div>
 		</div>
 	</div>
