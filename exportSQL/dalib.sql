@@ -50,7 +50,7 @@ INSERT INTO `genres` (`id`, `name`) VALUES
 (6, 'Family'),
 (5, 'Fantasy'),
 (27, 'Film-Noir'),
-(24, 'Game Show'),
+(24, 'Game-Show'),
 (23, 'History'),
 (21, 'Horror'),
 (11, 'Music'),
@@ -62,7 +62,7 @@ INSERT INTO `genres` (`id`, `name`) VALUES
 (17, 'Sci-Fi'),
 (28, 'Short'),
 (7, 'Sport'),
-(13, 'Talk Show'),
+(13, 'Talk-Show'),
 (18, 'Thriller'),
 (8, 'War'),
 (22, 'Western');

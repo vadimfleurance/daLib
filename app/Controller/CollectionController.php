@@ -8,35 +8,41 @@ class CollectionController extends Controller
 	{	
 		$this->allowTo([ 'user' , 'admin' ]);
 
-		$bool = (bool) $_POST['bool'];
+		// $bool = (bool) $_POST['bool'];
+		// $idMovie = (int) $_POST['idMovie'];
+		// $user= $this->getUser();
+		// $idUser = (int) $user['id'];
+		// //var_dump($bool);
+
+		// $mUM = new \Manager\MoviesUsersManager; 
+
+		// if($bool == true) {
+		// 	$result = $mUM->collect($idMovie, $idUser);
+
+		// }
+		// else if($bool == false) {
+		// 	$result = $mUM->remove($idMovie, $idUser);
+		// }
+
 		$idMovie = (int) $_POST['idMovie'];
-		$user= $this->getUser();
+		$user = $this->getUser();
 		$idUser = (int) $user['id'];
-		//var_dump($bool);
 
-		$mUM = new \Manager\MoviesUsersManager; 
+		$moviesUserManager = new \Manager\MoviesUsersManager;
+		$isPresent = $moviesUserManager->isPresent($idMovie, $idUser);
+		($isPresent) ? $moviesUserManager->removeToCollection($idMovie, $idUser) : $moviesUserManager->addToCollection($idMovie, $idUser);
 
-		if($bool == true) {
-			$result = $mUM->collect($idMovie, $idUser);
-
-		}
-		else if($bool == false) {
-			$result = $mUM->remove($idMovie, $idUser);
-		}
 	}
 	public function manageStatus()
 	{	
 		$this->allowTo([ 'user' , 'admin' ]);
 
-		$status =$_POST['status'];
-		$bool = (bool) $_POST['bool'];
+		$status = $_POST['status'];
 		$idMovie = $_POST['idMovie'];
 		$user= $this->getUser();
 		$idUser =$user['id'];
-		//var_dump($bool);
 
 		$mUM = new \Manager\MoviesUsersManager;
-		//$mUM->setStatus($status, $bool, $idMovie, $idUser);
 		$value = $mUM->getSingleStatus($idMovie, $idUser, $status);
 
 		if($value == 0 OR $value == NULL){
@@ -54,7 +60,9 @@ class CollectionController extends Controller
 
 		//recupere l'id de l'utilisateur connecté
 		$user = $this->getUser();
+
 		//$class = $this->btnClass; 
+
 		$idUser = (int) $user['id'];
 
 		//récupere la collection de l'utilisateur connecté tableau/sous tableau voir la fonction getEntireCollection pour l'architecture
@@ -82,6 +90,27 @@ class CollectionController extends Controller
 											 ]);
 
 	}//end of method
+	public function showSuggestion($cPage = 1)
+	{
+		$this->allowTo([ 'user' , 'admin' ]);
+		$user = $this->getUser();
+		$idUser = (int) $user['id'];
+
+		$movieManager = new \Manager\MovieManager;
+		$allMovies = $movieManager->countAllMovies($idUser);
+		
+		$perPage = 24;
+		$nbPages = ceil($allMovies / $perPage);
+		$suggestion = $movieManager->getSuggestion($idUser,$cPage, $perPage);
+		
+		$this->show('collection/suggestion', [
+												'suggestion' => $suggestion,
+												'nbPages'	=> $nbPages,
+												'cPage' =>$cPage
+												
+											 ]);
+
+	}
 	
 
 }//end of class

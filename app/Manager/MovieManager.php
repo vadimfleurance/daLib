@@ -118,53 +118,57 @@ class MovieManager extends \W\Manager\Manager
 		$stmt->execute();
 		$rawinfos= $stmt->fetchAll();
 		//debug($rawinfos);
+		if ($rawinfos){
+			$movie=[
+				'id' =>$rawinfos[0]['id'],
+				'title' => $rawinfos[0]['title'],
+				'synopsis' => $rawinfos[0]['synopsis'],
+				'duration' => $rawinfos[0]['duration'],
+				'year' => $rawinfos[0]['year'],
+				'imdbRating' => $rawinfos[0]['imdbRating'],
+				'cover' => $rawinfos[0]['cover'],
+				'genres' =>[],
+				'directors' =>[],
+				'writers'=>[],
+				'stars'=>[]
+			];
+			
+			//debug($movie);
+			foreach ($rawinfos as $info) {
 
-		$movie=[
-			'id' =>$rawinfos[0]['id'],
-			'title' => $rawinfos[0]['title'],
-			'synopsis' => $rawinfos[0]['synopsis'],
-			'duration' => $rawinfos[0]['duration'],
-			'year' => $rawinfos[0]['year'],
-			'imdbRating' => $rawinfos[0]['imdbRating'],
-			'cover' => $rawinfos[0]['cover'],
-			'genres' =>[],
-			'directors' =>[],
-			'writers'=>[],
-			'stars'=>[]
-		];
-		
-		//debug($movie);
-		foreach ($rawinfos as $info) {
-
-			//ajoute le genre dans l'array movie final si le genre n'est pas deja present
-			if(!in_array($info['genre'], $movie['genres'])){
-				$movie['genres'][] = $info['genre'];
-			}
-			// si le role est director recupere le nom et ajoute le au rang director du tableau movie
-			if($info['role'] === 'director'){
-				if(!in_array($info['name'], $movie['directors'])){
-					$movie['directors'][] = $info['name'];
+				//ajoute le genre dans l'array movie final si le genre n'est pas deja present
+				if(!in_array($info['genre'], $movie['genres'])){
+					$movie['genres'][] = $info['genre'];
 				}
-			}
-			// si le role est writer recupere le nom et ajoute le au rang writers du tableau movie
-			if($info['role'] === 'writer'){
-				if(!in_array($info['name'], $movie['writers'])){
-					$movie['writers'][] = $info['name'];
+				// si le role est director recupere le nom et ajoute le au rang director du tableau movie
+				if($info['role'] === 'director'){
+					if(!in_array($info['name'], $movie['directors'])){
+						$movie['directors'][] = $info['name'];
+					}
 				}
-			}
-			// si le role est star recupere le nom et ajoute le au rang stars du tableau movie
-			if($info['role'] === 'star'){
-				if(!in_array($info['name'], $movie['stars'])){
-					$movie['stars'][] = $info['name'];
+				// si le role est writer recupere le nom et ajoute le au rang writers du tableau movie
+				if($info['role'] === 'writer'){
+					if(!in_array($info['name'], $movie['writers'])){
+						$movie['writers'][] = $info['name'];
+					}
 				}
-			}
+				// si le role est star recupere le nom et ajoute le au rang stars du tableau movie
+				if($info['role'] === 'star'){
+					if(!in_array($info['name'], $movie['stars'])){
+						$movie['stars'][] = $info['name'];
+					}
+				}
 
 
 
-		}//end of foreach
-		//debug($movie);
-		return $movie;
-		
+			}//end of foreach
+			//debug($movie);
+			return $movie;
+		}
+
+		else{
+			return false;
+		}
 		
 	}//end of getInfos method
 
@@ -213,6 +217,47 @@ class MovieManager extends \W\Manager\Manager
 		$statement->execute();
 		return $statement->fetchAll();
 	}
+	public function getSuggestion($idUser,$cPage, $perPage)
+	{
+		$sql ="SELECT 
+				movies.id,
+				movies.title,
+				movies.synopsis,
+				movies.duration,
+				movies.year,
+				movies.imdbRating,
+				movies.cover
+				FROM    movies 
+				WHERE movies.id NOT IN (
+		   		SELECT movies__users.idMovie 
+		  		FROM movies__users 
+		  		WHERE movies__users.idUser = $idUser
+				)
+				ORDER BY movies.imdbRating DESC
+				LIMIT ".(($cPage-1)*$perPage).", $perPage ";
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->execute();
+		return $suggestion= $stmt->fetchAll();
+
+	}
+	public function countAllMovies($idUser)
+	{
+		$stmt = $this->dbh->prepare(
+			"SELECT COUNT(id) AS allMovies
+			FROM movies
+			WHERE movies.id NOT IN 
+			(
+			SELECT movies__users.idMovie 
+			FROM movies__users 
+			WHERE movies__users.idUser = :idUser
+			)"
+		);
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->execute();
+		return $allMovies  = $stmt->fetchColumn();
+
+	}//end of method
 
 }//end of class
 

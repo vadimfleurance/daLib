@@ -43,6 +43,19 @@ class ScraperController extends Controller
 		}
 	}
 
+	//vérifie si l'url ne renvoie pas vers une erreur 404
+	public function verifyHeader($link)
+	{
+		$headerStatus = get_headers($link);
+		if($headerStatus[0] == "HTTP/1.1 200 OK"){
+			return true;
+		}
+
+		else{
+			return false;
+		}
+	}
+
 	public function globalScraper()
 	{		
 		// Target

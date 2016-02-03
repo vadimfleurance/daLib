@@ -1275,6 +1275,27 @@ fieldset[disabled] .navbar-default .btn-link:focus,
   margin-left: 19px;
 }
 
+.btn-watched,
+.btn-toWatch,
+.btn-owned,
+.btn-wanted {
+  background-color: green;
+}
+
+.btn-watched:focus,
+.btn-toWatch:focus,
+.btn-owned:focus,
+.btn-wanted:focus {
+  background-color: green;
+}
+
+.btn-watched:hover,
+.btn-toWatch:hover,
+.btn-owned:hover,
+.btn-wanted:hover {
+  background-color: green;
+}
+
 form .form-control,
 form .input-group-addon {
   height: 40px;
@@ -1430,6 +1451,42 @@ section#top-10 header h1::before {
   }
 }
 
+article.search-movies {
+  padding: 10px 0;
+}
+
+@media (min-width: 768px) {
+  article.search-movies {
+    min-height: 175px;
+  }
+}
+
+@media (min-width: 992px) {
+  article.search-movies {
+    min-height: 160px;
+  }
+}
+
+article.search-movies h4 {
+  margin-top: 0;
+}
+
+section#suggestion article {
+  min-height: 370px;
+}
+
+@media (min-width: 992px) {
+  section#suggestion article {
+    min-height: 400px;
+  }
+}
+
 section#collection article {
-  min-height: 400px;
+  min-height: 370px;
+}
+
+@media (min-width: 992px) {
+  section#collection article {
+    min-height: 400px;
+  }
 }
