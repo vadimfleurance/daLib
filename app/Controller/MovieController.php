@@ -123,7 +123,7 @@ class MovieController extends Controller
 		$movieManager = new \Manager\MovieManager();
 
 		//si la recherche n'est pas vide
-		if (!empty($_GET['search'])){
+		if (!empty(trim($_GET['search']))){
 			$moviesFound = $movieManager->search($page);			
 			$moviesNb = $movieManager->getCount();
 		}
