@@ -164,15 +164,6 @@ class RegistrationController extends Controller
 					$authManager->logUserIn( $user );
 
 					/**
-					* 							/!\ 
-					*	LogOut volontaire tant que le bouton LogOut inexistant
-					*/
-									// $authManager->logUserOut( $user );
-					/**
-					* 							/!\
-					*/			
-
-					/**
 					*	Redirection une fois créé en BDD et une fois connecté
 					*/
 					// On appelle la méthode "success" (présente en dessous), elle peut paraître

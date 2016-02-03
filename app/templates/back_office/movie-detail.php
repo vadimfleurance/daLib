@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">	
-				<h2>Détail du movie : <?= $movie['title']; ?></h2>
+				<h2>Movie : <?= $movie['title']; ?></h2>
 				
 				<form method="POST">
 					<div class="form-group">
@@ -109,6 +109,9 @@
 					<button type="submit" class="btn btn-default btn-block" name="action[modify]" value="modify" >Modify</button>
 				</form>
 			</div>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<a href="<?= $this->url('back_office_movies')?>" class="btn btn-default btn-block">Back to the list</a>
 		</div>
 	</div>
 </section>
