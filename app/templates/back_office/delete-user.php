@@ -10,6 +10,8 @@
 				<?= debug($user) ?>
 
 				<p>The user <?= $user['username'] ?> has been drop from daLib.com<p>
+
+				<a href="<?= $this->url('back_office_users')?>" class="btn btn-default" title="Back to the list of users">Back to the list of users</a>
 			</div>
 		</div>
 	</div>

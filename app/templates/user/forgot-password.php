@@ -25,7 +25,7 @@
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<?php foreach($success['total'] as $succes ): ?>
 								<p><strong>Success !</strong> <?= $succes; ?><br>
-								Return to <a href="<?= $this->url('home'); ?>">Homepage</a></p>
+								Return to <a href="<?= $this->url('home'); ?>" title="Back to the homepage">Homepage</a></p>
 							<?php endforeach; ?>
 						</div>
 					<?php endif; ?>

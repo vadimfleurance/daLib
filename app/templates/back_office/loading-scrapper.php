@@ -14,7 +14,7 @@
 				<p>Don't do anything until the current tab is loading (check the wheel).<br>
 				When is done (you can see the favicon on the tab) you can do what you want :).</p>
 
-				<a href="<?= $this->url('back_office')?>" class="btn btn-default">Back to Back-Office</a>
+				<a href="<?= $this->url('back_office')?>" class="btn btn-default" title="Back to Back-Office">Back to Back-Office</a>
 			</div>
 		</div>
 	</div>

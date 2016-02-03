@@ -28,14 +28,14 @@
 							<td class="hidden-xs"><?= $movie['duration'] ?>min</td>
 							<td class="hidden-xs"><?= $movie['dateCreated'] ?></td>
 							<td class="hidden-xs"><?= $movie['dateModified'] ?></td>
-							<td><a href="<?= $this->url('detail', ['id' => $movie['id']]); ?>" >Edition</td>
+							<td><a href="<?= $this->url('detail', ['id' => $movie['id']]); ?>" title="Edit a movie">Edition</td>
 						</tr>
 					<?php endforeach; ?>	
 					</tbody>
 				</table>
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-offset-2">
-				<a href="<?= $this->url('back_office')?>" class="btn btn-default">Back to Back-Office</a>
+				<a href="<?= $this->url('back_office')?>" class="btn btn-default" title="Back to Back-Office">Back to Back-Office</a>
 			</div>
 		</div>
 	</div>

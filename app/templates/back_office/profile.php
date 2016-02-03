@@ -19,13 +19,13 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['username'] )) : 
-							foreach ( $updatedRows['username'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['username'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['username'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<div class="form-group">
 						<label class="sr-only" for="emailRegisterInput">Email Register</label>
@@ -35,47 +35,39 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['email'] )) : 
-							foreach ( $updatedRows['email'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
-
+					<?php if (!empty( $updatedRows['email'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['email'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<div class="form-group">
 						<select name="role" class="form-control">
-							
 							<?php if ( $user['role'] == 'admin' ) { ?>
-
 								<option value="admin" selected>admin</option>
 								<option value="user">user</option>
-							
 							<?php } else { ?>
-
 								<option value="admin">admin</option>
 								<option value="user" selected>user</option>
-
 							<?php } ?>
-						
 						</select>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['role'] )) : 
-							foreach ( $updatedRows['role'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['role'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['role'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<button type="submit" class="btn btn-default btn-block" name="action[modify]" value="modify" >Modify</button>
 				</form>
+				<br>
+				<a href="<?= $this->url('back_office_users')?>" class="btn btn-default" title="Back to the list of users">Back to the list of users</a>
 			</div>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<a href="<?= $this->url('back_office_users')?>" class="btn btn-default btn-block">Back to the list</a>
 		</div>
 	</div>
 </section>

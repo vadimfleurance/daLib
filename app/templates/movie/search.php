@@ -8,7 +8,7 @@
 				<ul class="pagination">
 					<?php if($page > 1):?>
 						<li>
-							<a href="<?=$this->url('search',['page' => $page-1]).'?search='.$_GET['search']?>" aria-label="Previous">
+							<a href="<?=$this->url('search',['page' => $page-1]).'?search='.$_GET['search']?>" title="Search | Previous page" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
@@ -16,15 +16,15 @@
 
 					<?php for($i=1 ; $i <= $nbPage; $i++): ?>
 						<?php if($i == $page):?>
-							<li class="active"><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"><?=$i ?></a></li>
+							<li class="active"><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>" title="Search | Page <?= $i; ?>"><?=$i ?></a></li>
 						<?php else:?>
-							<li><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"> <?=$i ?></a></li>
+							<li><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>" title="Search | Page <?= $i; ?>"> <?=$i ?></a></li>
 						<?php endif; ?>
 					<?php endfor; ?>
 
 					<?php if($page < $nbPage):?>
 						<li>
-							<a href="<?=$this->url('search',['page' => $page+1]).'?search='.$_GET['search']?>" aria-label="Next">
+							<a href="<?=$this->url('search',['page' => $page+1]).'?search='.$_GET['search']?>" title="Search | Next page" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>
@@ -38,7 +38,7 @@
 		<?php if($moviesFound):?>
 			<!-- Affichage des résultats de la recherche -->
 			<?php foreach($moviesFound as $movie):?>
-				<a href="<?= $this->url('movie_detail', ['id' => $movie['id']]) ?>" title="Movie | <?=$movie['title']?>">
+				<a href="<?= $this->url('movie_detail', ['id' => $movie['id']]) ?>" title="Movie Detail | <?=$movie['title']?>">
 					<article class="col-xs-12 col-sm-6 search-movies">
 						<figure class="hidden-xs col-sm-3 col-md-3">
 						<?php if($movie['cover']):?>
@@ -61,7 +61,9 @@
 			<?php endforeach; ?>
 			<!-- Sinon si la recherche ne donne aucun résultat -->
 		<?php else:?>
-			<p>No results found...</p>
+			<div class="col-xs-12">
+				<p class="text-center">No results found...</p>
+			</div>
 		<?php endif;?>
 		</div>
 
@@ -71,7 +73,7 @@
 				<ul class="pagination">
 					<?php if($page > 1):?>
 						<li>
-							<a href="<?=$this->url('search',['page' => $page-1]).'?search='.$_GET['search']?>" aria-label="Previous">
+							<a href="<?=$this->url('search',['page' => $page-1]).'?search='.$_GET['search']?>" title="Search | Previous page" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
@@ -79,15 +81,15 @@
 
 					<?php for($i=1 ; $i <= $nbPage; $i++): ?>
 						<?php if($i == $page):?>
-							<li class="active"><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"><?=$i ?></a></li>
+							<li class="active"><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>" title="Search | Page <?= $i; ?>"><?=$i ?></a></li>
 						<?php else:?>
-							<li><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"> <?=$i ?></a></li>
+							<li><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>" title="Search | Page <?= $i; ?>"> <?=$i ?></a></li>
 						<?php endif; ?>
 					<?php endfor; ?>
 
 					<?php if($page < $nbPage):?>
 						<li>
-							<a href="<?=$this->url('search',['page' => $page+1]).'?search='.$_GET['search']?>" aria-label="Next">
+							<a href="<?=$this->url('search',['page' => $page+1]).'?search='.$_GET['search']?>" title="Search | Next page" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>

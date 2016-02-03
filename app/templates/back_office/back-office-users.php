@@ -24,16 +24,16 @@
 								<td class="hidden-xs"><?= $user['email'] ?></td>
 								<td class="hidden-xs"><?= $user['dateCreated'] ?></td>
 								<td class="hidden-xs"><?= $user['role'] ?></td>
-								<td><a href="<?= $this-> url('profile', ['id' => $user['id']] ); ?>" >Edition</td>
-								<td><a href="<?= $this-> url('generate_new_password_user', ['id' => $user['id']] ); ?>" >Generate a new password</td>
-								<td><a href="<?= $this-> url('delete_user', ['id' => $user['id']] ); ?>" >Delete</td>
+								<td><a href="<?= $this-> url('profile', ['id' => $user['id']] ); ?>" title="Edit user">Edition</td>
+								<td><a href="<?= $this-> url('generate_new_password_user', ['id' => $user['id']] ); ?>" title="Generate a new password">Generate a new password</td>
+								<td><a href="<?= $this-> url('delete_user', ['id' => $user['id']] ); ?>" title="Delete user">Delete</td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-offset-2">
-				<a href="<?= $this->url('back_office')?>" class="btn btn-default">Back to Back-Office</a>
+				<a href="<?= $this->url('back_office')?>" class="btn btn-default" title="Back to Back-Office">Back to Back-Office</a>
 			</div>
 		</div>
 	</div>

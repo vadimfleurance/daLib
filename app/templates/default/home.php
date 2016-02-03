@@ -23,8 +23,8 @@
 					<!-- Nav tabs -->
 					<div class="row">
 						<ul class="nav nav-tabs nav-justified" role="tablist">
-							<li role="presentation" class="active"><a href="#login-form" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
-							<li role="presentation"><a href="#register-form" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
+							<li role="presentation" class="active"><a href="#login-form" title="Display the login form" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+							<li role="presentation"><a href="#register-form" title="Display the register form" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
 						</ul>
 					</div>
 					<!-- Tab panes -->
@@ -39,7 +39,7 @@
 						</div>
 					</div>
 					<?php else: ?>
-						<img src="<?= $this->assetUrl('img/daLib.png')?>" class="img-responsive">
+						<img src="<?= $this->assetUrl('img/daLib.png')?>" class="img-responsive" alt="Transferred your movies to the cloud">
 					<?php endif; ?>
 				</div>
 			</div>
@@ -58,7 +58,9 @@
 						<!-- PHP - AJOUTER UNE BOUCLE QUI RECUPERE LE TOP 10 DES FILMS DE LA DB -->
 						<?php foreach($moviesFound as $movieFound):?>
 							<div class="item">
-								<a href="<?=$this->url('movie_detail', ['id' => $movieFound['id']])?>"><img src="<?=$movieFound['cover'] . '._V1_SY370_.jpg'?>" class="img-responsive"></a>
+								<a href="<?=$this->url('movie_detail', ['id' => $movieFound['id']])?>" title="Movie Detail | <?= $movieFound['title']; ?>">
+									<img src="<?=$movieFound['cover'] . '._V1_SY370_.jpg'?>" class="img-responsive" alt="Movie cover | <?= $movieFound['title']; ?>">
+								</a>
 							</div>
 						<?php endforeach;?>
 					</div>

@@ -18,13 +18,13 @@
 
 				<div class="row">
 					<div class="col-xs-12 col-sm-4">
-						<a href="<?= $this->url('scrapper_home')?>" class="btn btn-default btn-block">Scraper</a>
+						<a href="<?= $this->url('scrapper_home')?>" class="btn btn-default btn-block" title="Scraper page">Scraper</a>
 					</div>
 					<div class="col-xs-12 col-sm-4">
-						<a href="<?= $this->url('back_office_users')?>" class="btn btn-default btn-block">List of Users</a>
+						<a href="<?= $this->url('back_office_users')?>" class="btn btn-default btn-block" title="List of Users">List of Users</a>
 					</div>
 					<div class="col-xs-12 col-sm-4">
-						<a href="<?= $this->url('back_office_movies')?>" class="btn btn-default btn-block">List of Movies</a>
+						<a href="<?= $this->url('back_office_movies')?>" class="btn btn-default btn-block" title="List of Movies">List of Movies</a>
 					</div>
 				</div>
 			</div>
