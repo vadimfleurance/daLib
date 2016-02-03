@@ -11,10 +11,10 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{	
-		if ( $this->getUser() ) {
+		// if ( $this->getUser() ) {
 
-			$this->redirectToRoute('show_collection');
-		}
+		// 	$this->redirectToRoute('show_collection');
+		// }
 
 		$errors = [
 			"username" => "",

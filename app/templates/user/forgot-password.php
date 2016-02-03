@@ -7,8 +7,8 @@
 				<div class="col-xs-12 col-md-8 col-md-offset-2">
 					<h1>Forgot Password ?</h1>
 					
-					<p>Write your address email choosen when register on dalib.com<br>
-					An email will be send after you submit the form below</p>
+					<p>Write your email address choosen when registered on dalib.com !<br>
+					An email will be send after you submit the form below.</p>
 
 					<!-- Message d'erreur pour une mauvaise saisie du formulaire -->
 					<?php if(!empty($errors['total'])): ?>

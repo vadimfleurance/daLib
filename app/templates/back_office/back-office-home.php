@@ -18,21 +18,12 @@
 
 				<div class="row">
 					<div class="col-xs-12 col-sm-4">
-						<!-- <form class="clearfix" method="POST" action="<?= $this->url('back_office_scrapper')?>" >
-							<button type="submit" class="btn btn-default btn-block" name="action[scrapping]" value="scrapping" >Go to Scrap</button>
-						</form> -->
-						<a href="<?= $this->url('back_office_scrapper')?>" class="btn btn-default btn-block">Start Scraper</a>
+						<a href="<?= $this->url('scrapper_home')?>" class="btn btn-default btn-block">Scraper</a>
 					</div>
 					<div class="col-xs-12 col-sm-4">
-						<!-- <form class="clearfix" method="POST" action="<?= $this->url('back_office_users')?>" >
-							<button type="submit" class="btn btn-default btn-block">Users</button>
-						</form> -->
 						<a href="<?= $this->url('back_office_users')?>" class="btn btn-default btn-block">List of Users</a>
 					</div>
 					<div class="col-xs-12 col-sm-4">
-						<!-- <form class="clearfix" method="POST" action="<?= $this->url('back_office_movies')?>" >
-							<button type="submit" class="btn btn-default btn-block">Movies</button>
-						</form> -->
 						<a href="<?= $this->url('back_office_movies')?>" class="btn btn-default btn-block">List of Movies</a>
 					</div>
 				</div>
