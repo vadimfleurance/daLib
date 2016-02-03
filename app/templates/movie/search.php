@@ -4,6 +4,8 @@
 <section class="section-padding">
 	<div class="container">
 		<div class="row">
+		<!-- Si des films sont trouvés -->
+		<?php if($moviesFound):?>
 			<!-- Affichage des résultats de la recherche -->
 			<?php foreach($moviesFound as $movie):?>
 				<a href="<?= $this->url('movie_detail', ['id' => $movie['id']]) ?>" title="Movie | <?=$movie['title']?>">
@@ -27,6 +29,10 @@
 					</article>
 				</a>
 			<?php endforeach; ?>
+		<!-- Sinon si la recherche ne donne aucun résultat -->
+		<?php else:?>
+			<p>No results found...</p>
+		<?php endif;?>
 		</div>
 
 			<!-- Bouton previous et next en bas de la page -->

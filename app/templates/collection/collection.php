@@ -5,20 +5,24 @@
 	<div class="container">
 
 		<div class="row text-center">
-			<?php foreach ($collection['movies'] as $key =>$movie ): ?>
+			<?php foreach ($collection['movies'] as $movie ): ?>
 				<a href="<?= $this->url('movie_detail',['id'=>$movie['id'] ]) ?>">
 					<article class="col-xs-6 col-md-2">
 						<figure>
-							<img src=" <?= $movie['cover'].'._V1_SY250_.jpg' ?>" class="img-responsive center-block">
+						<?php if($movie['cover']):?>
+							<img src="<?= $movie['cover'].'._V1_SY250_.jpg' ?>" class="img-responsive center-block" alt="Cover <?= $movie['title'] ?>">
+						<?php else:?>
+							<img src="<?=$this->assetUrl('img/cover/placeholder_250.png') ?>" class="img-responsive center-block" alt="No cover available">
+						<?php endif;?>
 						</figure>
-						<h4><?= $movie['title'] ?> <small>(<?= $movie['year'] ?>)</small></h4>
+						<h4><?= $movie['title'] ?> <?=$movie['year'] ? "<small>(" . $movie['year'] . ")</small>" : ''?></h4>
+						<?php if($movie['imdbRating']):?>
 						<p class=""><i class="fa fa-star"></i> <?= $movie['imdbRating'] ?>/10</p>
+						<?php endif;?>
 					</article>
 				</a>
 			<?php endforeach ?>
 		</div>
-
-
 		<div class="row text-center">
 
 			<nav class="collection-pagination">

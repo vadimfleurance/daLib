@@ -118,14 +118,24 @@ class MovieController extends Controller
 	
 	public function search($page = 1)
 	{
+		$moviesFound = "";
+		$moviesNb = 0;
 		$movieManager = new \Manager\MovieManager();
-		$moviesNb = $movieManager->getCount();
-		$moviesFound = $movieManager->search($page);
+
+		//si la recherche n'est pas vide
+		if (!empty($_GET['search'])){
+			$moviesFound = $movieManager->search($page);			
+			$moviesNb = $movieManager->getCount();
+		}
 
 		// calcul du nombre de page à afficher
 		$nbPage = ceil($moviesNb/10);
-		if($page > $nbPage){
-			$this->showNotFound();
+
+		//si le nombre de films trouvés est supérieur à 0 et que la page en URL est supérieur au nombre de pages réelles, affiche une erreur 404
+		if($moviesNb){
+			if($page > $nbPage){
+				$this->showNotFound();
+			}
 		}
 		$this->show('movie/search', ["moviesFound" => $moviesFound, "nbPage" => $nbPage, "page" => $page]);
 	}
