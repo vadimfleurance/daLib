@@ -12,10 +12,9 @@
 				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0">
 					<header>
 						<h1>daLib, what's that ?</h1>
-						<p>Keep track of your personal movie collection in a user friendly interface. Foo library comes with many features.
+						<p>Keep track of your personal movie collection in a user friendly interface. daLib library comes with many features.
 						Add & delete movies or mark the ones you want to see. Get suggestions based on your tastes.
-						You change ! Foo changes with you ! You're a fan join the dedicated chat and discuss with others !
-						Join now or get your genitals cut off ! And as french says "foo parce qu'on est des foo !"</p>
+						You change, daLib changes with you ! Join now or get your genitals cut off !</p>
 					</header>
 				</div>
 				

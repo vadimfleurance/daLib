@@ -26,17 +26,14 @@ class ScraperController extends Controller
 		if (preg_match("!^[t]{2}\d{7}$!", $link)){
 			return "http://www.imdb.com/title/" . $link . "/";
 		}
-
 		//sinon vérifie si le texte passé est une URL d'un film sur IMDb
 		else if (preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/$!", $link)){
 			return $link;
 		}
-
 		//sinon vérifie si le texte passé est une URL avec des paramètres et supprime les paramètres si c'est le cas
 		else if(preg_match("!^http://www.imdb.com/title/[t]{2}\d{7}/\?.*!", $link)){
 			return preg_replace("/\?.*/", "", $link);
 		}
-		
 		//sinon l'url n'est pas correcte, retourne false (erreur)
 		else{
 			return false;
@@ -50,7 +47,6 @@ class ScraperController extends Controller
 		if($headerStatus[0] == "HTTP/1.1 200 OK"){
 			return true;
 		}
-
 		else{
 			return false;
 		}
@@ -154,7 +150,6 @@ class ScraperController extends Controller
 
 		//réalisateurs
 		$directors = $html->find("div.credit_summary_item span[itemprop=director] span[itemprop=name]");
-
 		if($directors){
 			foreach($directors as $director){
 				preg_match("!nm\d{7}!", $director->parent()->href, $matches);
@@ -168,7 +163,6 @@ class ScraperController extends Controller
 
 		//scénaristes
 		$writers = $html->find("div.credit_summary_item span[itemprop=creator] span[itemprop=name]");
-
 		if($writers){
 			foreach($writers as $writer){
 				preg_match("!nm\d{7}!", $writer->parent()->href, $matches);
@@ -182,7 +176,6 @@ class ScraperController extends Controller
 
 		//acteurs
 		$stars = $html->find("div.credit_summary_item span[itemprop=actors] span[itemprop=name]");
-
 		if($stars){
 			foreach($stars as $star){
 				preg_match("!nm\d{7}!", $star->parent()->href, $matches);
@@ -200,11 +193,9 @@ class ScraperController extends Controller
 			foreach ($genresTmp as $genre){
 				$genres[] = $genre->plaintext;
 			}
-			
 		}
 		$this->MovieInsert($movie,$genres,$humans);
 	}
-
 
 	public function MovieInsert($movie, $genres, $humans)
 	{
@@ -214,7 +205,7 @@ class ScraperController extends Controller
 		$movieManager->insert($movie);
 
 		//get last movie id and stock it in $movieId
-		$movieId=$movieManager->lastId();
+		$movieId = $movieManager->lastId();
 
 		//Create 1 object of the genre manager
 		$genreManager = new \Manager\GenreManager();
@@ -243,10 +234,8 @@ class ScraperController extends Controller
 				$lastHumanId = $HumanManager->lastId();
 			}
 			else {
-
 				$lastHumanId = $HumanManager->getId($human);
 			}
-
 
 			$MoviesHumanManager->insert(
 								[

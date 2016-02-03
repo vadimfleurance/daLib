@@ -58,8 +58,8 @@ class MovieManager extends \W\Manager\Manager
 
 		$statement = $this->dbh->prepare($sql);
 		$statement->bindValue(':search', "%" . trim($_GET['search']) . "%");
-		$statement->bindValue(':offset', (int) $offset, 1);
-		$statement->bindValue(':limit', (int) $limit, 1);
+		$statement->bindValue(':offset', (int) $offset, \PDO::PARAM_INT); // \PDO::PARAM_INT ou 1
+		$statement->bindValue(':limit', (int) $limit, \PDO::PARAM_INT); // \PDO::PARAM_INT ou 1
 		$statement->execute();
 		return $statement->fetchAll();
 	}
@@ -72,7 +72,7 @@ class MovieManager extends \W\Manager\Manager
 		return $statement->fetchColumn();
 	}
 
-	//permet d'appeller le manager et d'inserer dans la table movies
+	//permet d'appeler le manager et d'inserer dans la table movies
 	public function lastId()
 	{
 		return $this->dbh->lastInsertId();
@@ -80,7 +80,7 @@ class MovieManager extends \W\Manager\Manager
 
 	public function isNew($movie)
 	{
-		$stmt = $this->dbh->prepare('SELECT imdbRef FROM movies WHERE imdbRef= :imdbRef');
+		$stmt = $this->dbh->prepare('SELECT imdbRef FROM movies WHERE imdbRef = :imdbRef');
 		$stmt->bindValue(':imdbRef', $movie['imdbRef']);
 		$stmt->execute();
 		$result = $stmt->fetchColumn();
@@ -89,7 +89,6 @@ class MovieManager extends \W\Manager\Manager
 
 	public function getInfos($id)
 	{
-		
 		//pour le panache
 		$sql = 'SELECT 
 				movies.id,
@@ -117,7 +116,7 @@ class MovieManager extends \W\Manager\Manager
 		$stmt->bindValue(':id', $id);
 		$stmt->execute();
 		$rawinfos= $stmt->fetchAll();
-		//debug($rawinfos);
+
 		if ($rawinfos){
 			$movie=[
 				'id' =>$rawinfos[0]['id'],
@@ -133,7 +132,6 @@ class MovieManager extends \W\Manager\Manager
 				'stars'=>[]
 			];
 			
-			//debug($movie);
 			foreach ($rawinfos as $info) {
 
 				//ajoute le genre dans l'array movie final si le genre n'est pas deja present
@@ -158,18 +156,10 @@ class MovieManager extends \W\Manager\Manager
 						$movie['stars'][] = $info['name'];
 					}
 				}
-
-
-
 			}//end of foreach
-			//debug($movie);
 			return $movie;
 		}
-
-		else{
-			return false;
-		}
-		
+		return false;
 	}//end of getInfos method
 
 
@@ -210,6 +200,7 @@ class MovieManager extends \W\Manager\Manager
 
 		return $stmt->execute();
 	}
+
 	public function getBestImdbRating()
 	{
 		$sql = "SELECT id, imdbRating, cover FROM movies ORDER BY imdbRating DESC LIMIT 10;";
@@ -217,6 +208,7 @@ class MovieManager extends \W\Manager\Manager
 		$statement->execute();
 		return $statement->fetchAll();
 	}
+
 	public function getSuggestion($idUser,$cPage, $perPage)
 	{
 		$sql ="SELECT 
@@ -227,7 +219,7 @@ class MovieManager extends \W\Manager\Manager
 				movies.year,
 				movies.imdbRating,
 				movies.cover
-				FROM    movies 
+				FROM movies 
 				WHERE movies.id NOT IN (
 		   		SELECT movies__users.idMovie 
 		  		FROM movies__users 
@@ -238,9 +230,9 @@ class MovieManager extends \W\Manager\Manager
 		$stmt = $this->dbh->prepare($sql);
 		$stmt->bindValue(':idUser', $idUser);
 		$stmt->execute();
-		return $suggestion= $stmt->fetchAll();
-
+		return $suggestion = $stmt->fetchAll();
 	}
+
 	public function countAllMovies($idUser)
 	{
 		$stmt = $this->dbh->prepare(
@@ -255,9 +247,6 @@ class MovieManager extends \W\Manager\Manager
 		);
 		$stmt->bindValue(':idUser', $idUser);
 		$stmt->execute();
-		return $allMovies  = $stmt->fetchColumn();
-
+		return $allMovies = $stmt->fetchColumn();
 	}//end of method
-
 }//end of class
-

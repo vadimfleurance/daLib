@@ -11,5 +11,4 @@ class MoviesHumanManager extends \W\Manager\Manager
 		//redefine table name for use
 		$this->setTable('movies__humans');
 	}
-
 }

@@ -17,6 +17,4 @@ class GenreManager extends \W\Manager\Manager
 		}
 		return $genreIds;
 	}
-
-
 }

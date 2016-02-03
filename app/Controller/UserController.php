@@ -12,7 +12,6 @@ class UserController extends Controller
 		$user = $this->getUser();
 
 		$id = $user['id'];
-
 		$username = 	$user['username'];
 		$email    = 	$user['email'];
 

@@ -21,6 +21,5 @@ class MoviesGenresManager extends \W\Manager\Manager
 			$stmt->execute();
 			
 		}
-
 	}
 }

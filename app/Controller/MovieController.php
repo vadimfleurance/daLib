@@ -7,18 +7,8 @@ use \W\Controller\Controller;
 class MovieController extends Controller
 {
 	public function movieDetails($id)
-	{	
-		/*$user = $this->getUser();
-		
-		$movieManager = new \Manager\MovieManager;
-		$movie = $movieManager->getInfos($id);
-
-		$moviesUserManager = new \Manager\MoviesUsersManager;
-		$statusValues = $moviesUserManager->getStatus($id, $user['id'] );
-		$this->show('movie/details', ['movie' => $movie, 'statusValues' => $statusValues ]);*/
-
+	{
 		$user = $this->getUser();
-
 		$movieManager = new \Manager\MovieManager;
 		$movie = $movieManager->getInfos($id);
 
@@ -26,6 +16,7 @@ class MovieController extends Controller
 		if(!$movie){
 			$this->showNotFound();
 		}
+
 		// Calcul du nombre de genres, de producteurs, de scénaristes et d'acteurs
 		$genresNb = count($movie['genres']);
 		$directorsNb = count($movie['directors']);
@@ -34,12 +25,10 @@ class MovieController extends Controller
 
 		// Si une durée est présente
 		if ($movie['duration']){
-
 			// Si le film dure au moins 60 minutes, calcul de la durée en format heure minute avec durée en minute entre parenthèses
 			if (floor($movie['duration']/60) != 0){
 				$movie['duration'] = floor($movie['duration']/60) . 'h ' . $movie['duration']%60 . 'min (' . $movie['duration'] . ' min)';
 			}
-
 			// Sinon laisse la durée en minutes
 			else{
 				$movie['duration'] = $movie['duration'] . ' min';
@@ -49,6 +38,7 @@ class MovieController extends Controller
 		$moviesUserManager = new \Manager\MoviesUsersManager;
 		$isPresent = $moviesUserManager->isPresent($id, $user['id']);
 		$statusValues = $moviesUserManager->getStatus($id, $user['id'] );
+
 		$this->show('movie/details', [
 										'movie' => $movie,
 										'isPresent' => $isPresent,
@@ -85,12 +75,12 @@ class MovieController extends Controller
 					$movie["imdbRef"] = $matches[0];
 					$movieManager = new \Manager\MovieManager;
 					$isNew = $movieManager->isNew($movie);
+
 					//si le film n'est pas présent dans la base de données
 					if($isNew){
 						$scraperController->pageScraper($url);
 						$successScrap = "The movie has been added.";
 					}
-
 					//si le film est déjà présent dans la base de données
 					else{
 						$errorScrap = "The movie is already present in our database.";
@@ -101,12 +91,10 @@ class MovieController extends Controller
 					$errorScrap = "IMDb reference is invalid";
 				}
 			}
-
 			//si l'url n'est pas correcte
 			else{
 				$errorScrap = "URL is invalid.";
 			}
-
 		}
 		$this->show('movie/add_movie', ["successScrap" => $successScrap, "errorScrap" => $errorScrap]);
 	}

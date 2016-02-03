@@ -104,16 +104,17 @@ class LoginController extends Controller
 		$this->redirectToRoute('home');
 	}
 
-
 	public function forgotPassword()
 	{
 		if ( $this->getUser() ) {
-
 			$this->redirectToRoute('show_collection');
 		}
 		
 		//Initialisation du tableau des erreurs.
 		$errors = [
+			'total' => []
+		];
+		$success = [
 			'total' => []
 		];
 
@@ -140,28 +141,27 @@ class LoginController extends Controller
 		/**
 		*	Oubli du mot de passe
 		*/
-		if ( isset( $user )) {
+		if ( isset( $user ) && !empty($email) ) {
 
 			$emailSender = new \Security\EmailSender();
 
 			$emailSender->sendResetPasswordLink( $user );
 
-			$this->redirectToRoute('home');
+			$success['total'][] = "Un email a été envoyé, veuillez suivre les étapes indiquées.";
 		}
 		// On appelle le template avec les erreurs.
 		$this->show('user/forgot-password', [
 				"errors" => $errors,
+				"success" => $success,
 			]);
 	}
-
 
 	public function newPassword( $tokenPassword, $id )
 	{
 		// Mis en commentaires pour les tests mais à remettre en prod
-		// if ( $this->getUser() ) {
-
-		// 	$this->redirectToRoute('show_collection');
-		// }
+		if ( $this->getUser() ) {
+			$this->redirectToRoute('show_collection');
+		}
 		
 		//Initialisation du tableau des erreurs.
 		$errors = [

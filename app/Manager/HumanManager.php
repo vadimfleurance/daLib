@@ -1,7 +1,7 @@
 <?php
 namespace Manager;
 
-	//permet de gerer les interactions avec la table human
+//permet de gerer les interactions avec la table human
 class HumanManager extends \W\Manager\Manager
 {
 	//permet de recuperer le dernir id de human inseré en base
@@ -26,6 +26,4 @@ class HumanManager extends \W\Manager\Manager
 		$stmt->execute();
 		return $stmt->fetchColumn();
 	}
-
-	
 }

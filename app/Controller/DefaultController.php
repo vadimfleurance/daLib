@@ -11,16 +11,12 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{	
-		// if ( $this->getUser() ) {
-
-		// 	$this->redirectToRoute('show_collection');
-		// }
-
 		$errors = [
 			"username" => "",
 			"email" => "",
 			"password" => ""
 		];
+		
 		$movieManager = new \Manager\MovieManager;
 		$moviesFound = $movieManager->getBestImdbRating();
 		$this->show('default/home', [ 'errors' => $errors, 'moviesFound' => $moviesFound ]);

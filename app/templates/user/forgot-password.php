@@ -20,6 +20,16 @@
 						</div>
 					<?php endif; ?>
 
+					<?php if(!empty($success['total'])): ?>
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<?php foreach($success['total'] as $succes ): ?>
+								<p><strong>Success !</strong> <?= $succes; ?><br>
+								Return to <a href="<?= $this->url('home'); ?>">Homepage</a></p>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
+
 					<form method="POST" action="<?= $this->url('forgot_password')?>">
 						<div class="form-group">
 							<label class="sr-only" for="emailForgotPasswordInput">Email Forgot Password</label>

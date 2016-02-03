@@ -16,13 +16,10 @@ class SitemapController extends Controller
 		$movies = $movieManager->getAllDtbMovies();
 		$homelastmod = filemtime( '../app/templates/default/home.php' );
 		$homedate = date('Y-m-d', $homelastmod );
-		//debug($date);
-		//die();
-		foreach  ($movies as $movie) {
 
+		foreach  ($movies as $movie) {
 			$urls['links'][] = "http://localhost/daLib/public/movie-detail/".$movie['id']."/";
 			$urls['dates'][] = $movie['dateModified'];
-			
 		}
 		
 		$string = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
@@ -42,7 +39,5 @@ class SitemapController extends Controller
 		//simule un fichier xml à partir de la string
 		header("Content-type: application/xml");
 		echo $string;
-
 	}//end of method
-
 }//end of class
