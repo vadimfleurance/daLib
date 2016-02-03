@@ -74,26 +74,20 @@ class CollectionController extends Controller
 		$perPage = 24;
 		$nbPages = ceil($totalMovies / $perPage);
 		//limite la mauvaise utilisation de l'id de page dans l'url
+		if($cPage > $nbPages){
+			//Si le num de la page courante est superieure au nb de page total, redirection  vers la 404
+			$this->showNotFound();
+		}
 		
 
 		//appel de recuperation de collection
 		$collection = $mUM->getEntireCollection($idUser,$totalMovies, $cPage, $perPage);
 		//affichage de la page
-		if (!empty($collection['movies'])){
-			if($cPage > $nbPages){
-				//Si le num de la page courante est superieure au nb de page total, redirection  vers la 404
-				$this->showNotFound();
-			}
-			$this->show('collection/collection', [
-													'collection' => $collection ,
-													'nbPages'	=> $nbPages,
-													'cPage' =>$cPage
-												 ]);			
-		}
-
-		else{
-			$this->redirectToRoute("show_suggestion");
-		}
+		$this->show('collection/collection', [
+												'collection' => $collection ,
+												'nbPages'	=> $nbPages,
+												'cPage' =>$cPage
+											 ]);
 
 	}//end of method
 	public function showSuggestion($cPage = 1)
