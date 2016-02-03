@@ -99,21 +99,21 @@
 						<p>No synopsis</p>
 					<?php endif;?>
 
-					<?php if($movieCollectionFound): ?>
+					<?php if($isPresent): ?>
 						<a href="<?= $this->url('manage_collection') ?>" class="btn btn-default to-collection" data-state="remove" data-mov-id="<?= $movie['id'] ?>"><i class="fa fa-minus"></i> Remove</a>
 						<span>	
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['watched'] === '1') ? 'btn-watched' : '' 	?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="watched" data-status-value="<?= $movieCollectionFound['watched'] ?>" ><i class="fa fa-eye"></i> Watched</a>
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['toWatch'] === '1') ? 'btn-toWatch' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="toWatch" data-status-value="<?= $movieCollectionFound['toWatch'] ?>" ><i class="fa fa-bookmark"></i> To Watch</a>
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['owned'] === '1') ? 'btn-owned' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="owned" data-status-value="<?= $movieCollectionFound['owned'] ?>" ><i class="fa fa-hand-lizard-o"></i> Got it!</a>
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['wanted'] === '1') ? 'btn-wanted' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="wanted" data-status-value="<?= $movieCollectionFound['wanted'] ?>" ><i class="fa fa-heart-o"></i> Want!</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['watched'] === '1') ? 'btn-watched' : '' 	?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="watched" data-status-value="<?= $statusValues['watched'] ?>" ><i class="fa fa-eye"></i> Watched</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['toWatch'] === '1') ? 'btn-toWatch' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="toWatch" data-status-value="<?= $statusValues['toWatch'] ?>" ><i class="fa fa-bookmark"></i> To Watch</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['owned'] === '1') ? 'btn-owned' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="owned" data-status-value="<?= $statusValues['owned'] ?>" ><i class="fa fa-hand-lizard-o"></i> Got it!</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['wanted'] === '1') ? 'btn-wanted' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="wanted" data-status-value="<?= $statusValues['wanted'] ?>" ><i class="fa fa-heart-o"></i> Want!</a>
 						</span>
 					<?php else: ?>
 						<a href="<?= $this->url('manage_collection') ?>" class="btn btn-default to-collection" data-state="add" data-mov-id="<?= $movie['id'] ?>"><i class="fa fa-plus"></i> Add</a>
 						<span class="hidden">
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['watched'] === '1') ? 'btn-watched' : '' 	?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="watched" data-status-value="<?= $movieCollectionFound['watched'] ?>" ><i class="fa fa-eye"></i> Watched</a>
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['toWatch'] === '1') ? 'btn-toWatch' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="toWatch" data-status-value="<?= $movieCollectionFound['toWatch'] ?>" ><i class="fa fa-bookmark"></i> To Watch</a>
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['owned'] === '1') ? 'btn-owned' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="owned" data-status-value="<?= $movieCollectionFound['owned'] ?>" ><i class="fa fa-hand-lizard-o"></i> Got it!</a>
-							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($movieCollectionFound['wanted'] === '1') ? 'btn-wanted' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="wanted" data-status-value="<?= $movieCollectionFound['wanted'] ?>" ><i class="fa fa-heart-o"></i> Want!</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['watched'] === '1') ? 'btn-watched' : '' 	?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="watched" data-status-value="<?= $statusValues['watched'] ?>" ><i class="fa fa-eye"></i> Watched</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['toWatch'] === '1') ? 'btn-toWatch' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="toWatch" data-status-value="<?= $statusValues['toWatch'] ?>" ><i class="fa fa-bookmark"></i> To Watch</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['owned'] === '1') ? 'btn-owned' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="owned" data-status-value="<?= $statusValues['owned'] ?>" ><i class="fa fa-hand-lizard-o"></i> Got it!</a>
+							<a href="<?= $this->url('status_manage') ?>" class="btn btn-default status-link <?= ($statusValues['wanted'] === '1') ? 'btn-wanted' : '' ?>" data-mov-id="<?= $movie['id'] ?>" data-status-type="wanted" data-status-value="<?= $statusValues['wanted'] ?>" ><i class="fa fa-heart-o"></i> Want!</a>
 						</span>
 					<?php endif; ?>
 				</div>

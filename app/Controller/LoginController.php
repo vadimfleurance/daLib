@@ -13,7 +13,7 @@ class LoginController extends Controller
 	{
 		if ( $this->getUser() ) {
 			//redirige un utilisateur reconnu par le cookie vers la page suggestion
-			$this->redirectToRoute('show_suggestion'); //anciennement collection
+			$this->redirectToRoute('show_collection'); //anciennement collection
 		}
 
 		//Initialisation du tableau des erreurs.
@@ -73,7 +73,7 @@ class LoginController extends Controller
 					// On lance la procédure de connexion.
 					$authManager->logUserIn( $user );	
 					// On redirige vers la page d'accueil en étant connecté.
-					$this->redirectToRoute('show_suggestion');	//anciennement home		
+					$this->redirectToRoute('show_collection');	//anciennement home		
 				}
 				// Sinon, le couple "$usernameOrEmail"/"$password" est inconnu en BDD et on implémente un message d'erreur dans le tableau "$errors".
 				// Ce message d'erreur sera affiché via le fichier "form-login.php".

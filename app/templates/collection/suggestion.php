@@ -54,13 +54,7 @@
 		<div class="row text-center">
 			<nav class="suggestion-pagination">
 				<ul class="pagination">
-					<?php if($cPage <= 1):?>
-						<li class="disabled">
-							<a href="" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-					<?php else:?>
+					<?php if($cPage > 1):?>
 						<li>
 							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage-1])?>" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
@@ -74,13 +68,7 @@
 							<li><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>"> <?=$i ?></a></li>
 						<?php endif; ?>
 					<?php endfor ; ?>
-					<?php if($cPage >= $nbPages):?>
-						<li class="disabled">
-							<a href="" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					<?php else:?>
+					<?php if($cPage < $nbPages):?>
 						<li>
 							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage+1])?>" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>

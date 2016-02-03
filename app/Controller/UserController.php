@@ -154,7 +154,9 @@ class UserController extends Controller
 					}				
 				}
 			}
+			$errors['total'][] = "Les modifications ont bien été prises en compte.";
 		}
+
 		$user = $userManager->find($id);
 		$this->show( 'user/profile', [
 			"user" => $user,
