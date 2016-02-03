@@ -1,5 +1,10 @@
 <?php $this->layout('layout', ['title' => 'daLib | Your collection of movies in your pocket']) ?>
 
+<?php $this->start('css') ?>
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-carousel.css') ?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-theme.css') ?>">
+<?php $this->stop('css') ?>
+
 <?php $this->start('main_content') ?>
 	<section id="informations" class="section-padding">
 		<div class="container">
@@ -13,8 +18,9 @@
 						Join now or get your genitals cut off ! And as french says "foo parce qu'on est des foo !"</p>
 					</header>
 				</div>
-				<?php if( !isset($w_user)) : ?>
+				
 				<div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
+					<?php if(!isset($w_user)) : ?>
 					<!-- Nav tabs -->
 					<div class="row">
 						<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -33,8 +39,10 @@
 							</div>
 						</div>
 					</div>
+					<?php else: ?>
+						<img src="<?= $this->assetUrl('img/daLib.png')?>" class="img-responsive">
+					<?php endif; ?>
 				</div>
-				<?php endif; ?>
 			</div>
 		</div>
 	</section>
@@ -61,3 +69,7 @@
 		</div>
 	</section>
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
+<?php $this->stop('js') ?>

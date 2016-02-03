@@ -9,8 +9,7 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/font-awesome.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-checkbox.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-carousel.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-theme.css') ?>">
+	<?= $this->section('css') ?>
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/main.min.css') ?>">
 </head>
 <body>
@@ -19,12 +18,14 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 bg-dalib">
 					<div class="navbar-header">
+						<?php if(isset($w_user)) : ?>
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
+						<?php endif; ?>
 						<a class="navbar-brand" href="<?= $this->url('home'); ?>"><i class="fa fa-film"></i> daLib</a>
 					</div>
 				</div>
@@ -81,7 +82,7 @@
 	<!-- scripts -->
 	<script src="<?= $this->assetUrl('js/jquery-2.2.0.min.js') ?>"></script>
 	<script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
-	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
+	<?= $this->section('js') ?>
 	<script src="<?= $this->assetUrl('js/main.min.js') ?>"></script>
 </body>
 </html>

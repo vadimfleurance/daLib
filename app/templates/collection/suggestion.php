@@ -3,6 +3,33 @@
 <?php $this->start('main_content') ?>
 <section id="suggestion" class="section-padding">
 	<div class="container">
+		<div class="row text-center">
+			<nav class="suggestion-pagination">
+				<ul class="pagination">
+					<?php if($cPage > 1):?>
+						<li>
+							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage-1])?>" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+					<?php endif;?>
+					<?php for ($i=1 ; $i <= $nbPages; $i++): ?>
+						<?php if($i == $cPage):?>
+							<li class="active"><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>"><?=$i ?></a></li>
+						<?php else:?>
+							<li><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>"> <?=$i ?></a></li>
+						<?php endif; ?>
+					<?php endfor ; ?>
+					<?php if($cPage < $nbPages):?>
+						<li>
+							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage+1])?>" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					<?php endif;?>
+				</ul>
+			</nav>
+		</div>
 
 		<div class="row text-center">
 			<?php foreach ($suggestion as $movie ): ?>
@@ -23,8 +50,8 @@
 				</a>
 			<?php endforeach ?>
 		</div>
-		<div class="row text-center">
 
+		<div class="row text-center">
 			<nav class="suggestion-pagination">
 				<ul class="pagination">
 					<?php if($cPage <= 1):?>
@@ -63,6 +90,6 @@
 				</ul>
 			</nav>
 		</div>
-
-
+	</div>
+</section>
 <?php $this->stop('main_content') ?>

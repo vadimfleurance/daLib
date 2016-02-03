@@ -3,6 +3,36 @@
 <?php $this->start('main_content') ?>
 <section class="section-padding">
 	<div class="container">
+		<div class="row text-center">
+			<nav class="search-pagination">
+				<ul class="pagination">
+					<?php if($page > 1):?>
+						<li>
+							<a href="<?=$this->url('search',['page' => $page-1]).'?search='.$_GET['search']?>" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+					<?php endif;?>
+
+					<?php for($i=1 ; $i <= $nbPage; $i++): ?>
+						<?php if($i == $page):?>
+							<li class="active"><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"><?=$i ?></a></li>
+						<?php else:?>
+							<li><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"> <?=$i ?></a></li>
+						<?php endif; ?>
+					<?php endfor; ?>
+
+					<?php if($page < $nbPage):?>
+						<li>
+							<a href="<?=$this->url('search',['page' => $page+1]).'?search='.$_GET['search']?>" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					<?php endif;?>
+				</ul>
+			</nav>
+		</div>
+
 		<div class="row">
 		<!-- Si des films sont trouvés -->
 		<?php if($moviesFound):?>
@@ -29,54 +59,41 @@
 					</article>
 				</a>
 			<?php endforeach; ?>
-		<!-- Sinon si la recherche ne donne aucun résultat -->
+			<!-- Sinon si la recherche ne donne aucun résultat -->
 		<?php else:?>
 			<p>No results found...</p>
 		<?php endif;?>
 		</div>
 
-			<!-- Bouton previous et next en bas de la page -->
-			<div class="row text-center">
-				<nav class="search-pagination">
-					<ul class="pagination">
-						<?php if($page <= 1):?>
-							<li class="disabled">
-								<a href="" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-						<?php else:?>
-							<li>
-								<a href="<?=$this->url('search',['page' => $page-1]).'?search='.$_GET['search']?>" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-						<?php endif;?>
+		<!-- Bouton previous et next en bas de la page -->
+		<div class="row text-center">
+			<nav class="search-pagination">
+				<ul class="pagination">
+					<?php if($page > 1):?>
+						<li>
+							<a href="<?=$this->url('search',['page' => $page-1]).'?search='.$_GET['search']?>" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+					<?php endif;?>
 
-						<?php for($i=1 ; $i <= $nbPage; $i++): ?>
-							<?php if($i == $page):?>
-								<li class="active"><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"><?=$i ?></a></li>
-							<?php else:?>
-								<li><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"> <?=$i ?></a></li>
-							<?php endif; ?>
-						<?php endfor; ?>
-
-						<?php if($page >= $nbPage):?>
-							<li class="disabled">
-								<a href="" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
+					<?php for($i=1 ; $i <= $nbPage; $i++): ?>
+						<?php if($i == $page):?>
+							<li class="active"><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"><?=$i ?></a></li>
 						<?php else:?>
-							<li>
-								<a href="<?=$this->url('search',['page' => $page+1]).'?search='.$_GET['search']?>" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						<?php endif;?>
-					</ul>
-				</nav>
-			</div>
+							<li><a href="<?=$this->url('search',['page'=>$i]).'?search='.$_GET['search']?>"> <?=$i ?></a></li>
+						<?php endif; ?>
+					<?php endfor; ?>
+
+					<?php if($page < $nbPage):?>
+						<li>
+							<a href="<?=$this->url('search',['page' => $page+1]).'?search='.$_GET['search']?>" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					<?php endif;?>
+				</ul>
+			</nav>
 		</div>
 	</div>
 </section>

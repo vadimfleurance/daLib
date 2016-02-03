@@ -11,9 +11,9 @@
 					<thead>
 						<tr>
 							<th>Username</th>
-							<th>Email</th>
-							<th>Registered</th>
-							<th>Role</th>
+							<th class="hidden-xs">Email</th>
+							<th class="hidden-xs">Registered</th>
+							<th class="hidden-xs">Role</th>
 							<th colspan="3">Options</th>
 						</tr>
 					</thead>
@@ -21,9 +21,9 @@
 						<?php foreach ($users as $user ) : ?> 
 							<tr>
 								<td><?= $user['username'] ?></td>
-								<td><?= $user['email'] ?></td>
-								<td><?= $user['dateCreated'] ?></td>
-								<td><?= $user['role'] ?></td>
+								<td class="hidden-xs"><?= $user['email'] ?></td>
+								<td class="hidden-xs"><?= $user['dateCreated'] ?></td>
+								<td class="hidden-xs"><?= $user['role'] ?></td>
 								<td><a href="<?= $this-> url('profile', ['id' => $user['id']] ); ?>" >Edition</td>
 								<td><a href="<?= $this-> url('generate_new_password_user', ['id' => $user['id']] ); ?>" >Generate a new password</td>
 								<td><a href="<?= $this-> url('delete_user', ['id' => $user['id']] ); ?>" >Delete</td>
@@ -32,8 +32,8 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-xs-4 col-sm-4">
-				<a href="<?= $this->url('back_office')?>" class="btn btn-default btn-block">Back to Back-Office</a>
+			<div class="col-xs-12 col-sm-8 col-md-offset-2">
+				<a href="<?= $this->url('back_office')?>" class="btn btn-default">Back to Back-Office</a>
 			</div>
 		</div>
 	</div>
