@@ -96,3 +96,14 @@ $alert-close-color:							$A21 !default;
 $alert-link-color:							$A19 !default;
 $alert-font-color:							$A22 !default;
 
+// ===========================================================================
+// Variables - Pagination
+// ===========================================================================
+$pagination-background-color:                  $K12 !default;
+$pagination-background-color-hover:            $primary-light !default;
+$pagination-background-color-active:           $primary !default;
+$pagination-border-color:                      $K12 !default;
+
+$pagination-font-color:                        $A22 !default;
+$pagination-font-color-hover:                  $A22 !default;
+$pagination-font-color-disabled:               $A18 !default;

@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------------
+// Layout Pagination (Default)
+// -----------------------------------------------------------------------------
+.pagination {
+	& > li > a,
+	& > li > span {
+		color: $pagination-font-color;
+		background-color: $pagination-background-color;
+		border-color: $pagination-border-color;
+	}
+	
+	& > li:first-child > a,
+	& > li:first-child > span {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	& > li:last-child > a,
+	& > li:last-child > span {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	& > li > a:hover,
+	& > li > span:hover,
+	& > li > a:focus,
+	& > li > span:focus {
+		color: $pagination-font-color-hover;
+		background-color: $pagination-background-color-hover;
+		border-color: $pagination-border-color;
+	}
+	& > .active > a,
+	& > .active > span,
+	& > .active > a:hover,
+	& > .active > span:hover,
+	& > .active > a:focus,
+	& > .active > span:focus {
+		color: $pagination-font-color-hover;
+		background-color: $pagination-background-color-active;
+		border-color: $pagination-border-color;
+	}
+	& > .disabled > span,
+	& > .disabled > span:hover,
+	& > .disabled > span:focus,
+	& > .disabled > a,
+	& > .disabled > a:hover,
+	& > .disabled > a:focus {
+		color: $pagination-font-color-disabled;
+		background-color: $pagination-background-color;
+		border-color: $pagination-border-color;
+	}
+}

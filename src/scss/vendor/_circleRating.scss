@@ -52,9 +52,16 @@ $bg-color: $background;
 	width: 1em;
 	height: 1em;
 	border-radius: 50%;
-	float: left;
-	margin: 0 0.1em 0.1em 0;
+	//float: left;
+	//margin: 0 0.1em 0.1em 0;
+	margin: 20px auto;
 	background-color: $rating-max-color;
+
+	// Ajout custom
+	@media (min-width: $media-sm) {
+		float: left;
+		margin: 0 auto 0.1em auto;
+	}
 
 	// center circle to its parent
 	&.center{
@@ -69,7 +76,7 @@ $bg-color: $background;
 
 	// smaller size
 	&.small{
-		font-size: 80px;
+		font-size: 88px;
 	}
 
 	// centered value inside circle
