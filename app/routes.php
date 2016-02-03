@@ -35,30 +35,48 @@
 		//Authorize PathCollection
 		// ['GET|POST', '/path-to-collection/', 'Path#accessTo', 'path_to_collection' ],
 		
+		//Gestion du Sitemap
+		['GET|POST', '/sitemap.xml', 'Sitemap#sitemapWrite', 'sitemap' ],
 
 		/**
 		* 	BACK-OFFICE
 		*/	
 			//	Accès au back-office
-		['GET', '/back-office/', 'BackOffice#home', 'back_office' ],
+		['GET|POST', '/back-office/', 'BackOffice#home', 'back_office' ],
 
-			// Lancement du scrapping depuis le backoffice
-		['GET|POST', '/back-office/scrapper/', 'BackOffice#scrapper', 'back_office_scrapper' ],
+		// 	// Lancement du scrapping depuis le backoffice
+		// ['GET|POST', '/back-office/scrapper/', 'BackOffice#scrapper', 'back_office_scrapper' ],
 
-			//	Accès depuis le back-office aux utilisateurs
+		//	Accès depuis le back-office aux utilisateurs
 		['GET|POST', '/back-office/users/', 'BackOffice#listUsers', 'back_office_users' ],
 			
-			// Accès à la page permettant de modifier le compte de l'utilisateur
+		// Accès à la page permettant de modifier le compte de l'utilisateur
 		['GET|POST', '/back-office/users/profile/[:id]/', 'BackOffice#profile', 'profile'],
 			
-			//	Accès depuis le back-office aux films
+		//	Accès depuis le back-office aux films
 		['GET|POST', '/back-office/movies/', 'BackOffice#listMovies', 'back_office_movies' ],
 
-			//	Accès depuis le back-office aux films
+		//	Accès depuis le back-office au détail d'un film
 		['GET|POST', '/back-office/movie/detail/[:id]/', 'BackOffice#movieDetail', 'detail' ],
 
-			//	Suppression d'un utilisateur
+		//	Suppression d'un utilisateur
 		['GET|POST', '/back-office/user/delete/[:id]/', 'BackOffice#deleteUser', 'delete_user' ],
+
+
+
+
+		//	Envoie d'un email pouvant changer le mot de passe de l'utilisateur
+		['GET|POST', '/back-office/user/new-password/[:id]/', 'BackOffice#generateNewPasswordUser', 'generate_new_password_user' ],
+		
+		 //	Accueil page scrapper
+		['GET|POST', '/back-office/scrapper/home/', 'BackOffice#scrapperHome', 'scrapper_home' ],
+
+		//	lancement du scrapper
+		['GET|POST', '/back-office/scrapper/launch/', 'BackOffice#launchScrapper', 'launch_scrapper' ],
+
+		
+		//	Afficher le profile de l'utilisateur
+		['GET|POST', '/profile/', 'User#userProfile', 'user_profile' ],
 
 	
 	);	

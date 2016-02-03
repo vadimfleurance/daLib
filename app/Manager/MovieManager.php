@@ -23,7 +23,7 @@ class MovieManager extends \W\Manager\Manager
 				LIMIT 6;";
 
 		$statement = $this->dbh->prepare($sql);
-		$statement->execute([":title" => "%" . $_GET["search"] . "%"]);
+		$statement->execute([":title" => "%" . trim($_GET["search"]) . "%"]);
 		return $statement->fetchAll();
 	}
 
@@ -57,7 +57,7 @@ class MovieManager extends \W\Manager\Manager
 				LIMIT :offset, :limit;";
 
 		$statement = $this->dbh->prepare($sql);
-		$statement->bindValue(':search', "%" . $_GET['search'] . "%");
+		$statement->bindValue(':search', "%" . trim($_GET['search']) . "%");
 		$statement->bindValue(':offset', (int) $offset, 1);
 		$statement->bindValue(':limit', (int) $limit, 1);
 		$statement->execute();
@@ -68,7 +68,7 @@ class MovieManager extends \W\Manager\Manager
 	{
 		$sql = "SELECT COUNT(*) FROM movies WHERE title LIKE :title;";
 		$statement = $this->dbh->prepare($sql);
-		$statement->execute([":title" => "%" . $_GET['search'] . "%"]);
+		$statement->execute([":title" => "%" . trim($_GET['search']) . "%"]);
 		return $statement->fetchColumn();
 	}
 

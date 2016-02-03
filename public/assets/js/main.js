@@ -170,9 +170,9 @@ listMovies.click(function(event){
 });
 
 $("#search-input").on("keyup click", function(){
-	var wordSearch = $("#search-input").val();
+	var wordSearch = $.trim($("#search-input").val());
 	
-	if(wordSearch.length >= 3) {	
+	if(wordSearch.length >= 3) {
 		$.ajax({
 			"url": $("#search-form").attr("data-ajax"),
 			"type": $("#search-form").attr("method"),

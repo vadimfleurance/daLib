@@ -25,12 +25,15 @@
 								<td class="hidden-xs"><?= $user['dateCreated'] ?></td>
 								<td class="hidden-xs"><?= $user['role'] ?></td>
 								<td><a href="<?= $this-> url('profile', ['id' => $user['id']] ); ?>" >Edition</td>
-								<td><a href="<?= $this-> url('forgot_password'); ?>" >Generate a new password</td>
+								<td><a href="<?= $this-> url('generate_new_password_user', ['id' => $user['id']] ); ?>" >Generate a new password</td>
 								<td><a href="<?= $this-> url('delete_user', ['id' => $user['id']] ); ?>" >Delete</td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
+			</div>
+			<div class="col-xs-4 col-sm-4">
+				<a href="<?= $this->url('back_office')?>" class="btn btn-default btn-block">Back to Back-Office</a>
 			</div>
 		</div>
 	</div>
