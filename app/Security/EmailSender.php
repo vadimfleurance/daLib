@@ -42,15 +42,14 @@ class EmailSender
 		$mail->Password = "merciwebforce3";
 
 		// L'adresse d'envoie
-		$mail->setFrom('contact.dalib@gmail.com', 'daLIb : Password forgotten');
+		$mail->setFrom('contact.dalib@gmail.com', 'daLib : Password forgotten');
 
 		// Les detinatires des mails qui seront envoyés. On récupère l'email de l'utilisateur ainsi que son nom d'utilisateur
 		$mail->addAddress( $user['email'] , $user['username'] );
 
 		// L'objet du mail
 		$mail->Subject = 'daLib.com - New password Request';
-
-
+		
 		/**
 		*	Création du lien de réinitialisation du mot de passe
 		*/

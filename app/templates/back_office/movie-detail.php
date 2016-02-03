@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">	
-				<h2>Détail du movie : <?= $movie['title']; ?></h2>
+				<h2>Movie : <?= $movie['title']; ?></h2>
 				
 				<form method="POST">
 					<div class="form-group">

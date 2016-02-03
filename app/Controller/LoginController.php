@@ -145,7 +145,8 @@ class LoginController extends Controller
 			$emailSender = new \Security\EmailSender();
 
 			$emailSender->sendResetPasswordLink( $user );
-			
+
+			$this->redirectToRoute('home');
 		}
 		// On appelle le template avec les erreurs.
 		$this->show('user/forgot-password', [
@@ -226,7 +227,7 @@ class LoginController extends Controller
 						$user = $userManager->find( $user['id'] );
 						$authManager->logUserIn( $user );
 						
-						// $this->redirectToRoute('home');
+						$this->redirectToRoute('show_collection');
 					} 
 					else {
 						$errors['total'][] = "Veuillez remplir correctement le formulaire en suivant les indications présentes en dessous des champs correspondant. " ;
@@ -238,5 +239,5 @@ class LoginController extends Controller
 				]);
 		}
 		$this->show('user/new-password');
-	}	
+	}
 }

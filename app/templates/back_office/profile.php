@@ -5,9 +5,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">		
-				<h2>Détail du user : <?= $user['username'] ?></h2>
+				<h2>Profile of the user : <?= $user['username'] ?></h2>
 
-				<p>Date d'inscription : <?php echo $user['dateCreated']; ?><br>
+				<p>Member since : <?php echo $user['dateCreated']; ?><br>
 				Id du user : <?php echo $user['id']; ?></p>
 
 				<form method="POST">
@@ -73,6 +73,9 @@
 					<button type="submit" class="btn btn-default btn-block" name="action[modify]" value="modify" >Modify</button>
 				</form>
 			</div>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<a href="<?= $this->url('back_office_users')?>" class="btn btn-default btn-block">Back to the list</a>
 		</div>
 	</div>
 </section>

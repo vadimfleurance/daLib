@@ -13,6 +13,7 @@
 						Join now or get your genitals cut off ! And as french says "foo parce qu'on est des foo !"</p>
 					</header>
 				</div>
+				<?php if( !isset($w_user)) : ?>
 				<div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
 					<!-- Nav tabs -->
 					<div class="row">
@@ -33,6 +34,7 @@
 						</div>
 					</div>
 				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</section>
