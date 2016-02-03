@@ -4,7 +4,6 @@ namespace Controller;
 
 use \W\Controller\Controller;
 
-
 class UserController extends Controller
 {
 	public function userProfile()
@@ -47,7 +46,7 @@ class UserController extends Controller
 				*	USERNAME
 				*
 				**************************************************/
-				if ( $username != $newUsername ){
+				if ( $username != $newUsername ) {
 					// On vérifie que le champs n'est pas vide 
 					if ( empty( $newUsername )  ) {
 						$isValidNewUsername = false;
@@ -91,7 +90,7 @@ class UserController extends Controller
 				*	EMAIL
 				*	
 				**************************************************/ 
-				if ( $email != $newEmail ){
+				if ( $email != $newEmail ) {
 					// On vérifie que le champs n'est pas vide
 					if ( empty( $newEmail ) ) {
 						$isValidNewEmail = false;

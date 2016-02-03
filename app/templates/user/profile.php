@@ -95,10 +95,7 @@
 						<?php endforeach; ?>
 						</ul>
 					<?php endif; ?>
-
-					<label for="icone">Icône du fichier (JPG, PNG ou GIF | max. 15 Ko) :</label><br>
-     				<input type="file" name="icone" id="icone"><br>
-					
+	
 					<button type="submit" class="btn btn-default btn-block" name="action[modify]" value="modify" >Modify</button>
 				</form>
 			</div>
