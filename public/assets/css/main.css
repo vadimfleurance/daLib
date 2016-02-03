@@ -1358,6 +1358,13 @@ form .input-group-addon {
   font-size: 1.125em;
 }
 
+form textarea.form-control {
+  height: inherit;
+  width: 100%;
+  min-height: 200px;
+  resize: none;
+}
+
 form#search-form {
   margin-top: 13px;
   margin-bottom: 13px;

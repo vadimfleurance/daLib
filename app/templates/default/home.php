@@ -1,5 +1,10 @@
 <?php $this->layout('layout', ['title' => 'daLib | Your collection of movies in your pocket']) ?>
 
+<?php $this->start('css') ?>
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-carousel.css') ?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/owl-theme.css') ?>">
+<?php $this->stop('css') ?>
+
 <?php $this->start('main_content') ?>
 	<section id="informations" class="section-padding">
 		<div class="container">
@@ -59,3 +64,7 @@
 		</div>
 	</section>
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+	<script src="<?= $this->assetUrl('js/owl.carousel.min.js') ?>"></script>
+<?php $this->stop('js') ?>

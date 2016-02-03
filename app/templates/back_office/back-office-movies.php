@@ -12,10 +12,10 @@
 						<tr>
 							<th>#</th>
 							<th>Title</th>
-							<th>Year</th>
-							<th>Duration</th>
-							<th>Created</th>
-							<th>Modified</th>
+							<th class="hidden-xs">Year</th>
+							<th class="hidden-xs">Duration</th>
+							<th class="hidden-xs">Created</th>
+							<th class="hidden-xs">Modified</th>
 							<th>Options</th>
 						</tr>
 					</thead>
@@ -24,10 +24,10 @@
 						<tr>
 							<td><?= $movie['id'] ?></td>
 							<td><?= $movie['title'] ?></td>
-							<td><?= $movie['year'] ?></td>
-							<td><?= $movie['duration'] ?>min</td>
-							<td><?= $movie['dateCreated'] ?></td>
-							<td><?= $movie['dateModified'] ?></td>
+							<td class="hidden-xs"><?= $movie['year'] ?></td>
+							<td class="hidden-xs"><?= $movie['duration'] ?>min</td>
+							<td class="hidden-xs"><?= $movie['dateCreated'] ?></td>
+							<td class="hidden-xs"><?= $movie['dateModified'] ?></td>
 							<td><a href="<?= $this->url('detail', ['id' => $movie['id']]); ?>" >Edition</td>
 						</tr>
 					<?php endforeach; ?>	
