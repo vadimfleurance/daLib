@@ -1,13 +1,19 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the collection.
 // -----------------------------------------------------------------------------
-section {
-	&#collection {
-		& article {
-			min-height: 370px;
-			@media (min-width: $media-md) {
-				min-height: 400px;
-			}
+article {
+	&.search-movies {
+		padding: 10px 0;
+
+		@media (min-width: $media-sm) {
+			min-height: 175px;
+		}
+		@media (min-width: $media-md) {
+			min-height: 160px;
+		}
+
+		& h4 {
+			margin-top: 0;
 		}
 	}
 }

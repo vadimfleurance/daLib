@@ -33,9 +33,9 @@
 				<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
 					<div class="row collapse navbar-collapse" id="navbar-main">
 						<div class="col-xs-12 col-sm-6">
-							<form id="search-form" class="navbar-left" action="" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
+							<form id="search-form" class="navbar-left" action="<?=$this->url('search')?>" data-ajax="<?=$this->url('search_ajax')?>" autocomplete="off">
 								<div class="form-group">
-									<label class="sr-only" for="searchInput">Search</label>
+									<label class="sr-only" for="search-input">Search</label>
 									<div class="input-group">
 										<div class="input-group-addon"><i class="fa fa-search"></i></div>
 										<input type="search" class="form-control" id="search-input" name="search" placeholder="Search in daLib ...">
@@ -53,6 +53,7 @@
 										<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle user-avatar" alt="Photo de profil de John Doe"> <span><?= (isset($w_user)) ? $w_user['username'] : 'John Doe'; ?></span> <i class="fa fa-caret-down"></i>
 									</a>
 									<ul class="dropdown-menu">
+										<li><a href="<?= $this->url('show_suggestion')?>"><i class="fa fa-bullhorn"></i> Suggestion</a></li>
 										<li><a href="<?= $this->url('show_collection')?>"><i class="fa fa-database"></i> Collection</a></li>
 										<li><a href="<?= $this->url('user_profile')?>"><i class="fa fa-user"></i> Profile</a></li>
 										<li role="separator" class="divider hidden-xs"></li>
@@ -75,7 +76,7 @@
 		<?= $this->section('main_content') ?>
 	</main>
 
-	<footer class="main-footer">daLib &copy; 2015 - All rights reserved</footer>
+	<footer class="main-footer">daLib &copy; 2016 - All rights reserved</footer>
 
 	<!-- scripts -->
 	<script src="<?= $this->assetUrl('js/jquery-2.2.0.min.js') ?>"></script>

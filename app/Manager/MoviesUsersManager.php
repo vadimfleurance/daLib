@@ -10,56 +10,101 @@ class MoviesUsersManager extends \W\Manager\Manager
 		//redefine table name for use
 		$this->setTable('movies__users');
 	}
-	public function collect($idMovie, $idUser)
-	{
-		if(!$this->isPresent($idMovie, $idUser)){
-			$stmt = $this->dbh->prepare(
-							'INSERT INTO movies__users (idMovie, idUser, dateCreated, dateModified)
-							 VALUES (:idMovie, :idUser, NOW(), NOW())'
-							 );
-			$stmt->bindValue(':idMovie', $idMovie );
-			$stmt->bindValue(':idUser', $idUser );
-			return $stmt->execute();//comment retourner un booleen exploitable pour une utilisation d'affichage d'etat de bouton
-		}
-		else echo "le film est deja present dans votre collection";
 
-	}
-	public function remove($idMovie, $idUser)
+	// Vérifie en DB si le film estdans la collection de l'utilisateur
+	// Si oui, retourne un tableau idFilm + idUser + status
+	// Si non, retourne un tableau vide
+	public function isPresent($idMovie, $idUser)
 	{
-		if($this->isPresent($idMovie, $idUser)){
-			$stmt = $this->dbh->prepare(
+		$stmt = $this->dbh->prepare(
+				'SELECT * FROM movies__users
+				 WHERE idUser = :idUser
+				 AND idMovie = :idMovie'
+				 );
+		$stmt->bindValue(':idUser', $idUser);
+		$stmt->bindValue(':idMovie', $idMovie);
+		$stmt->execute();
+		$movieCollectionFound = $stmt->fetch();
+		
+		return $movieCollectionFound;
+	}
+
+	// Ajoute à la DB
+	public function addToCollection($idMovie, $idUser)
+	{
+		$stmt = $this->dbh->prepare(
+					'INSERT INTO movies__users (idMovie, idUser, dateCreated, dateModified)
+					 VALUES (:idMovie, :idUser, NOW(), NOW())'
+				 );
+		$stmt->bindValue(':idMovie', $idMovie );
+		$stmt->bindValue(':idUser', $idUser );
+		$stmt->execute();
+	}
+
+	// Delete de la DB
+	public function removeToCollection($idMovie, $idUser)
+	{
+		$stmt = $this->dbh->prepare(
 					'DELETE FROM movies__users 
 					WHERE idMovie = :idMovie 
 					AND idUser = :idUser'
 				);
-			$stmt->bindValue('idMovie', $idMovie);
-			$stmt->bindValue('idUser', $idUser);
-			return $stmt->execute();
-		}
-		else echo  "ce film n'est pas present dans votre collection";
-	}
-	//LES METHODES CI DESSOUS SONT A VIRER SI PAS UTILISEE A LA FIN DU PROJET
-	public function watched($bool, $idMovie, $idUser)
-	{
-		$this->setStatus('watched',$bool, $idMovie, $idUser);
+		$stmt->bindValue('idMovie', $idMovie);
+		$stmt->bindValue('idUser', $idUser);
+		$stmt->execute();
 	}
 
-	public function toWatch($bool, $idMovie, $idUser)
-	{
-		$this->setStatus('toWatch',$bool, $idMovie, $idUser);
-	}
-	public function owned($bool, $idMovie, $idUser)
-	{
-		$this->setStatus('owned',$bool, $idMovie, $idUser);
-	}
-	public function ofInterest($bool, $idMovie, $idUser)
-	{
-		$this->setStatus('ofInterest',$bool, $idMovie, $idUser);
-	}
-	public function wanted($bool, $idMovie, $idUser)
-	{
-		$this->setStatus('wanted',$bool, $idMovie, $idUser);
-	}
+	// public function collect($idMovie, $idUser)
+	// {
+	// 	if(!$this->isPresent($idMovie, $idUser)){
+	// 		$stmt = $this->dbh->prepare(
+	// 						'INSERT INTO movies__users (idMovie, idUser, dateCreated, dateModified)
+	// 						 VALUES (:idMovie, :idUser, NOW(), NOW())'
+	// 						 );
+	// 		$stmt->bindValue(':idMovie', $idMovie );
+	// 		$stmt->bindValue(':idUser', $idUser );
+	// 		return $stmt->execute();//comment retourner un booleen exploitable pour une utilisation d'affichage d'etat de bouton
+	// 	}
+	// 	else echo "le film est deja present dans votre collection";
+
+	// }
+	// public function remove($idMovie, $idUser)
+	// {
+	// 	if($this->isPresent($idMovie, $idUser)){
+	// 		$stmt = $this->dbh->prepare(
+	// 				'DELETE FROM movies__users 
+	// 				WHERE idMovie = :idMovie 
+	// 				AND idUser = :idUser'
+	// 			);
+	// 		$stmt->bindValue('idMovie', $idMovie);
+	// 		$stmt->bindValue('idUser', $idUser);
+	// 		return $stmt->execute();
+	// 	}
+	// 	else echo  "ce film n'est pas present dans votre collection";
+	// }
+
+	//LES METHODES CI DESSOUS SONT A VIRER SI PAS UTILISEE A LA FIN DU PROJET
+	// public function watched($bool, $idMovie, $idUser)
+	// {
+	// 	$this->setStatus('watched',$bool, $idMovie, $idUser);
+	// }
+
+	// public function toWatch($bool, $idMovie, $idUser)
+	// {
+	// 	$this->setStatus('toWatch',$bool, $idMovie, $idUser);
+	// }
+	// public function owned($bool, $idMovie, $idUser)
+	// {
+	// 	$this->setStatus('owned',$bool, $idMovie, $idUser);
+	// }
+	// public function ofInterest($bool, $idMovie, $idUser)
+	// {
+	// 	$this->setStatus('ofInterest',$bool, $idMovie, $idUser);
+	// }
+	// public function wanted($bool, $idMovie, $idUser)
+	// {
+	// 	$this->setStatus('wanted',$bool, $idMovie, $idUser);
+	// }
 	//FIN DES METHODES A VIRER
 
 
@@ -86,23 +131,23 @@ class MoviesUsersManager extends \W\Manager\Manager
 
 	}//end of method
 
-	public function isPresent($idMovie, $idUser)
-	{	
-		//selectionne tout les idmovie present dans une collection utilisateur.
-		$stmt = $this->dbh->prepare(
-				'SELECT id FROM movies__users
-				 WHERE idUser = :idUser
-				 AND idMovie = :idMovie'
-				 );
-		$stmt->bindValue(':idUser', $idUser);
-		$stmt->bindValue(':idMovie', $idMovie);
-		$stmt->execute();
-		$id = $stmt->fetchColumn();
-		if(!$id){
-			return false;
-		}//end of if
-		return true;
-	}//end of method
+	// public function isPresent($idMovie, $idUser)
+	// {	
+	// 	//selectionne tout les idmovie present dans une collection utilisateur.
+	// 	$stmt = $this->dbh->prepare(
+	// 			'SELECT id FROM movies__users
+	// 			 WHERE idUser = :idUser
+	// 			 AND idMovie = :idMovie'
+	// 			 );
+	// 	$stmt->bindValue(':idUser', $idUser);
+	// 	$stmt->bindValue(':idMovie', $idMovie);
+	// 	$stmt->execute();
+	// 	$id = $stmt->fetchColumn();
+	// 	if(!$id){
+	// 		return false;
+	// 	}//end of if
+	// 	return true;
+	// }//end of method
 
 	public function getStatus($idMovie, $idUser)
 	{
@@ -135,8 +180,7 @@ class MoviesUsersManager extends \W\Manager\Manager
 		
 	}
 	public function getEntireCollection($idUser,$totalMovies,$cPage,$perPage)
-	{
-				
+	{		
 		$stmt = $this->dbh->prepare(
 				"SELECT *
 				FROM movies__users
@@ -175,8 +219,5 @@ class MoviesUsersManager extends \W\Manager\Manager
 		$stmt->execute();
 		$totalMovies = $stmt->fetchColumn();
 		return $totalMovies ;
-
-
 	}
-
 }//end of class
