@@ -15,7 +15,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-8">
 					<header>
-						<h1><?= $movie['title'] ?><?=$movie['year'] ? " <small>(" . $movie['year'] . ")</small>" : ''?></h1>
+						<h1><?= $movie['title'] ?> <?=$movie['year'] ? "<small>(" . $movie['year'] . ")</small>" : ''?></h1>
 						<?php if($movie['genres']):?>
 						<p class="genre">
 							<?php $i = 0;?>
