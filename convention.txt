@@ -1,0 +1,40 @@
+<?php
+//ATTENTION DE TRAVAILLER LE FICHER SCSS DANS SRC
+
+//les fichiers contenant une classe sont ecrits comme les classes en UpperCamelCase
+//les autres fichiers sont ecrit en minuscule snake_case
+
+//Les Classes seront ecrites en UpperCamelCase
+class MyClass
+
+
+
+//les propriétés de classe sont ecrites en snake_case un underscore separant les mots
+
+$ma_variable
+
+//la visibilité des methodes est ecrite
+//les methodes sont ecrites en camelCase
+
+public function myFunction()
+
+
+
+//les accolades respecte la norme PSR pour les classes et methodes de classe
+class MyClass
+{
+	function maMethod
+	{
+
+	}
+}
+
+//les accolades pour le reste if ou foreach par exemple ne respecte pas la norme PSR
+
+if(empty($foo)){
+	
+}
+else{
+	
+}
+

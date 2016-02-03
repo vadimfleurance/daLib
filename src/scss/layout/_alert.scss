@@ -1,0 +1,48 @@
+// ===========================================================================
+// Layout Alert (Default)
+// ===========================================================================
+
+.alert {
+	color: $alert-font-color;
+
+	& h4 {
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+	
+	&-dismissable .close {
+		color: $alert-close-color;
+	}
+
+	@at-root &-info {
+		background-color: $alert-info;
+		border: $alert-info;
+	}
+	@at-root &-warning {
+		background-color: $alert-warning;
+		border: $alert-warning;
+	}
+	@at-root &-danger {
+		background-color: $alert-danger,;
+		border: $alert-danger;
+	}
+	@at-root &-success {
+		background-color: $alert-success;
+		border: $alert-success;
+	}
+
+	@at-root & &-link {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+
+	@at-root & .btn-link,
+	& .btn-link:hover,
+	& .btn-link:focus {
+		color: $alert-close-color;
+	}
+	@at-root & .btn-link:focus,
+	& .btn-link:hover {
+		text-decoration: none;
+	}
+}

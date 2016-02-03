@@ -1,0 +1,94 @@
+// ===========================================================================
+// Components Forms
+// ===========================================================================
+
+form {
+	& .form-control,
+	& .input-group-addon {
+		height: 40px;
+		font-size: 1.125em;
+	}
+	& textarea.form-control {
+		height: inherit;
+		width: 100%;
+		min-height: 200px;
+		resize: none;
+	}
+	&#search-form {
+		margin-top: 13px;
+		margin-bottom: 13px;
+
+		& .form-group {
+			margin-bottom: 0;
+		}
+
+		& .form-control {
+			color: $form-font-color;
+			border-color: transparent;
+			background-color: transparent;
+			transition: none;
+			border: {
+				top: 0;
+				right: 0;
+				bottom: 1px;
+				left: 0;
+				style: solid;
+				color: $secondary-light;
+				radius: 0;
+			}
+
+			&:focus {
+				border-color: $form-primary;
+				box-shadow: none;
+			}
+		}
+
+		& .input-group-addon {
+			background-color: transparent;
+			border-color: transparent;
+		}
+	}
+}
+
+#result-search-form {
+	position: absolute;
+	top: 70px;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+
+	& section {
+		background-color: $secondary-light;
+		max-height: 350px;
+		overflow: auto;
+	}
+	& .search-movies {
+		min-height: 45px;
+		margin: 10px 0;
+		border-bottom: 1px solid $secondary-light;
+
+		&:last-of-type {
+			border-bottom: 0;
+		}
+		@media(min-width: $media-sm) {
+			& h4 {
+				margin-top: 0;
+			}
+		}
+	}
+	& .search-movies-notfound {
+		min-height: 45px;
+		margin: 10px 0;
+		line-height: 45px;
+		& p {
+			margin: 0;
+			font-style: italic;
+		}
+	}
+	& footer {
+		background-color: $primary;
+		& .btn-link {
+			min-height: inherit;
+		}
+	}
+}

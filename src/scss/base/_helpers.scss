@@ -1,0 +1,41 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+.bg-dalib {
+	background-color: $primary;
+}
+.section-padding {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+/*.alert{
+	&-default {
+		color: $A22;
+	}
+	&-primary {
+		@extend .alert-default;
+		background-color: $primary;
+		border-color: $primary;
+	}
+	&-success {
+		@extend .alert-default;
+		background-color: $A4;
+		border-color: $A3;
+	}
+	&-info {
+		@extend .alert-default;
+		background-color: $primary;
+		border-color: $primary;
+	}
+	&-warning {
+		@extend .alert-default;
+		background-color: $H5;
+		border-color: $H2;
+	}
+	&-danger {
+		@extend .alert-default;
+		background-color: $A15;
+		border-color: $B6;
+	}
+}*/

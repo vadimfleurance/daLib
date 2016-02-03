@@ -1,0 +1,12 @@
+.btn-watched,
+.btn-toWatch,
+.btn-owned,
+.btn-wanted {
+	background-color: $A4;
+	&:focus {
+		background-color: $A3;
+	}
+	&:hover {
+		background-color: $A3;
+	}
+}

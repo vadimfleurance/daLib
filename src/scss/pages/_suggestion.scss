@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the collection.
+// -----------------------------------------------------------------------------
+section {
+	&#suggestion {
+		& article {
+			min-height: 370px;
+			@media (min-width: $media-md) {
+				min-height: 400px;
+			}
+		}
+	}
+}
