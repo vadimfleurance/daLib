@@ -58,5 +58,8 @@
 			//	Suppression d'un utilisateur
 		['GET|POST', '/back-office/user/delete/[:id]/', 'BackOffice#deleteUser', 'delete_user' ],
 
+		//Gestion du Sitemap
+		['GET|POST', '/sitemap.xml', 'Sitemap#sitemapWrite', 'sitemap' ],
+
 	
 	);	
