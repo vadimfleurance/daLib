@@ -47,10 +47,12 @@ class MovieController extends Controller
 		}
 
 		$moviesUserManager = new \Manager\MoviesUsersManager;
-		$movieCollectionFound = $moviesUserManager->isPresent($id, $user['id']);
+		$isPresent = $moviesUserManager->isPresent($id, $user['id']);
+		$statusValues = $moviesUserManager->getStatus($id, $user['id'] );
 		$this->show('movie/details', [
 										'movie' => $movie,
-										'movieCollectionFound' => $movieCollectionFound,
+										'isPresent' => $isPresent,
+										'statusValues' => $statusValues,
 										'genresNb' => $genresNb,
 										'directorsNb' => $directorsNb,
 										'writersNb' => $writersNb,

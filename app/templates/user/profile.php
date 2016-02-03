@@ -9,6 +9,16 @@
 
 				<p>Your are a daLib member since : <?php echo $user['dateCreated']; ?><br></p>
 
+			
+				<?php if (!empty( $errors['total'] )) : ?>
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<?php foreach($errors['total'] as $error ): ?>
+							<p><strong>Success !</strong> <?= $error; ?></p>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+
 				<form method="POST">
 					<div class="form-group">
 						<label class="sr-only" for="userRegisterInput">Username Register</label>
@@ -19,13 +29,13 @@
 					</div>
 					
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['username'] )) : 
-							foreach ( $updatedRows['username'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['username'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['username'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<!-- Message d'erreur pour un USERNAME déjà utilisé  -->
 					<?php if (!empty( $errors['username'] )) : ?>
@@ -45,13 +55,13 @@
 					</div>
 
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['email'] )) : 
-							foreach ( $updatedRows['email'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['email'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['email'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<!-- Message d'erreur pour une mauvaise saisie de l'EMAIL -->
 					<?php if (!empty( $errors['email'] )) : ?>
@@ -62,6 +72,7 @@
 						</ul>
 					<?php endif; ?>
 				
+					<p>Those fields are optionals</p>
 					<div class="form-group">
 						<label class="sr-only" for="passwordRegisterInput">Password Register</label>
 						<div class="input-group">
@@ -79,13 +90,13 @@
 					</div>
 
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['password'] )) : 
-							foreach ( $updatedRows['password'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['password'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['password'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<!-- Message d'erreur pour une mauvaise saisie du PASSWORD -->
 					<?php if (!empty( $errors['password'] )) : ?>
