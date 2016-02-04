@@ -1,7 +1,7 @@
 <section>
 	<?php if($moviesFound) : ?>
 		<?php foreach($moviesFound as $movie) : ?>
-			<a href="<?= $this->url('movie_detail', ['id' => $movie['id']]) ?>" title="Movie | <?=$movie['title']?>">
+			<a href="<?= $this->url('movie_detail', ['id' => $movie['id']]) ?>" title="Movie Detail | <?=$movie['title']?>">
 				<article class="row search-movies">
 					<figure class="hidden-xs col-sm-3 col-md-3">
 					<?php if($movie['cover']):?>
@@ -25,4 +25,4 @@
 		</article>
 	<?php endif; ?>
 </section>
-<footer><a href="<?= $this->url('add_movie') ?>" class="btn btn-link btn-block" target="_blank"><i class="fa fa-plus"></i> Add a movie</a></footer>
+<footer><a href="<?= $this->url('add_movie') ?>" class="btn btn-link btn-block" title="Add a movie"><i class="fa fa-plus"></i> Add a movie</a></footer>

@@ -8,21 +8,21 @@
 				<ul class="pagination">
 					<?php if($cPage > 1):?>
 						<li>
-							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage-1])?>" aria-label="Previous">
+							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage-1])?>" title="Suggestion | Previous page" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
 					<?php endif;?>
 					<?php for ($i=1 ; $i <= $nbPages; $i++): ?>
 						<?php if($i == $cPage):?>
-							<li class="active"><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>"><?=$i ?></a></li>
+							<li class="active"><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>" title="Suggestions | Page <?= $i; ?>"><?=$i ?></a></li>
 						<?php else:?>
-							<li><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>"> <?=$i ?></a></li>
+							<li><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>" title="Suggestions | Page <?= $i; ?>"> <?=$i ?></a></li>
 						<?php endif; ?>
 					<?php endfor ; ?>
 					<?php if($cPage < $nbPages):?>
 						<li>
-							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage+1])?>" aria-label="Next">
+							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage+1])?>" title="Suggestion | Next page" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>
@@ -33,7 +33,7 @@
 
 		<div class="row text-center">
 			<?php foreach ($suggestion as $movie ): ?>
-				<a href="<?= $this->url('movie_detail',['id'=>$movie['id'] ]) ?>">
+				<a href="<?= $this->url('movie_detail',['id'=>$movie['id'] ]) ?>" title="Movie Detail | <?= $movie['title']; ?>">
 					<article class="col-xs-6 col-md-2">
 						<figure>
 						<?php if($movie['cover']):?>
@@ -56,21 +56,21 @@
 				<ul class="pagination">
 					<?php if($cPage > 1):?>
 						<li>
-							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage-1])?>" aria-label="Previous">
+							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage-1])?>" title="Suggestion | Previous page" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
 					<?php endif;?>
 					<?php for ($i=1 ; $i <= $nbPages; $i++): ?>
 						<?php if($i == $cPage):?>
-							<li class="active"><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>"><?=$i ?></a></li>
+							<li class="active"><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>" title="Suggestions | Page <?= $i; ?>"><?=$i ?></a></li>
 						<?php else:?>
-							<li><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>"> <?=$i ?></a></li>
+							<li><a href="<?=$this->url('show_suggestion',['cPage'=>$i])?>" title="Suggestions | Page <?= $i; ?>"> <?=$i ?></a></li>
 						<?php endif; ?>
 					<?php endfor ; ?>
 					<?php if($cPage < $nbPages):?>
 						<li>
-							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage+1])?>" aria-label="Next">
+							<a href="<?=$this->url('show_suggestion',['cPage' => $cPage+1])?>" title="Suggestion | Next page" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>

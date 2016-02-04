@@ -16,14 +16,13 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['title'] )) : 
-							foreach ( $updatedRows['title'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
-
+					<?php if (!empty( $updatedRows['title'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['title'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<div class="form-group">
 						<label class="sr-only" for="movieSynopsisInput">Synopsis</label>
@@ -33,13 +32,13 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['synopsis'] )) : 
-							foreach ( $updatedRows['synopsis'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['synopsis'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['synopsis'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<div class="form-group">
 						<label class="sr-only" for="movieDurationInput">Duration</label>
@@ -49,14 +48,13 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['duration'] )) : 
-							foreach ( $updatedRows['duration'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
-
+					<?php if (!empty( $updatedRows['duration'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['duration'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<div class="form-group">
 						<label class="sr-only" for="movieYearInput">Year</label>
@@ -66,13 +64,13 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['year'] )) : 
-							foreach ( $updatedRows['year'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['year'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['year'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<div class="form-group">
 						<label class="sr-only" for="movieImdbRefInput">imdbRef</label>
@@ -82,13 +80,13 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['imdbRef'] )) : 
-							foreach ( $updatedRows['imdbRef'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['imdbRef'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['imdbRef'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<div class="form-group">
 						<label class="sr-only" for="movieImdbRatingInput">imdbRating</label>
@@ -98,20 +96,19 @@
 						</div>
 					</div>
 					<!-- Message de confirmation-->
-					<?php 
-						if (!empty( $updatedRows['imdbRating'] )) : 
-							foreach ( $updatedRows['imdbRating'] as $updatedRow ) : ?>
-								<p><?= $updatedRow; ?></p>
-							<?php endforeach ;
-						endif ; 
-					?>
+					<?php if (!empty( $updatedRows['imdbRating'] )) : ?>
+						<ul class="text-success">
+						<?php foreach ( $updatedRows['imdbRating'] as $updatedRow ) : ?>
+							<li><?= $updatedRow; ?></li>
+						<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 					<button type="submit" class="btn btn-default btn-block" name="action[modify]" value="modify" >Modify</button>
 				</form>
+				<br>
+				<a href="<?= $this->url('back_office_movies')?>" class="btn btn-default" title="Back to the list of movies">Back to the list of movies</a>
 			</div>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<a href="<?= $this->url('back_office_movies')?>" class="btn btn-default btn-block">Back to the list</a>
 		</div>
 	</div>
 </section>

@@ -48,20 +48,20 @@
 					
 						<div class="col-xs-12 col-sm-6">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="<?= $this->url('add_movie')?>"><i class="fa fa-plus"></i> Add a movie</a></li>
+								<li><a href="<?= $this->url('add_movie')?>" title="Add a movie"><i class="fa fa-plus"></i> Add a movie</a></li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-										<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle user-avatar" alt="Photo de profil de John Doe"> <span><?= (isset($w_user)) ? $w_user['username'] : 'John Doe'; ?></span> <i class="fa fa-caret-down"></i>
+									<a href="#" class="dropdown-toggle" title="User panel" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										<img src="<?= $this->assetUrl('img/users/default.png') ?>" class="img-reponsive img-circle user-avatar" alt="Picture of <?= $w_user['username'] ?>"> <span><?= (isset($w_user)) ? $w_user['username'] : 'John Doe'; ?></span> <i class="fa fa-caret-down"></i>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a href="<?= $this->url('show_suggestion')?>"><i class="fa fa-bullhorn"></i> Suggestion</a></li>
-										<li><a href="<?= $this->url('show_collection')?>"><i class="fa fa-database"></i> Collection</a></li>
-										<li><a href="<?= $this->url('user_profile')?>"><i class="fa fa-user"></i> Profile</a></li>
+										<li><a href="<?= $this->url('show_suggestion')?>" title="Suggestion of movies"><i class="fa fa-bullhorn"></i> Suggestion</a></li>
+										<li><a href="<?= $this->url('show_collection')?>" title="Your collection of movies"><i class="fa fa-database"></i> Collection</a></li>
+										<li><a href="<?= $this->url('user_profile')?>" title="Your profil"><i class="fa fa-user"></i> Profile</a></li>
 										<li role="separator" class="divider hidden-xs"></li>
 										<?php if(isset($w_user) && $w_user['role'] === 'admin') : ?>
-										<li><a href="<?= $this->url('back_office')?>" class="btn btn-danger"><i class="fa fa-tachometer"></i> Back Office</a></li>
+										<li><a href="<?= $this->url('back_office')?>" title="Back-Office of admin" class="btn btn-danger"><i class="fa fa-tachometer"></i> Back Office</a></li>
 										<?php endif; ?>
-										<li><a href="<?= $this->url('logout')?>"><i class="fa fa-power-off"></i> Logout</a></li>
+										<li><a href="<?= $this->url('logout')?>" title="Disconnected to daLib"><i class="fa fa-power-off"></i> Logout</a></li>
 									</ul>
 								</li>
 							</ul>
